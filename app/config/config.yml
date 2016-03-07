@@ -1,0 +1,17 @@
+imports:
+    - { resource: modules/services.yml }
+    - { resource: modules/security.yml }
+    - { resource: modules/framework.yml }
+    - { resource: modules/twig.yml }
+    - { resource: modules/assetic.yml }
+    - { resource: modules/doctrine.yml }
+    - { resource: modules/mongodb.yml }
+    - { resource: modules/doctrine_cache.yml }
+    - { resource: modules/snc_redis.yml }
+    - { resource: modules/jms_di_extra.yml }
+#    - { resource: modules/jms_security_extra.yml }
+    - { resource: modules/swiftmailer.yml }
+    - { resource: modules/sensio_framework_extra.yml }
+    - { resource: modules/stof_doctrine_extensions.yml }
+    - { resource: modules/knp_paginator.yml }
+    - { resource: modules/gregwar_captcha.yml }

@@ -1,0 +1,63 @@
+<ul class="timeline">
+	<li class="time-label">
+		<span class="bg-aqua">
+			{{ date()|localeDate('full')|capitalize }}
+		</span>
+	</li>
+	{% for trace in traces %}
+	<li>
+		{% if trace.actionEntity == constant('AE_User', trace) %}
+			{% if trace.actionType == constant('AT_CREATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/User:new.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_UPDATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/User:update.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_DELETE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/User:delete.html.twig', {trace: trace}) }}
+			{% endif %}
+		{% elseif trace.actionEntity == constant('AE_Groupmodule', trace) %}
+			{% if trace.actionType == constant('AT_CREATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Groupmodule:new.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_UPDATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Groupmodule:update.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_DELETE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Groupmodule:delete.html.twig', {trace: trace}) }}
+			{% endif %}
+		{% elseif trace.actionEntity == constant('AE_Moduleformation', trace) %}
+			{% if trace.actionType == constant('AT_CREATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Moduleformation:new.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_UPDATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Moduleformation:update.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_DELETE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Moduleformation:delete.html.twig', {trace: trace}) }}
+			{% endif %}
+		{% elseif trace.actionEntity == constant('AE_Modulepreinscription', trace) %}
+			{% if trace.actionType == constant('AT_CREATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Modulepreinscription:new.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_UPDATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Modulepreinscription:update.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_DELETE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Modulepreinscription:delete.html.twig', {trace: trace}) }}
+			{% endif %}
+		{% elseif trace.actionEntity == constant('AE_Sessionformation', trace) %}
+			{% if trace.actionType == constant('AT_CREATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Sessionformation:new.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_UPDATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Sessionformation:update.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_DELETE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Sessionformation:delete.html.twig', {trace: trace}) }}
+			{% endif %}
+		{% elseif trace.actionEntity == constant('AE_Sessioninscription', trace) %}
+			{% if trace.actionType == constant('AT_CREATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Sessioninscription:new.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_UPDATE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Sessioninscription:update.html.twig', {trace: trace}) }}
+			{% elseif trace.actionType == constant('AT_DELETE', trace)%}
+				{{ include('IlcfranceOrangetoolsAdminBundle:Trace/Sessioninscription:delete.html.twig', {trace: trace}) }}
+			{% endif %}
+		{% endif %}
+	</li>
+	{% endfor %}
+	<li>
+		{{faIco('clock-o bg-gray')}}
+	</li>
+</ul>

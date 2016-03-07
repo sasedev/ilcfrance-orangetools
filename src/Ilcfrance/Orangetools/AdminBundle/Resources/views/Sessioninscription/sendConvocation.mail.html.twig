@@ -1,0 +1,27 @@
+<html>
+	<body>
+		<p>
+			Madame, Monsieur,<br/>
+			<b>Dans le cadre de votre Parcours de Formation d’anglais pour l’année {{ 'now'|date('Y')}}</b><br/>
+			<span style="color: red">Module {{ sessionformation.moduleformation.title }}</span>.<br/>
+			vous êtes prié de vous présenter le {{ sessionformation.dtStart|localeDate('full') }}<br/>
+			Horaires : {{ sessionformation.dtStart|localeDate('none', 'long') }} ({{ sessionformation.dtInfo }}).<br/>
+			à l’adresse suivante : <br/>
+			<b>{{ sessionformation.location }}</b><br/>
+		</p>
+		<p>
+			Plan ci-joint : <br/>
+			<img alt="Plan" src="{{ plan }}">
+		</p>
+		<p>
+			Veuillez agréer, Madame, Monsieur, l’expression de nos sincères salutations.
+		</p>
+		<p>
+			Cordialement,<br/>
+			Léa Paolini<br/>
+			Direction des Projets et Organisation<br/>
+			Tél : 01 44 41 80 22<br/>
+			Email : lea.paolini@ilcfrance.com<br/>
+		</p>
+	</body>
+</html>

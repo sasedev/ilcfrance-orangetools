@@ -1,0 +1,19 @@
+parameters:
+    ilcfrance_orangetools_data.entities.traces.class: Ilcfrance\Orangetools\DataBundle\Listener\TraceListener
+    ilcfrance_orangetools_data.users.activity.class: Ilcfrance\Orangetools\DataBundle\Listener\UsersActivityListener
+
+services:
+#    ilcfrance_orangetools_data.example:
+#        class: Ilcfrance\Orangetools\DataBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    ilcfrance_orangetools_data.entities.traces:
+        class:  "%ilcfrance_orangetools_data.entities.traces.class%"
+        arguments: ["@service_container"]
+        tags:
+            - { name: doctrine.event_subscriber }
+
+    ilcfrance_orangetools_data.users.activity:
+        class: "%ilcfrance_orangetools_data.users.activity.class%"
+        arguments: ['@security.token_storage', '@doctrine']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }

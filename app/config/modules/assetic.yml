@@ -1,0 +1,495 @@
+# Assetic Configuration
+assetic:
+    debug: '%kernel.debug%'
+    use_controller:
+        enabled:              '%kernel.debug%'
+        profiler:             false
+#    read_from:            '%assetic.read_from%'
+    write_to:             '%kernel.root_dir%/../web'
+    java: /usr/bin/java
+    node: /usr/bin/node
+    node_paths:
+        - /usr/lib/nodejs
+        - /usr/lib/node_modules
+        - /usr/share/javascript
+    ruby: /usr/bin/ruby
+    filters:
+#        autoprefixer: ~
+        closure:
+            jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        coffee: ~
+        compass:
+            bin: /usr/local/bin/compass
+        csscachebusting: ~
+        cssembed:
+            jar: "%kernel.root_dir%/Resources/java/cssembed-0.4.5.jar"
+        cssimport: ~
+        cssmin: ~
+        cssrewrite: ~
+        dart:
+            bin: /usr/lib/dart/bin/dart2js
+        emberprecompile:
+            bin: /usr/bin/ember
+        gss:
+            jar: "%kernel.root_dir%/Resources/java/closure-stylesheets-library.jar"
+        handlebars: ~
+        jpegoptim: ~
+        jpegtran: ~
+        jsmin: ~
+        jsminplus: ~
+        jsqueeze: ~
+        less:
+            node: /usr/bin/node
+            node_paths:
+                - /usr/lib/nodejs
+                - /usr/lib/node_modules
+                - /usr/share/javascript
+        lessphp:
+            file: "%kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php"
+#            file: "%kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php"
+#            apply_to: \.less$
+        minifycsscompressor: ~
+        optipng: ~
+        packager: ~
+        packer: ~
+        phpcssembed: ~
+        pngout:
+            bin: "%kernel.root_dir%/../bin/pngout"
+        reactjsx:
+            bin: /usr/bin/jsx
+        roole: ~
+        sass:
+            bin: /usr/local/bin/sass
+        scss: ~
+        scssphp:
+            file: "%kernel.root_dir%/../vendor/leafo/scssphp/scss.inc.php"
+        sprockets:
+            lib: /usr/local/bin/sprockets
+        typescript: ~
+        uglifycss: ~
+        uglifyjs: ~
+        uglifyjs2: ~
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
+        yui_js:
+            jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar"
+    bundles:
+        - IlcfranceOrangetoolsResBundle
+        - IlcfranceOrangetoolsSecurityBundle
+        - IlcfranceOrangetoolsFrontBundle
+        - IlcfranceOrangetoolsAdminBundle
+
+    assets:
+
+        # afarkas html5shiv
+        html5shiv:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/html5shiv/dist/html5shiv.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/html5shiv/min.js'
+
+        # scottjehl respond
+        respond:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/respond/src/matchmedia.polyfill.js'
+                - '%kernel.root_dir%/../web/assets/bower/respond/src/matchmedia.addListener.js'
+                - '%kernel.root_dir%/../web/assets/bower/respond/src/respond.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/respond/min.js'
+
+        # html5shiv.respond.min.js
+        html5shiv_respond_min_js:
+            inputs:
+                - '@html5shiv'
+                - '@respond'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/html5shiv.respond.min.js'
+
+        # Jquery
+        jquery1:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery-1.x/dist/jquery.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery/v1.min.js'
+
+        # Jquery
+        jquery2:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery-2.x/dist/jquery.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery/v2.min.js'
+
+        # Jquery migrate
+        jquery_migrate:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery-migrate/jquery-migrate.js'
+            combine: true
+            output: 'js/jquery/migrate/script.js'
+
+        # Jquery migrate
+        jquery_migrate_min:
+            inputs:
+                - '@jquery_migrate'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery/migrate/min.js'
+
+        # jquery2.migrate.min.js
+        jquery1_migrate_min_js:
+            inputs:
+                - '@jquery1'
+                - '@jquery_migrate_min'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery1.migrate.min.js'
+
+        # jquery2.migrate.min.js
+        jquery2_migrate_min_js:
+            inputs:
+                - '@jquery2'
+                - '@jquery_migrate_min'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery2.migrate.min.js'
+
+        # jquery nicescroll
+        jquery_nicescroll:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery.nicescroll/jquery.nicescroll.min.js'
+            combine: true
+            output: 'js/jquery/nicescroll/min.js'
+
+        jquery_nicescroll_img:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery.nicescroll/zoomico.png'
+            output: 'js/jquery/nicescroll/zoomico.png'
+
+        jquery_nicescroll_img2:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery.nicescroll/zoomico.png'
+            output: 'js/zoomico.png'
+
+        # jquery-slimscroll
+        jquery_slimscroll:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery-slimscroll/jquery.slimscroll.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery/slimscroll/min.js'
+
+        # jquery-fastclick
+        jquery_fastclick:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/fastclick/lib/fastclick.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery/fastclick/min.js'
+
+        # velocity
+        velocity_min_js:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/velocity/velocity.js'
+                - '%kernel.root_dir%/../web/assets/bower/velocity/velocity.ui.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/velocity/min.js'
+
+        # bootstrap_min_js
+        bootstrap_min_js:
+            inputs:
+                - "%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js"
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/bootstrap/min.js'
+
+        # error.min.js
+        error_min_js:
+            inputs:
+                - '@jquery_nicescroll'
+                - '@jquery_slimscroll'
+                - '@jquery_fastclick'
+                - '@bootstrap_min_js'
+                - '%kernel.root_dir%/../src/Ilcfrance/Orangetools/ResBundle/Resources/js/base.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/error.min.js'
+
+        # hacker_bootstrap_less
+        hacker_bootstrap_less:
+            inputs: "%kernel.root_dir%/../src/Ilcfrance/Orangetools/ResBundle/Resources/less/hacker-bootstrap/hacker.less"
+            filters:
+                - less
+                - cssrewrite
+            output: 'css/hacker-bootstrap.css'
+
+        # ilcfrance_orangetools_theme_less
+        ilcfrance_orangetools_theme_less:
+            inputs: "%kernel.root_dir%/../src/Ilcfrance/Orangetools/ResBundle/Resources/less/sasedev/sasedev.less"
+            filters:
+                - less
+                - cssrewrite
+            output: 'css/theme.css'
+
+        # frameworkerror.min.css
+        ilcfrance_orangetools_frameworkerror_min_css:
+            inputs:
+                - '%kernel.root_dir%/../web/bundles/framework/css/structure.css'
+                - '%kernel.root_dir%/../web/bundles/framework/css/body.css'
+                - '%kernel.root_dir%/../web/bundles/framework/css/exception.css'
+                - '@hacker_bootstrap_less'
+                - '@ilcfrance_orangetools_theme_less'
+                - "%kernel.root_dir%/../src/Ilcfrance/Orangetools/ResBundle/Resources/css/error.css"
+            filters:
+                - cssrewrite
+                - minifycsscompressor
+                - yui_css
+            combine: true
+            output: 'css/frameworkerror.min.css'
+
+        # mnot hinclude
+        hinclude:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/hinclude/hinclude.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/hinclude/min.js'
+
+        # jquery1.migrate.hinclude.min.js
+        jquery1_migrate_hinclude_min_js:
+            inputs:
+                - '@jquery1'
+                - '@jquery_migrate_min'
+                - '@hinclude'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery1.migrate.hinclude.min.js'
+
+        # jquery2.migrate.hinclude.min.js
+        jquery2_migrate_hinclude_min_js:
+            inputs:
+                - '@jquery2'
+                - '@jquery_migrate_min'
+                - '@hinclude'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery2.migrate.hinclude.min.js'
+
+        # moment
+        moment_min_js:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/moment/min/moment-with-locales.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/moment/with-locales.min.js'
+
+        # moment-timezone
+        moment_timezone_min_js:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/moment-timezone/builds/moment-timezone-with-data-2010-2020.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/moment/timezone-with-data-2010-2020.min.js'
+
+        # jquery.easing.js
+        jquery_easing_min_js:
+            inputs:
+                - '%kernel.root_dir%/../web/assets/bower/jquery.easing/js/jquery.easing.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery/easing/min.js'
+
+        # jquery.form.js
+        jquery_form_min_js:
+            inputs:
+                 - '%kernel.root_dir%/../web/assets/bower/jquery-form/jquery.form.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/jquery/form/min.js'
+
+
+
+
+#        # jqueryui.js
+#        jquery_ui_min_js:
+#            inputs:
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/core.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/widget.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/mouse.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/draggable.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/droppable.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/resizable.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/selectable.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/sortable.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/effect.js'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-ui/ui/i18n/*.js'
+#            filters:
+#                - uglifyjs2
+#            combine: true
+#            output: 'js/jquery-ui.min.js'
+
+
+        # FontAwesome
+        # temps
+        # final output
+        font_awesome_less:
+            inputs: "%kernel.root_dir%/../vendor/fortawesome/font-awesome/less/font-awesome.less"
+            filters:
+                - less
+                - cssrewrite
+            output: 'css/font-awesome.css'
+
+        # Ionicons
+        # temps
+        # final output
+        ionicons_less:
+            inputs: "%kernel.root_dir%/../vendor/driftyco/ionicons/less/ionicons.less"
+            filters:
+                - less
+                - cssrewrite
+            output: 'css/ionicons.css'
+
+        # bootstrap
+        # final output
+        bootstrap_less:
+            inputs: "%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less"
+            filters:
+                - less
+                - cssrewrite
+            output: 'css/bootstrap.css'
+
+        ilcfrance_orangetools_skin_all_less:
+            inputs: "%kernel.root_dir%/../src/Ilcfrance/Orangetools/ResBundle/Resources/less/sasedev/skins/_all-skins.less"
+            filters:
+                - less
+                - cssrewrite
+            output: 'css/skins.css'
+
+        tinymce_min_js:
+            inputs:
+                 - '%kernel.root_dir%/../web/assets/bower/tinymce-dist/jquery.tinymce.min.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/tinymce-dist/min.js'
+
+        select2_scss:
+            inputs: "%kernel.root_dir%/../web/assets/bower/select2/src/scss/core.scss"
+            filters:
+                - scss
+                - cssrewrite
+            output: 'css/select2.css'
+
+        select2_min_js:
+            inputs:
+                 - '%kernel.root_dir%/../web/assets/bower/select2/dist/js/select2.full.js'
+                 - '%kernel.root_dir%/../web/assets/bower/select2/dist/js/i18n/*.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/select2/min.js'
+
+#        select2_bootstrap_less:
+#            inputs: "%kernel.root_dir%/../web/assets/bower/select2-bootstrap-css/lib/select2-bootstrap.less"
+#            filters:
+#                - less
+#                - cssrewrite
+#            output: 'css/select2-bootstrap.css'
+
+#        # bootstrap_colorpicker_less
+#        bootstrap_colorpicker_less:
+#            inputs: "%kernel.root_dir%/../web/assets/bower/mjolnic-bootstrap-colorpicker/src/less/colorpicker.less"
+#            filters:
+#                - less
+#                - cssrewrite
+#            combine: true
+#            output: 'css/bootstrap-colorpicker.css'
+
+        # fulltemplate.min.css
+        ilcfrance_orangetools_fulltemplate_min_css:
+            inputs:
+                - '@font_awesome_less'
+                - '@ionicons_less'
+                - '@bootstrap_less'
+                - '@select2_scss'
+                - '@ilcfrance_orangetools_theme_less'
+                - '@ilcfrance_orangetools_skin_all_less'
+                - '%kernel.root_dir%/../web/assets/bower/datatables/media/css/dataTables.bootstrap.css'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-modal/css/bootstrap-modal-bs3patch.css'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-modal/css/bootstrap-modal.css'
+#                - '%kernel.root_dir%/../web/assets/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+                - '%kernel.root_dir%/../web/assets/bower/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.css'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-fileinput/css/fileinput.css'
+#                - '%kernel.root_dir%/../web/assets/bower/bootstrap-duallistbox/src/bootstrap-duallistbox.css'
+##                - '@select2_bootstrap_less'
+#                - '%kernel.root_dir%/../web/assets/bower/bootstrap-toggle/css/bootstrap-toggle.css'
+#                - '@bootstrap_colorpicker_less'
+#                - '%kernel.root_dir%/../web/assets/bower/jquery-minicolors/jquery.minicolors.css'
+#                - '%kernel.root_dir%/../web/assets/bower/yamm3/yamm/yamm.css'
+                - '%kernel.root_dir%/../web/assets/bower/icheck/skins/minimal/minimal.css'
+#                - '%kernel.root_dir%/../web/assets/bower/cropper/dist/cropper.css'
+            filters:
+                - cssrewrite
+                - minifycsscompressor
+                - yui_css
+            combine: true
+            output: 'css/fulltemplate.min.css'
+
+        # app.min.js
+        app_min_js:
+            inputs:
+                - '@jquery_nicescroll'
+                - '@jquery_slimscroll'
+                - '@jquery_fastclick'
+#                - '@velocity_min_js'
+#                - '@jquery_form_min_js'
+                - '@bootstrap_min_js'
+                - '%kernel.root_dir%/../src/Ilcfrance/Orangetools/ResBundle/Resources/js/base.js'
+#                - '@jquery_easing_min_js'
+                - '@moment_min_js'
+                - '@moment_timezone_min_js'
+                - '%kernel.root_dir%/../web/assets/bower/icheck/icheck.js'
+#                - '@jquery_ui_min_js'
+                - '@tinymce_min_js'
+                - '@select2_min_js'
+                - '%kernel.root_dir%/../web/assets/bower/datatables/media/js/jquery.dataTables.js'
+                - '%kernel.root_dir%/../web/assets/bower/datatables/media/js/dataTables.bootstrap.js'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-modal/js/bootstrap-modalmanager.js'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-modal/js/bootstrap-modalmanager.js'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-modal/js/bootstrap-modal.js'
+#                - '%kernel.root_dir%/../web/assets/bower/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js'
+                - '%kernel.root_dir%/../web/assets/bower/smalot-bootstrap-datetimepicker/js/bootstrap-datetimepicker.js'
+                - '%kernel.root_dir%/../web/assets/bower/smalot-bootstrap-datetimepicker/js/locales/*.js'
+                - '%kernel.root_dir%/../web/assets/npm/blueimp-canvas-to-blob/js/canvas-to-blob.js'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-fileinput/js/fileinput.js'
+                - '%kernel.root_dir%/../web/assets/bower/bootstrap-fileinput/js/fileinput_locale_*.js'
+#                - '%kernel.root_dir%/../web/assets/bower/bootstrap-duallistbox/src/jquery.bootstrap-duallistbox.js'
+            filters:
+                - uglifyjs2
+            combine: true
+            output: 'js/app.min.js'
+

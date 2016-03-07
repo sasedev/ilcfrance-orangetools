@@ -1,0 +1,13 @@
+# Doctrine Cache
+#doctrine_cache:
+#    providers:
+#        memcached_provider:
+#            type: memcached
+#            class: Doctrine\Common\Cache\MemcacheCache
+#            host: localhost
+#            port: 11211
+#            instance_class: Memcache
+#        vendor_filesystem_validation_cache:
+#            file_system:
+#                extension: cache
+#                directory: "%kernel.root_dir%/../var/cache/%kernel.environment%/doctrine/cache"

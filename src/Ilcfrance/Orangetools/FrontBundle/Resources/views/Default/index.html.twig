@@ -1,0 +1,73 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_front_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.breadcrumb'|trans }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">Les modules auxquels vous avez étés préinscrits sont :</h3>
+			</div>
+			<div class="box-body">
+				<ul>
+				{% for modulepreinscription in trainee.modulepreinscriptions %}
+					<li>
+						<b>{{ modulepreinscription.moduleformation.title }}</b>
+						{% if modulepreinscription.moduleformation.description is not empty %}
+						{{ modulepreinscription.moduleformation.description|raw }}
+						{% endif %}
+						{% set currsession = null %}
+						{% for sessioninscription in trainee.sessioninscriptions %}
+							{% if sessioninscription.sessionformation.moduleformation.id == modulepreinscription.moduleformation.id %}
+							{% set currsession = sessioninscription %}
+							{% endif %}
+						{% endfor %}
+						{% if null != currsession %}
+						<ul>
+							<li>
+								Session choisie :
+								<i>{{ currsession.sessionformation.title }}</i></b>
+								(<b>{{ currsession.sessionformation.location|raw }}</b>: <b>{{ currsession.sessionformation.dtStart|localeDate('long') }}</b> {{faIco('at')}} <b>{{ currsession.sessionformation.dtStart|localeDate('none', 'long') }}</b>)<br/>
+									{%if currsession.sessionformation.dtInfo is not empty %}{{ currsession.sessionformation.dtInfo }}<br/>{% endif %}
+									{%if currsession.sessionformation.conditionsReport is not empty %}{{ currsession.sessionformation.conditionsReport }}<br/>{% endif %}
+									{%if currsession.sessionformation.phoneContactCenter is not empty %}{{ currsession.sessionformation.phoneContactCenter }}<br/>{% endif %}
+									{%if currsession.sessionformation.otherInfos is not empty %}{{ currsession.sessionformation.otherInfos|raw }}{% else %}<br/>{% endif %}
+							</li>
+						</ul>
+						{% else %}
+						<br/>
+						<br/>
+						{% endif %}
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+		{% for SessioninscriptionNewForm in SessioninscriptionNewForms %}
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">
+					{% for modulepreinscription in trainee.modulepreinscriptions %}
+					{% if modulepreinscription.moduleformation.id ==
+					SessioninscriptionNewForm.moduleformation.vars.value %}
+					{{ modulepreinscription.moduleformation.title }}
+					{% endif %}
+					{% endfor %}
+				</h3>
+			</div>
+			<div class="box-body">
+				{{form_start(SessioninscriptionNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_front_homepagePost'), 'style': 'horizontal'})}}
+				{{form_row(SessioninscriptionNewForm.sessionformation, {'label_col': 3, 'widget_col': 9 })}}
+				<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.front.SessioninscriptionNewForm.btnSubmit'|trans|raw}}</button>
+				</div></div>
+				{{form_end(SessioninscriptionNewForm)}}
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{%endblock maincontent%}

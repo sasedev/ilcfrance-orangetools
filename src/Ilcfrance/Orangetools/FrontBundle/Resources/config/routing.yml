@@ -1,0 +1,34 @@
+ilcfrance_orangetools_front_homepage:
+    path:     /
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:index" }
+    methods: [GET]
+
+
+ilcfrance_orangetools_front_homepagePost:
+    path:     /
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:indexPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_front_booking:
+    path:     /booking
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:booking" }
+
+ilcfrance_orangetools_front_contact:
+    path:     /contact
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:contact" }
+
+ilcfrance_orangetools_front_conditions:
+    path:     /conditions
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:conditions" }
+
+ilcfrance_orangetools_front_faq:
+    path:     /faq
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:faq" }
+
+ilcfrance_orangetools_front_glossary:
+    path:     /glossary
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:glossary" }
+
+ilcfrance_orangetools_front_preamble:
+    path:     /preamble
+    defaults: { _controller: "IlcfranceOrangetoolsFrontBundle:Default:preamble" }

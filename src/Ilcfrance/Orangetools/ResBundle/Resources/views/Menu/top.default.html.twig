@@ -1,0 +1,20 @@
+{%if menu_active is not defined%}{%set menu_active=''%}{%endif%}
+<ul class="nav navbar-nav">
+	{% if is_granted('ROLE_USER') %}
+		{% if is_granted('ROLE_ADMIN') %}
+					<li{% if menu_active=='home'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_admin_homepage') }}">{{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.menu'|trans }}</a></li>
+		{% elseif is_granted('ROLE_TRAINEE') %}
+					<li{% if menu_active=='front'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_front_homepage') }}">{{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.menu'|trans }}</a></li>
+					<li{% if menu_active=='preamble'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_front_preamble') }}">{{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.preamble.menu'|trans }}</a></li>
+					<li{% if menu_active=='booking'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_front_booking') }}">{{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.booking.menu'|trans }}</a></li>
+					<li{% if menu_active=='conditions'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_front_conditions') }}">{{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.conditions.menu'|trans }}</a></li>
+					<li{% if menu_active=='glossary'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_front_glossary') }}">{{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.glossary.menu'|trans }}</a></li>
+					<li{% if menu_active=='faq'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_front_faq') }}">{{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.faq.menu'|trans }}</a></li>
+					<li{% if menu_active=='contact'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_front_contact') }}">{{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.contact.menu'|trans }}</a></li>
+		{% else %}
+					<li{% if menu_active=='home'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_security_homepage') }}">{{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.menu'|trans }}</a></li>
+		{% endif %}
+	{% else %}
+					<li{% if menu_active=='home'%} class="active"{% endif %}><a href="{{ url('ilcfrance_orangetools_security_homepage') }}">{{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.menu'|trans }}</a></li>
+	{% endif %}
+				</ul>

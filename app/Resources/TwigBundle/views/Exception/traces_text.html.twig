@@ -1,0 +1,14 @@
+<div class="block">
+	<h2>
+		Stack Trace (Plain Text)&nbsp;
+		{% spaceless %}
+		<a href="#" onclick="toggle('traces-text'); switchIcons('icon-traces-text-open', 'icon-traces-text-close'); return false;">
+			<img class="toggle" id="icon-traces-text-close" alt="-" src="{{absolute_url(asset('/images/error.minus.png'))}}" style="display: none" />
+			<img class="toggle" id="icon-traces-text-open" alt="+" src="{{absolute_url(asset('/images/error.plus.png'))}}" style="display: inline" />
+		</a>
+		{% endspaceless %}
+	</h2>
+	<div id="traces-text" class="trace" style="display: none;">
+		<pre>{% for i, e in exception.toarray %}[{{ i + 1 }}] {{ e.class }}: {{ e.message }}{% include '@Twig/Exception/traces.txt.twig' with { 'exception': e } only %}{% endfor %}</pre>
+	</div>
+</div>

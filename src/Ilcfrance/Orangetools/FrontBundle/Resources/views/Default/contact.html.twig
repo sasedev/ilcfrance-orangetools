@@ -1,0 +1,52 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_front_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_front_contact')}}"> {{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.contact.breadcrumb'|trans }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">Léa Paolini</h3>
+			</div>
+			<div class="box-body">
+				<p>
+				<br/>
+				Direction des Projets et Organisation<br/>
+				Téléphone: 01 44 41 80 22<br/>
+				Email: <a href="mailto:lea.paolini@ilcfrance.com">lea.paolini@ilcfrance.com</a>
+				</p>
+			</div>
+		</div>
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">Jane Guillier</h3>
+			</div>
+			<div class="box-body">
+				<p>
+				<br/>
+				Chargé de Mission Projets et Organisation<br/>
+				Téléphone: 01 44 41 80 20<br/>
+				Email: <a href="mailto:jane.guillier@ilcfrance.com">jane.guillier@ilcfrance.com</a>
+				</p>
+			</div>
+		</div>
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">Judite Goncalves</h3>
+			</div>
+			<div class="box-body">
+				<p>
+				<br/>
+				Responsble Planning<br/>
+				Téléphone: 01 44 41 80 24<br/>
+				Email: <a href="mailto:judite.goncalves@ilcfrance.com">judite.goncalves@ilcfrance.com</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock maincontent%}

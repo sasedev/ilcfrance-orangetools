@@ -1,0 +1,58 @@
+{{ faIco('ticket bg-green')}}
+		<div class="timeline-item">
+			<span class="time">{{ faIco('calendar') }} &nbsp; {{ trace.dtCrea|localeDate('long')  }} &nbsp; {{ faIco('clock-o') }} &nbsp; {{ trace.dtCrea|localeDate('none', 'medium')  }}</span>
+			<h3 class="timeline-header"> {{ ('Entity.'~trace.actionEntity~'.update')|trans }} <span class="pull-right">(<b>{{ trace.userFullName }}</b>)</span></h3>
+			<div class="timeline-body">
+				<table class="table table-bordered table-condensed table-hover table-striped">
+					<thead>
+						<tr>
+							<th class="text-left" style="width: 33%">{{'Entity.field' | trans|raw}}</th>
+							<th class="text-left" style="width: 33%">{{'Entity.oldVal' | trans|raw}}</th>
+							<th class="text-left">{{'Entity.newVal' | trans|raw}}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for entityFieldName, entityFieldValue in trace.decodedMsg %}
+						<tr>
+							<td>
+								{{ (trace.actionEntity~'.'~entityFieldName)|trans }}
+							</td>
+							{% for item in entityFieldValue %}
+							<td>
+								{% if item != null%}
+									{% if entityFieldName == 'id' %}
+										{{ item }}
+									{% elseif entityFieldName == 'lockout' %}
+										{{ ('Modulepreinscription.lockout.'~item)|trans }}
+									{% elseif entityFieldName == 'dtCrea' %}
+										{% if item.timezone_type != 3 %}
+										{{ date(item.date~ ' ' ~item.timezone)|localeDate('short', 'long') }}
+										{% else %}
+										{{ date(item.date, item.timezone)|localeDate('short', 'long') }}
+										{% endif %}
+									{% elseif entityFieldName == 'dtUpdate' %}
+										{% if item.timezone_type != 3 %}
+										{{ date(item.date~ ' ' ~item.timezone)|localeDate('short', 'long') }}
+										{% else %}
+										{{ date(item.date, item.timezone)|localeDate('short', 'long') }}
+										{% endif %}
+									{% elseif entityFieldName == 'moduleformation' %}
+										<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_editGet', {'id': item.id}) }}">{{ item.code }} {{ item.title }}</a> <br/>
+									{% elseif entityFieldName == 'user' %}
+										<a href="{{ path('ilcfrance_orangetools_admin_trainee_editGet', {'id': item.id}) }}">{{ item.username }}</a><br/>
+									{% endif %}
+								{% else %}
+									{{ bsLabelWarning('value.null'|trans) }}
+								{% endif %}
+							</td>
+							{% endfor %}
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+			<div class="timeline-footer">
+				<a class="btn btn-default btn-xs" href="{{ path('ilcfrance_orangetools_admin_modulepreinscription_editGet', {'id': trace.actionId}) }}">{{ faIco('edit') }}</a>
+			</div>
+		</div>

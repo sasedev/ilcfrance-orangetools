@@ -1,0 +1,7 @@
+parameters:
+    schemes: http
+    domain: orangetools.ilcfrance.sasedev.loc
+    mail_from:                 "system@sasedev.loc"
+    mail_from_name:            "ILCFrance.com"
+    sitename:                  "OrangeTools.ILCFrance"
+    mailer_transport: sendmail

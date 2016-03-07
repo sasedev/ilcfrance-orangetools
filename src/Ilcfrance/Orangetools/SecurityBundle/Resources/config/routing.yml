@@ -1,0 +1,52 @@
+ilcfrance_orangetools_security_homepage:
+    path:  /
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Default:index" }
+
+ilcfrance_orangetools_security_logout:
+    path:  /logout
+
+ilcfrance_orangetools_security_login:
+    path:  /login
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:login" }
+
+ilcfrance_orangetools_security_check:
+    path:  /login_check
+    methods: [POST]
+
+ilcfrance_orangetools_security_lostid:
+    path:  /lostid
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:lostid" }
+    methods: [GET]
+
+ilcfrance_orangetools_security_lostid_post:
+    path:  /lostid
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:lostidPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_security_lostpassword:
+    path:  /lostpassword
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:lostpassword" }
+    methods: [GET]
+
+ilcfrance_orangetools_security_lostpassword_post:
+    path:  /lostpassword
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:lostpasswordPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_security_resetpass:
+    path:  /resetpass/{id}/{code}
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:resetpass" }
+    requirements:
+        id: \d+
+        code: ".*"
+
+ilcfrance_orangetools_security_profile:
+    path:  /profile
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Profile:profileGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_security_profile_post:
+    path:  /profile
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Profile:profilePost" }
+    methods: [POST]
+

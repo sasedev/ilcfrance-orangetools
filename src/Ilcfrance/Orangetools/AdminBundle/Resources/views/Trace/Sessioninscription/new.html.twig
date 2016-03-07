@@ -1,0 +1,55 @@
+{{ faIco('calendar-check-o bg-blue')}}
+		<div class="timeline-item">
+			<span class="time">{{ faIco('calendar') }} &nbsp; {{ trace.dtCrea|localeDate('long')  }} &nbsp; {{ faIco('clock-o') }} &nbsp; {{ trace.dtCrea|localeDate('none', 'medium')  }}</span>
+			<h3 class="timeline-header"> {{ ('Entity.'~trace.actionEntity~'.new')|trans }} <span class="pull-right">(<b>{{ trace.userFullName }}</b>)</span></h3>
+			<div class="timeline-body">
+				<table class="table table-bordered table-condensed table-hover table-striped">
+					<thead>
+						<tr>
+							<th class="text-left" style="width: 33%">{{'Entity.field' | trans}}</th>
+							<th class="text-left">{{'Entity.val' | trans}}</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for entityFieldName, entityFieldValue in trace.decodedMsg %}
+						<tr>
+							<td>
+								{{ (trace.actionEntity~'.'~entityFieldName)|trans }}
+							</td>
+							<td>
+								{% if entityFieldValue != null %}
+									{% if entityFieldName == 'id' %}
+										{{ entityFieldValue }}
+									{% elseif entityFieldName == 'convocation' %}
+										{{ ('Sessioninscription.convocation.'~entityFieldValue)|trans }}
+									{% elseif entityFieldName == 'dtCrea' %}
+										{% if entityFieldValue.timezone_type != 3 %}
+										{{ date(entityFieldValue.date~ ' ' ~entityFieldValue.timezone)|localeDate('short', 'long') }}
+										{% else %}
+										{{ date(entityFieldValue.date, entityFieldValue.timezone)|localeDate('short', 'long') }}
+										{% endif %}
+									{% elseif entityFieldName == 'dtUpdate' %}
+										{% if entityFieldValue.timezone_type != 3 %}
+										{{ date(entityFieldValue.date~ ' ' ~entityFieldValue.timezone)|localeDate('short', 'long') }}
+										{% else %}
+										{{ date(entityFieldValue.date, entityFieldValue.timezone)|localeDate('short', 'long') }}
+										{% endif %}
+									{% elseif entityFieldName == 'sessionformation' %}
+										<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_editGet', {'id': entityFieldValue.id}) }}">{{ entityFieldValue.code }} {{ entityFieldValue.title }}</a><br/>
+									{% elseif entityFieldName == 'user' %}
+										<a href="{{ path('ilcfrance_orangetools_admin_trainee_editGet', {'id': entityFieldValue.id}) }}">{{ entityFieldValue.username }}</a><br/>
+									{% endif %}
+								{% else %}
+									{{ bsLabelWarning('value.null'|trans) }}
+								{% endif %}
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+			<div class="timeline-footer">
+				<a class="btn btn-default btn-xs" href="{{ path('ilcfrance_orangetools_admin_sessioninscription_editGet', {'id': trace.actionId}) }}">{{ faIco('edit') }}</a>
+			</div>
+		</div>

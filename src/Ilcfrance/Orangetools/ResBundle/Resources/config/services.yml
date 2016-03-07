@@ -1,0 +1,4 @@
+services:
+#    ilcfrance_orangetools_res.example:
+#        class: Ilcfrance\Orangetools\ResBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

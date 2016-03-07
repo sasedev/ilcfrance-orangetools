@@ -1,0 +1,34 @@
+gregwar_captcha_routing:
+    resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
+    prefix: /res/_gcb
+    schemes:  [%schemes%]
+
+ilcfrance_orangetools_res:
+    resource: "@IlcfranceOrangetoolsResBundle/Resources/config/routing.yml"
+    prefix:   /
+    schemes:  [%schemes%]
+
+sasedev_commons_shared:
+    resource: "@SasedevCommonsSharedBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    host: 'admin.%domain%'
+    schemes:  [%schemes%]
+
+ilcfrance_orangetools_security:
+    resource: "@IlcfranceOrangetoolsSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+    host: %domain%
+    schemes:  [%schemes%]
+
+ilcfrance_orangetools_admin:
+    resource: "@IlcfranceOrangetoolsAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+    host: 'admin.%domain%'
+    schemes:  [%schemes%]
+
+ilcfrance_orangetools_front:
+    resource: "@IlcfranceOrangetoolsFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+    host: 'bookingonline.%domain%'
+    schemes:  [%schemes%]

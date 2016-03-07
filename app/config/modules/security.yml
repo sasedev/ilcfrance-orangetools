@@ -1,0 +1,88 @@
+security:
+    hide_user_not_found:  true
+
+    encoders:
+        Ilcfrance\Orangetools\DataBundle\Entity\User:
+            algorithm:            pbkdf2
+            hash_algorithm:       sha512
+            encode_as_base64:     true
+            iterations:           1000
+    providers:
+        user_provider:
+            entity:
+                class: "IlcfranceOrangetoolsDataBundle:User"
+#                property: username
+#                manager_name:       ~
+
+        chain_provider:
+            chain:
+                providers: ["user_provider"]
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt))/
+            security: false
+            anonymous:  true
+        resources:
+            pattern:  ^/(css|js|images|img|imgs|fonts|webfonts|assets|bundles|res)/
+            security: false
+            anonymous:  true
+        secoff:
+            pattern:  ^/(login|login_check|logout|register|lostid|lostpass|resetpass)/
+            security: false
+            anonymous:  true
+        main:
+            pattern:      .*
+            provider: chain_provider
+            form_login:
+                login_path:     '%schemes%://%domain%/login'
+                check_path:     /login_check
+                post_only:      true
+                username_parameter:     "LoginForm[username]"
+                password_parameter:     "LoginForm[password]"
+                target_path_parameter:  "LoginForm[target_path]"
+                default_target_path: /
+                use_referer:    true
+                use_forward:    false
+#                intention: authentication
+                require_previous_session: true
+#                remember_me:    true
+#                success_handler: login.listener
+            logout:
+                path:   /logout
+                target: '%schemes%://%domain%/'
+#                success_handler: logout_listener
+            remember_me:
+                secret: "%secret%"
+                name: ILCFranceOrangetoolsSec
+                lifetime: 2592000 # optional, it is set to 30 days here
+                path: ^/
+                domain: '.%domain%'
+                always_remember_me: false
+                remember_me_parameter: "LoginForm[remember_me]"
+            security: true
+            anonymous:    true
+    access_control:
+        # Liste des pages accessibles à tous les utilisateurs (ne pas toucher)
+        - { path: ^/_wdt/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_profiler/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/css/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/js/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/images/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/img/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/imgs/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/fonts/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/webfonts/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/assets/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/bundles/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/res/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/logout, host: "%domain%", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, host: "%domain%", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login_check, host: "%domain%", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/lostid, host: "%domain%", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/lostpassword, host: "%domain%", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetpass.*, host: "%domain%", roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/.*, host: "bookingonline.%domain%", roles: ROLE_TRAINEE }
+        - { path: ^/.*, host: admin.%domain%, roles: ROLE_ADMIN }
+        - { path: ^/*, host: "%domain%", roles: ROLE_USER }
+    access_denied_url: /

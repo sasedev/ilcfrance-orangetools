@@ -1,0 +1,84 @@
+{%if menu_active is not defined%}{%set menu_active=''%}{%endif%}
+<!DOCTYPE html>
+<html>
+{%block html_head%}
+	<head>
+		<meta charset="{{ _charset }}" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+		<meta name="author" content="ILCFrance"/>
+		<meta name="robots" content="noindex,nofollow" />
+		<link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('favicon.ico')) }}" />
+		<link href="{{ absolute_url(asset('css/frameworkerror.min.css')) }}" rel="stylesheet" media="all" />
+		<!--[if lt IE 9]><!-->
+		<script src="{{ absolute_url(asset('js/html5shiv.respond.min.js')) }}"></script>
+		<!--<![endif]-->
+		<!--[if lt IE 9]><!-->
+		<script src="{{ absolute_url(asset('js/jquery1.migrate.min.js')) }}"></script>
+		<!--<![endif]-->
+		<!--[if (gte IE 9) | (!IE)]><!-->
+		<script src="{{ absolute_url(asset('js/jquery2.migrate.min.js')) }}"></script>
+		<!--<![endif]-->
+		<title>{% block title %}{% endblock %} - {{sitename}}</title>
+	</head>
+{%endblock html_head%}
+{%block html_body%}
+	<body  class="hold-transition sidebar-mini fixed">
+		<div class="wrapper">
+			<header class="main-header">
+				<nav class="navbar navbar-static-top" role="navigation">
+					<div class="container">
+						{% if app.request.session.get("referer") is defined %}
+						{% set referer = app.request.session.get("referer") %}
+						{% else %}
+						{% set referer = '/' %}
+						{% endif %}
+						<a href="{{ referer }}" class="logo">
+							<span class="logo-mini"><img src="{{asset('favicon.ico')}}" class="img-responsive" /></span>
+							<span class="logo-lg"><img src="{{asset('/images/ilcfrance.error.png')}}" class="img-responsive" /></span>
+						</a>
+						<div class="navbar-collapse collapse navbar-custom-menu-left">
+							<ul class="nav navbar-nav">
+								{{ include('IlcfranceOrangetoolsResBundle:Menu:top.default.html.twig', {menu_active: menu_active}) }}
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+			<div class="content-wrapper">
+				<section class="content">
+					<div class="container body-container-wp">
+					{% block body %}
+						{%block html_body_content%}
+						{%endblock html_body_content%}
+					{% endblock body %}
+					</div>
+				</section>
+			</div>
+			<footer class="main-footer">
+				<div class="container">
+					<strong>Copyright &copy; 2016 <a href="http://ilcfrance.com">ILCFrance</a>.</strong> All rights reserved.
+				</div>
+			</footer>
+		</div>
+		<script src="{{ absolute_url(asset('js/error.min.js')) }}"></script>
+		<script type="text/javascript">
+		<!--
+		$(function() {
+			$("html").niceScroll({
+				scrollspeed: 100,
+				mousescrollstep: 30,
+				cursorwidth: 9,
+				cursorborder: 0,
+				cursorcolor: '#0c0',
+				autohidemode: true,
+				zindex: 999999999,
+				horizrailenabled: true,
+				cursorborderradius: 0,
+			});
+		});
+		-->
+		</script>
+	</body>
+{%endblock html_body%}
+</html>

@@ -1,0 +1,459 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_trainee_list')}}"> {{ faIco('user')}} {{ 'ilcfrance.orangetools.admin.Trainee.list.breadcrumb'|trans|raw }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_trainee_editGet', {'id': trainee.id})}}"> {{ faIco('edit')}} {{ 'ilcfrance.orangetools.admin.Trainee.edit.breadcrumb'|trans({'%user%': trainee.username})|raw }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="well well-sm text-right">
+			<a href="{{ path('ilcfrance_orangetools_admin_trainee_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_trainee_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_trainee_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_trainee_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_trainee_sendInfos') }}" class="btn btn-default">{{ faIco('envelope') }}</a>
+		</div>
+		<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li {%if tabActive==1%} class="active"{%endif%}><a href="#overview" data-toggle="tab">{{'ilcfrance.orangetools.admin.Trainee.edit.tab.overview'|trans|raw}}</a></li>
+				<li {%if tabActive==2%} class="active"{%endif%}><a href="#edit" data-toggle="tab">{{'ilcfrance.orangetools.admin.Trainee.edit.tab.update'|trans|raw}}</a></li>
+				<li {%if tabActive==3%} class="active"{%endif%}><a href="#modulepreinscriptions" data-toggle="tab">{{'ilcfrance.orangetools.admin.Trainee.edit.tab.modulepreinscriptions'|trans|raw}}</a></li>
+				<li {%if tabActive==3%} class="active"{%endif%}><a href="#sessioninscriptions" data-toggle="tab">{{'ilcfrance.orangetools.admin.Trainee.edit.tab.sessioninscriptions'|trans|raw}}</a></li>
+				<li {%if tabActive==100%} class="active"{%endif%}><a href="#Logs" data-toggle="tab">{{'ilcfrance.orangetools.admin.Trainee.edit.tab.logs'|trans|raw}}</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade{%if tabActive==1%} in active{%endif%}" id="overview">
+					<div class="panel box box-primary">
+						<div class="box-header"><h3 class="box-title">{{ faIco('user text-primary')}} {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.overview'|trans}}</h3></div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-lg-3 text-right">{{'User.username'|trans|raw}} :</div>
+								<div class="col-lg-9">{{trainee.username}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.email'|trans|raw}} :</div>
+								<div class="col-lg-9"><a href="mailto:{{trainee.email}}">{{trainee.email}}</a>&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.logins'|trans|raw}} :</div>
+								<div class="col-lg-9">{{trainee.logins}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.lastLogin'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.lastLogin is not null%}{{trainee.lastLogin|localeDate('full')}} {{faIco('at')}} {{trainee.lastLogin|localeDate('none', 'medium')}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.firstName'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.firstName is not empty%}{{trainee.firstName}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.lastName'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.lastName is not empty%}{{trainee.lastName}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.email'|trans|raw}} :</div>
+								<div class="col-lg-9"><a href="mailto:{{trainee.email}}">{{trainee.email}}</a>&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+
+								<div class="col-lg-3 text-right">{{'User.phone'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.phone is not empty%}<a href="call:{{trainee.phone}}">{{trainee.phone}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.mobile'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.mobile is not empty%}<a href="call:{{trainee.mobile}}">{{trainee.mobile}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+
+								<div class="col-lg-3 text-right">{{'User.job'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.job is not empty%}{{trainee.job|raw}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.level'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.level is not empty%}{{trainee.level}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.firstName2'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.firstName2 is not empty%}{{trainee.firstName2}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.lastName2'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.lastName2 is not empty%}{{trainee.lastName2}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.email2'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.email2 is not empty%}<a href="mailto:{{trainee.email2}}">{{trainee.email2}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.modulepreinscriptions'|trans|raw}} :</div>
+								<div class="col-lg-9">{% if trainee.modulepreinscriptions|length == 0%}{{ trainee.modulepreinscriptions|length }}{% else %}<a href="{{ path('ilcfrance_orangetools_admin_modulepreinscription_listByTrainee', {'id': trainee.id}) }}">{{ trainee.modulepreinscriptions|length }}</a>{% endif %}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.sessioninscriptions'|trans|raw}} :</div>
+								<div class="col-lg-9">{% if trainee.sessioninscriptions|length == 0%}{{ trainee.sessioninscriptions|length }}{% else %}<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_listByTrainee', {'id': trainee.id}) }}">{{ trainee.sessioninscriptions|length }}</a>{% endif %}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.validUntil'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if trainee.validUntil is not null %}{{trainee.validUntil|localeDate('long')}} {{faIco('at')}} {{trainee.validUntil|localeDate('none', 'long')}}{% else %}{{ bsLabelWarning('value.null'|trans) }}{% endif %}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.lockout'|trans|raw}} :</div>
+								<div class="col-lg-9">{{('User.lockout.'~trainee.lockout)|trans}}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.infoSent'|trans|raw}} :</div>
+								<div class="col-lg-9">{{('User.infoSent.'~trainee.infoSent)|trans}}&nbsp;
+								{{form_start(TraineeSendParamsForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+								<div class="form-group"><div class="col-lg-1">
+								<button class="btn btn-danger" type="submit">{{faIco('envelope')}}</button>
+								</div></div>
+								{{form_end(TraineeSendParamsForm)}}
+								</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.dtCrea'|trans|raw}} :</div>
+								<div class="col-lg-9">{{trainee.dtCrea|localeDate('medium')}} {{faIco('at')}} {{trainee.dtCrea|localeDate('none', 'long')}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.dtUpdate'|trans|raw}} :</div>
+								<div class="col-lg-9">{{trainee.dtUpdate|localeDate('medium')}} {{faIco('at')}} {{trainee.dtUpdate|localeDate('none', 'long')}}&nbsp;</div>
+								<br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==2%} in active{%endif%}" id="edit">
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.updateInfos'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(TraineeUpdateInfosForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+							{{form_row(TraineeUpdateInfosForm.lastName, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateInfosForm.lastName.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(TraineeUpdateInfosForm.firstName, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateInfosForm.firstName.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(TraineeUpdateInfosForm.phone, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateInfosForm.phone.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(TraineeUpdateInfosForm.mobile, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateInfosForm.mobile.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(TraineeUpdateInfosForm.job, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateInfosForm.job.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(TraineeUpdateInfosForm.level, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateInfosForm.level.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.TraineeUpdateInfosForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(TraineeUpdateInfosForm)}}
+						</div>
+					</div>
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.updateManager'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(TraineeUpdateManagerForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+							{{form_row(TraineeUpdateManagerForm.lastName2, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateManagerForm.lastName2.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(TraineeUpdateManagerForm.firstName2, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateManagerForm.firstName2.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(TraineeUpdateManagerForm.email2, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateManagerForm.email2.placeholder'}, 'input_group': {'append': faIco('envelope')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.TraineeUpdateManagerForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(TraineeUpdateManagerForm)}}
+						</div>
+					</div>
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.updateEmail'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(TraineeUpdateEmailForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+							{{form_row(TraineeUpdateEmailForm.email, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateEmailForm.email.placeholder'}, 'input_group': {'append': faIco('envelope')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.TraineeUpdateEmailForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(TraineeUpdateEmailForm)}}
+						</div>
+					</div>
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.updateValidUntil'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(TraineeUpdateValidUntilForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+							{{form_row(TraineeUpdateValidUntilForm.validUntil, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateValidUntilForm.validUntil.placeholder'}, 'input_group': {'append': faIco('calendar')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.TraineeUpdateValidUntilForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(TraineeUpdateValidUntilForm)}}
+						</div>
+					</div>
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.updateClearPassword'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(TraineeUpdateClearPasswordForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+							{{form_row(TraineeUpdateClearPasswordForm.clearPassword, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.TraineeUpdateClearPasswordForm.clearPassword.placeholder'}, 'input_group': {'append': faIco('asterisk')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.TraineeUpdateClearPasswordForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(TraineeUpdateClearPasswordForm)}}
+						</div>
+					</div>
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.updateLockout'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(TraineeUpdateLockoutForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+							{{form_row(TraineeUpdateLockoutForm.lockout, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('lock')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.TraineeUpdateLockoutForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(TraineeUpdateLockoutForm)}}
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==3%} in active{%endif%}" id="modulepreinscriptions">
+					<div id="accordion0030" class="box-group">
+						<div class="panel box box-danger">
+							<div class="box-header">
+								<h4 class="box-title"><a href="#collapse0031" data-parent="#accordion0030" data-toggle="collapse">{{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.modulepreinscriptions.add'|trans}}</a></h4>
+							</div>
+							<div id="collapse0031" class="panel-collapse collapse{%if tabActive==3 and stabActive==1 %} in{%endif%}">
+								<div class="box-body">
+									{{form_start(ModulepreinscriptionNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+									{{form_row(ModulepreinscriptionNewForm.user, {'label_col': 3, 'widget_col': 8, 'attr': {'row_class': 'hidden'} })}}
+									{{form_row(ModulepreinscriptionNewForm.moduleformation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('info')} })}}
+									{{form_row(ModulepreinscriptionNewForm.lockout, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('lock')} })}}
+									<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+										<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.ModulepreinscriptionNewForm.btnSubmit'|trans|raw}}</button>
+									</div></div>
+									{{form_end(ModulepreinscriptionNewForm)}}
+								</div>
+							</div>
+						</div>
+						<div class="panel box">
+							<div class="box-header">
+								<h4 class="box-title"><a href="#collapse0032" data-parent="#accordion0030" data-toggle="collapse">{{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.modulepreinscriptions.list'|trans}}</a></h4>
+							</div>
+							<div id="collapse0032" class="panel-collapse collapse{%if (tabActive==3 and stabActive==2) or tabActive!=3%} in{%endif%}">
+								<div class="box-body table-responsive">
+									<table id="modulepreinscriptionList" class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>{{ 'ilcfrance.orangetools.admin.Modulepreinscription.moduleformation.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Modulepreinscription.lockout.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Modulepreinscription.dtCrea.label'|trans|raw }}</th>
+												<th>{{ 'actions.label'|trans|raw }}</th>
+											</tr>
+										</thead>
+										<tbody>
+										{% if trainee.modulepreinscriptions|length != 0 %}
+											{% for modulepreinscription in trainee.modulepreinscriptions %}
+											<tr>
+												<td><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_editGet', {'id': modulepreinscription.moduleformation.id}) }}">{{ modulepreinscription.moduleformation.code }} ({{ modulepreinscription.moduleformation.title }})</a></td>
+												<td class="text-right">{{ ('Modulepreinscription.lockout.'~modulepreinscription.lockout)|trans }}</td>
+												<td class="text-right">{{ modulepreinscription.dtCrea|date('Y-m-d') }} {{faIco('at')}} {{ modulepreinscription.dtCrea|localeDate('none', 'long') }}</td>
+												<td class="text-right">
+													<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_modulepreinscription_editGet',{'id':modulepreinscription.id})}}">{{ faIco('edit') }} {{ 'action.edit'|trans }}</a>
+													<a class="btn btn-sm btn-danger deleteConfirmModulepreinscription" href="{{path('ilcfrance_orangetools_admin_modulepreinscription_delete',{'id':modulepreinscription.id})}}">{{ faIco('trash') }} {{ 'action.delete'|trans }}</a>
+												</td>
+											</tr>
+											{% endfor %}
+										{% else %}
+											<tr>
+												<td colspan="4">{{ 'ilcfrance.orangetools.admin.Modulepreinscription.empty'|trans|raw }}</td>
+											</tr>
+										{% endif %}
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==4%} in active{%endif%}" id="sessioninscriptions">
+					<div id="accordion0040" class="box-group">
+						<div class="panel box box-danger">
+							<div class="box-header">
+								<h4 class="box-title"><a href="#collapse0041" data-parent="#accordion0040" data-toggle="collapse">{{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.sessioninscriptions.add'|trans}}</a></h4>
+							</div>
+							<div id="collapse0041" class="panel-collapse collapse{%if tabActive==4 and stabActive==1 %} in{%endif%}">
+								<div class="box-body">
+									{{form_start(SessioninscriptionNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_trainee_editPost', {'id': trainee.id}), 'style': 'horizontal'})}}
+									{{form_row(SessioninscriptionNewForm.user, {'label_col': 3, 'widget_col': 8, 'attr': {'row_class': 'hidden'} })}}
+									{{form_row(SessioninscriptionNewForm.sessionformation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('user')} })}}
+									{{form_row(SessioninscriptionNewForm.convocation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('info')} })}}
+									<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+										<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessioninscriptionNewForm.btnSubmit'|trans|raw}}</button>
+									</div></div>
+									{{form_end(SessioninscriptionNewForm)}}
+								</div>
+							</div>
+						</div>
+						<div class="panel box">
+							<div class="box-header">
+								<h4 class="box-title"><a href="#collapse0042" data-parent="#accordion0040" data-toggle="collapse">{{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.sessioninscriptions.list'|trans}}</a></h4>
+							</div>
+							<div id="collapse0042" class="panel-collapse collapse{%if (tabActive==4 and stabActive==2) or tabActive!=3%} in{%endif%}">
+								<div class="box-body table-responsive">
+									<table id="sessioninscriptionList" class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>{{ 'ilcfrance.orangetools.admin.Sessioninscription.sessionformation.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Sessioninscription.convocation.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Sessioninscription.dtCrea.label'|trans|raw }}</th>
+												<th>{{ 'actions.label'|trans|raw }}</th>
+											</tr>
+										</thead>
+										<tbody>
+										{% if trainee.sessioninscriptions|length != 0 %}
+											{% for sessioninscription in trainee.sessioninscriptions %}
+											<tr>
+												<td><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_editGet', {'id': sessioninscription.sessionformation.id}) }}">{{ sessioninscription.sessionformation.code }} ({{ sessioninscription.sessionformation.moduleformation.title }} - {{ sessioninscription.sessionformation.title }} - {{ sessioninscription.sessionformation.dtStart|date('Y-m-d') }} {{ faIco('at') }} {{ sessioninscription.sessionformation.dtStart|localeDate('none', 'long') }} - {{ sessioninscription.sessionformation.location }})</a></td>
+												<td>{{ ('Sessioninscription.convocation.'~sessioninscription.convocation)|trans }}</td>
+												<td class="text-right">{{ sessioninscription.dtCrea|date('Y-m-d') }} {{faIco('at')}} {{ sessioninscription.dtCrea|localeDate('none', 'long') }}</td>
+												<td class="text-right">
+													<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_sessioninscription_editGet',{'id':sessioninscription.id})}}">{{ faIco('edit') }} {{ 'action.edit'|trans }}</a>
+													<a class="btn btn-sm btn-danger deleteConfirmSessioninscription" href="{{path('ilcfrance_orangetools_admin_sessioninscription_delete',{'id':sessioninscription.id})}}">{{ faIco('trash') }} {{ 'action.delete'|trans }}</a>
+												</td>
+											</tr>
+											{% endfor %}
+										{% else %}
+											<tr>
+												<td colspan="4">{{ 'ilcfrance.orangetools.admin.Sessioninscription.empty'|trans|raw }}</td>
+											</tr>
+										{% endif %}
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==100%} in active{%endif%}" id="Logs">
+					<div class="panel box box-warning">
+						<div class="box-header">
+							<h4 class="box-title"> <i class="fa fa-history text-orange"></i> {{'ilcfrance.orangetools.admin.Trainee.edit.tlabel.logs'|trans}}</h4>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-lg-12">
+									{{ include('IlcfranceOrangetoolsAdminBundle:Trace:show.html.twig', {traces: traces}) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="deleteConfirmModulepreinscription" class="modal fade in" tabindex="-1" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 class="text-center">{{'ilcfrance.orangetools.admin.Modulepreinscription.delete.confirm.title'|trans|raw}}</h3>
+	</div>
+	<div class="modal-body">
+		{{'ilcfrance.orangetools.admin.Modulepreinscription.delete.confirm.txt'|trans|raw}}
+	</div>
+	<div class="modal-footer">
+		<a href="" class="btn btn-xs btn-danger danger">{{'action.ok'|trans|raw}}</a>
+		<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">{{'action.cancel'|trans|raw}}</button>
+	</div>
+</div>
+<div id="deleteConfirmSessioninscription" class="modal fade in" tabindex="-1" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 class="text-center">{{'ilcfrance.orangetools.admin.Sessioninscription.delete.confirm.title'|trans|raw}}</h3>
+	</div>
+	<div class="modal-body">
+		{{'ilcfrance.orangetools.admin.Sessioninscription.delete.confirm.txt'|trans|raw}}
+	</div>
+	<div class="modal-footer">
+		<a href="" class="btn btn-xs btn-danger danger">{{'action.ok'|trans|raw}}</a>
+		<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">{{'action.cancel'|trans|raw}}</button>
+	</div>
+</div>
+{%endblock maincontent%}
+{%block body_scripts%}
+{{ parent()}}
+<script type="text/javascript">
+<!--
+$(function() {
+
+	$('#TraineeUpdateValidUntilForm_validUntil').datetimepicker({
+		weekStart: 1,
+		startView: 4,
+		minView: 0,
+		autoclose: true,
+		todayHighlight: true,
+		language: "{{app.request.locale}}",
+		format: 'yyyy-mm-dd hh:ii'
+	});
+
+	{% if trainee.modulepreinscriptions|length != 0 %}
+	$('#modulepreinscriptionList').dataTable({
+		"bAutoWidth": false,
+		"language": {"url": '{{asset('assets/bower/datatables-i18n/i18n/')~app.request.locale~".json"}}'},
+		"columns": [
+			null,
+			null,
+			null,
+			{ "searchable": false, "sortable": false }
+		],
+		"pageLength": 10,
+		fnDrawCallback : function() {
+			$('.deleteConfirmModulepreinscription').on("click", function(e) {
+				e.preventDefault();
+				var lnk = $(this).attr('href');
+				modalDeleteBtn = $('#deleteConfirmModulepreinscription').find('.danger');
+				modalDeleteBtn.attr('href', lnk);
+				$('#deleteConfirmModulepreinscription').modal('show');
+			});
+		}
+	});
+	{% endif %}
+	{% if trainee.sessioninscriptions|length != 0 %}
+	$('#sessioninscriptionList').dataTable({
+		"bAutoWidth": false,
+		"language": {"url": '{{asset('assets/bower/datatables-i18n/i18n/')~app.request.locale~".json"}}'},
+		"columns": [
+			null,
+			null,
+			null,
+			{ "searchable": false, "sortable": false }
+		],
+		"pageLength": 10,
+		fnDrawCallback : function() {
+			$('.deleteConfirmSessioninscription').on("click", function(e) {
+				e.preventDefault();
+				var lnk = $(this).attr('href');
+				modalDeleteBtn = $('#deleteConfirmSessioninscription').find('.danger');
+				modalDeleteBtn.attr('href', lnk);
+				$('#deleteConfirmSessioninscription').modal('show');
+			});
+		}
+	});
+	{% endif %}
+
+	$('#TraineeUpdateLockoutForm_lockout').select2();
+
+	$('#ModulepreinscriptionNewForm_moduleformation').select2();
+
+	$('#ModulepreinscriptionNewForm_lockout').select2();
+
+	$('#collapse0031').on('shown.bs.collapse', function (e) {
+		$('#ModulepreinscriptionNewForm_moduleformation').select2("destroy");
+		$('#ModulepreinscriptionNewForm_moduleformation').select2();
+		$('#ModulepreinscriptionNewForm_lockout').select2("destroy");
+		$('#ModulepreinscriptionNewForm_lockout').select2();
+	});
+
+	$('#SessioninscriptionNewForm_sessionformation').select2();
+	$('#SessioninscriptionNewForm_convocation').select2();
+
+	$('#collapse0041').on('shown.bs.collapse', function (e) {
+		$('#SessioninscriptionNewForm_sessionformation').select2("destroy");
+		$('#SessioninscriptionNewForm_sessionformation').select2();
+		$('#SessioninscriptionNewForm_convocation').select2("destroy");
+		$('#SessioninscriptionNewForm_convocation').select2();
+	});
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		var target = $(e.target).attr("href") // activated tab
+		if (target == '#edit') {
+			$('#TraineeUpdateLockoutForm_lockout').select2("destroy");
+			$('#TraineeUpdateLockoutForm_lockout').select2();
+		}
+		if (target == '#modulepreinscriptions') {
+			$('#ModulepreinscriptionNewForm_moduleformation').select2("destroy");
+			$('#ModulepreinscriptionNewForm_moduleformation').select2();
+			$('#ModulepreinscriptionNewForm_lockout').select2("destroy");
+			$('#ModulepreinscriptionNewForm_lockout').select2();
+		}
+		if (target == '#sessioninscriptions') {
+			$('#SessioninscriptionNewForm_sessionformation').select2("destroy");
+			$('#SessioninscriptionNewForm_sessionformation').select2();
+			$('#SessioninscriptionNewForm_convocation').select2("destroy");
+			$('#SessioninscriptionNewForm_convocation').select2();
+		}
+
+	});
+});
+//-->
+</script>
+{%endblock body_scripts%}

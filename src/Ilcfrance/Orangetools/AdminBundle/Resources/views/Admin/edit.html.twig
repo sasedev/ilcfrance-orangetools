@@ -1,0 +1,97 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_admin_list')}}"> {{ faIco('user-md')}} {{ 'ilcfrance.orangetools.admin.Admin.list.breadcrumb'|trans|raw }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_admin_editGet', {'id': admin.id})}}"> {{ faIco('edit')}} {{ 'ilcfrance.orangetools.admin.Admin.edit.breadcrumb'|trans({'%user%': admin.username})|raw }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="well well-sm text-right">
+			<a href="{{ path('ilcfrance_orangetools_admin_admin_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_admin_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+		</div>
+		<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li {%if tabActive==1%} class="active"{%endif%}><a href="#overview" data-toggle="tab">{{'ilcfrance.orangetools.admin.Admin.edit.tab.overview'|trans|raw}}</a></li>
+				<li {%if tabActive==2%} class="active"{%endif%}><a href="#edit" data-toggle="tab">{{'ilcfrance.orangetools.admin.Admin.edit.tab.update'|trans|raw}}</a></li>
+				<li {%if tabActive==100%} class="active"{%endif%}><a href="#Logs" data-toggle="tab">{{'ilcfrance.orangetools.admin.Admin.edit.tab.logs'|trans|raw}}</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade{%if tabActive==1%} in active{%endif%}" id="overview">
+					<div class="panel box box-primary">
+						<div class="box-header"><h3 class="box-title">{{ faIco('user-md text-primary')}} {{'ilcfrance.orangetools.admin.Admin.edit.tlabel.overview'|trans}}</h3></div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-lg-3 text-right">{{'User.username'|trans|raw}} :</div>
+								<div class="col-lg-9">{{admin.username}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.email'|trans|raw}} :</div>
+								<div class="col-lg-9"><a href="mailto:{{admin.email}}">{{admin.email}}</a>&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.logins'|trans|raw}} :</div>
+								<div class="col-lg-9">{{admin.logins}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.lastLogin'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if admin.lastLogin is not null%}{{admin.lastLogin|localeDate('full')}} {{faIco('at')}} {{admin.lastLogin|localeDate('none', 'medium')}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.firstName'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if admin.firstName is not empty%}{{admin.firstName}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.lastName'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if admin.lastName is not empty%}{{admin.lastName}}{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+
+								<div class="col-lg-3 text-right">{{'User.phone'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if admin.phone is not empty%}<a href="call:{{admin.phone}}">{{admin.phone}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.mobile'|trans|raw}} :</div>
+								<div class="col-lg-9">{%if admin.mobile is not empty%}<a href="call:{{admin.mobile}}">{{admin.mobile}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.lockout'|trans|raw}} :</div>
+								<div class="col-lg-9">{{('User.lockout.'~admin.lockout)|trans}}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'User.dtCrea'|trans|raw}} :</div>
+								<div class="col-lg-9">{{admin.dtCrea|localeDate('medium')}} {{faIco('at')}} {{admin.dtCrea|localeDate('none', 'long')}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'User.dtUpdate'|trans|raw}} :</div>
+								<div class="col-lg-9">{{admin.dtUpdate|localeDate('medium')}} {{faIco('at')}} {{admin.dtUpdate|localeDate('none', 'long')}}&nbsp;</div>
+								<br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==2%} in active{%endif%}" id="edit">
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Admin.edit.tlabel.updateEmail'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(AdminUpdateEmailForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_admin_editPost', {'id': admin.id}), 'style': 'horizontal'})}}
+							{{form_row(AdminUpdateEmailForm.email, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminUpdateEmailForm.email.placeholder'}, 'input_group': {'append': faIco('envelope')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.AdminUpdateEmailForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(AdminUpdateEmailForm)}}
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==100%} in active{%endif%}" id="Logs">
+					<div class="panel box box-warning">
+						<div class="box-header">
+							<h4 class="box-title"> <i class="fa fa-history text-orange"></i> {{'ilcfrance.orangetools.admin.Admin.edit.tlabel.logs'|trans}}</h4>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-lg-12">
+									{{ include('IlcfranceOrangetoolsAdminBundle:Trace:show.html.twig', {traces: traces}) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock maincontent%}

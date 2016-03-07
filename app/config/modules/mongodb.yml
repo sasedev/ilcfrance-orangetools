@@ -1,0 +1,42 @@
+# Doctrine MongoDB Configuration
+doctrine_mongodb:
+    proxy_namespace:      MongoDBODMProxies
+    proxy_dir:            "%kernel.cache_dir%/doctrine/odm/mongodb/Proxies"
+    auto_generate_proxy_classes:  true
+    hydrator_namespace:   Hydrators
+    hydrator_dir:         "%kernel.cache_dir%/doctrine/odm/mongodb/Hydrators"
+    auto_generate_hydrator_classes:  true
+    default_document_manager:  ~
+    default_connection:   ~
+    default_database: %mongodb_database%
+    connections:
+        default:
+            server: mongodb://%mongodb_host%:%mongodb_port%
+#            options: {}
+            options:
+                connect:              ~
+                username: %mongodb_user%
+                password: %mongodb_pass%
+                db: %mongodb_auth%
+    document_managers:
+        default:
+            connection:                 ~
+            database:                   ~
+            default_repository_class:   Doctrine\ODM\MongoDB\DocumentRepository
+            repository_factory:         ~
+            logging:                    true
+            auto_mapping: true
+            retry_connect:              0
+            retry_query:                0
+            mappings:
+                IlcfranceOrangetoolsDataBundle:
+                    mapping:              true
+                    type: annotation
+                    dir: %kernel.root_dir%/../src/Ilcfrance/Orangetools/DataBundle/MongoDocument
+                    prefix: Ilcfrance\Orangetools\DataBundle\MongoDocument
+                    alias: IlcfranceOrangetoolsDataBundle
+#            metadata_cache_driver:
+#                type: service
+#                id: doctrine.cache.predis
+##                type: service
+##                id: doctrine.cache.memcached

@@ -1,0 +1,29 @@
+# lexik_translation
+lexik_translation:
+    # (required) default locale to use
+    fallback_locale: fr
+    # (required) locales that the bundle have to manage
+    managed_locales: [en, fr]
+
+    # layout used with the translation edition template
+    base_layout:     "LexikTranslationBundle::layout.html.twig"
+    # if "true" we will print a nice tree in the yml source files. It is a little slower.
+    use_yml_tree:    false
+    # define field type used in the grid (text|textarea)
+    grid_input_type: textarea
+    # if "true", on the grid if a locale colunm is shown/hidden then similar locales columns will be shown/hidden too.
+    # so if the col "en" is shown/hidden all "en_XX" cols will be shown/hidden too. Not in the reverse order ("en_XX" clicked, no impact on "en")
+    grid_toggle_similar: true
+    storage:
+        # where to store translations: "orm", "mongodb" or "propel"
+        type: orm
+        # The name of the entity / document manager which uses different connection (see: http://symfony.com/doc/current/cookbook/doctrine/multiple_entity_managers.html)
+        # When using propel, this can be used to specify the propel connection name
+        object_manager: something
+
+    resources_registration:
+        # resources type to register: {"persist", "remove"}, "files" or "database"
+        type:                 all
+        # will only load resources for managed locales
+        managed_locales_only: true
+

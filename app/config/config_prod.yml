@@ -1,0 +1,37 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: parameters_prod.yml }
+    - { resource: config.yml }
+
+framework:
+    validation:
+        cache: validator.mapping.cache.doctrine.apc
+    serializer:
+        cache: serializer.mapping.cache.apc
+    router:
+        resource: "%kernel.root_dir%/config/routing_prod.yml"
+        strict_requirements: true
+
+#doctrine:
+#    orm:
+#        metadata_cache_driver: apc
+#        result_cache_driver: apc
+#        query_cache_driver: apc
+
+monolog:
+    handlers:
+        syslog_error:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%_error.log"
+            level: error
+        syslog_info:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%_info.log"
+            level: info
+        syslog_debug:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%_debug.log"
+            level: debug
+        console:
+            type:  console
+

@@ -1,0 +1,218 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list')}}"> {{ faIco('object-group')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.list.breadcrumb'|trans|raw }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_editGet', {'id': groupmodule.id})}}"> {{ faIco('edit')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.edit.breadcrumb'|trans({'%groupmodule%': groupmodule.name})|raw }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="well well-sm text-right">
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+		</div>
+		<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li {%if tabActive==1%} class="active"{%endif%}><a href="#overview" data-toggle="tab">{{'ilcfrance.orangetools.admin.Groupmodule.edit.tab.overview'|trans|raw}}</a></li>
+				<li {%if tabActive==2%} class="active"{%endif%}><a href="#edit" data-toggle="tab">{{'ilcfrance.orangetools.admin.Groupmodule.edit.tab.update'|trans|raw}}</a></li>
+				<li {%if tabActive==3%} class="active"{%endif%}><a href="#moduleformations" data-toggle="tab">{{'ilcfrance.orangetools.admin.Groupmodule.edit.tab.moduleformations'|trans|raw}}</a></li>
+				<li {%if tabActive==100%} class="active"{%endif%}><a href="#Logs" data-toggle="tab">{{'ilcfrance.orangetools.admin.Groupmodule.edit.tab.logs'|trans|raw}}</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade{%if tabActive==1%} in active{%endif%}" id="overview">
+					<div class="panel box box-primary">
+						<div class="box-header"><h3 class="box-title">{{ faIco('object-group text-primary')}} {{'ilcfrance.orangetools.admin.Groupmodule.edit.tlabel.overview'|trans}}</h3></div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-lg-3 text-right">{{'Groupmodule.name'|trans|raw}} :</div>
+								<div class="col-lg-9">{{groupmodule.name}}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'Groupmodule.moduleformations'|trans|raw}} :</div>
+								<div class="col-lg-9">{% if groupmodule.moduleformations|length == 0%}{{ groupmodule.moduleformations|length }}{% else %}<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_listByGroupmodule', {'id': groupmodule.id}) }}">{{ groupmodule.moduleformations|length }}</a>{% endif %}&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-12">&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'Groupmodule.dtCrea'|trans|raw}} :</div>
+								<div class="col-lg-9">{{groupmodule.dtCrea|localeDate('medium')}} {{faIco('at')}} {{groupmodule.dtCrea|localeDate('none', 'long')}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'Groupmodule.dtUpdate'|trans|raw}} :</div>
+								<div class="col-lg-9">{{groupmodule.dtUpdate|localeDate('medium')}} {{faIco('at')}} {{groupmodule.dtUpdate|localeDate('none', 'long')}}&nbsp;</div>
+								<br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==2%} in active{%endif%}" id="edit">
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Groupmodule.edit.tlabel.updateName'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(GroupmoduleUpdateNameForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_groupmodule_editPost', {'id': groupmodule.id}), 'style': 'horizontal'})}}
+							{{form_row(GroupmoduleUpdateNameForm.name, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.GroupmoduleUpdateNameForm.name.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.GroupmoduleUpdateNameForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(GroupmoduleUpdateNameForm)}}
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==3%} in active{%endif%}" id="moduleformations">
+					<div id="accordion0030" class="box-group">
+						<div class="panel box box-danger">
+							<div class="box-header">
+								<h4 class="box-title"><a href="#collapse0031" data-parent="#accordion0030" data-toggle="collapse">{{'ilcfrance.orangetools.admin.Groupmodule.edit.tlabel.moduleformations.add'|trans}}</a></h4>
+							</div>
+							<div id="collapse0031" class="panel-collapse collapse{%if tabActive==3 and stabActive==1 %} in{%endif%}">
+								<div class="box-body">
+									{{form_start(ModuleformationNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_groupmodule_editPost', {'id': groupmodule.id}), 'style': 'horizontal'})}}
+									{{form_row(ModuleformationNewForm.groupmodule, {'label_col': 3, 'widget_col': 8, 'attr': {'row_class': 'hidden'} })}}
+									{{form_row(ModuleformationNewForm.code, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.code.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+									{{form_row(ModuleformationNewForm.title, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.title.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+									{{form_row(ModuleformationNewForm.description, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.description.placeholder', 'class': 'wysiwyg'}, 'input_group': {'append': faIco('info')} })}}
+									<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+										<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.ModuleformationNewForm.btnSubmit'|trans|raw}}</button>
+									</div></div>
+									{{form_end(ModuleformationNewForm)}}
+								</div>
+							</div>
+						</div>
+						<div class="panel box">
+							<div class="box-header">
+								<h4 class="box-title"><a href="#collapse0032" data-parent="#accordion0030" data-toggle="collapse">{{'ilcfrance.orangetools.admin.Groupmodule.edit.tlabel.moduleformations.list'|trans}}</a></h4>
+							</div>
+							<div id="collapse0032" class="panel-collapse collapse{%if (tabActive==3 and stabActive==2) or tabActive!=3%} in{%endif%}">
+								<div class="box-body table-responsive">
+									<table id="moduleformationList" class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>{{ 'ilcfrance.orangetools.admin.Moduleformation.code.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Moduleformation.title.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Moduleformation.sessionformations.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Moduleformation.modulepreinscriptions.label'|trans|raw }}</th>
+												<th>{{ 'ilcfrance.orangetools.admin.Moduleformation.dtCrea.label'|trans|raw }}</th>
+												<th>{{ 'actions.label'|trans|raw }}</th>
+											</tr>
+										</thead>
+										<tbody>
+										{% if groupmodule.moduleformations|length != 0 %}
+											{% for moduleformation in groupmodule.moduleformations %}
+											<tr>
+												<td>{{ moduleformation.code }}</td>
+												<td>{{ moduleformation.title }}</td>
+												<td class="text-right">{% if moduleformation.sessionformations|length == 0%}{{ moduleformation.sessionformations|length }}{% else %}<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_listByModuleformation', {'id': moduleformation.id}) }}">{{ moduleformation.sessionformations|length }}</a>{% endif %}</td>
+												<td class="text-right">{% if moduleformation.modulepreinscriptions|length == 0%}{{ moduleformation.modulepreinscriptions|length }}{% else %}<a href="{{ path('ilcfrance_orangetools_admin_modulepreinscription_listByModuleformation', {'id': moduleformation.id}) }}">{{ moduleformation.modulepreinscriptions|length }}</a>{% endif %}</td>
+												<td class="text-right">{{ moduleformation.dtCrea|date('Y-m-d') }} {{faIco('at')}} {{ moduleformation.dtCrea|localeDate('none', 'long') }}</td>
+												<td class="text-right">
+													<a class="btn btn-sm btn-info" href="{{ path('ilcfrance_orangetools_admin_moduleformation_editGet', {'id': moduleformation.id})}}">{{ faIco('edit') }} {{ 'action.edit'|trans }}</a>
+													<a class="btn btn-sm btn-danger deleteConfirmModuleformation" href="{{ path('ilcfrance_orangetools_admin_moduleformation_delete',{'id': moduleformation.id})}}">{{ faIco('trash') }} {{ 'action.delete'|trans }}</a>
+												</td>
+											</tr>
+											{% endfor %}
+										{% else %}
+											<tr>
+												<td colspan="6">{{ 'ilcfrance.orangetools.admin.Moduleformation.empty'|trans|raw }}</td>
+											</tr>
+										{% endif %}
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==100%} in active{%endif%}" id="Logs">
+					<div class="panel box box-warning">
+						<div class="box-header">
+							<h4 class="box-title"> <i class="fa fa-history text-orange"></i> {{'ilcfrance.orangetools.admin.Groupmodule.edit.tlabel.logs'|trans}}</h4>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-lg-12">
+									{{ include('IlcfranceOrangetoolsAdminBundle:Trace:show.html.twig', {traces: traces}) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="deleteConfirmModuleformation" class="modal fade in" tabindex="-1" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 class="text-center">{{'ilcfrance.orangetools.admin.Moduleformation.delete.confirm.title'|trans|raw}}</h3>
+	</div>
+	<div class="modal-body">
+		{{'ilcfrance.orangetools.admin.Moduleformation.delete.confirm.txt'|trans|raw}}
+	</div>
+	<div class="modal-footer">
+		<a href="" class="btn btn-xs btn-danger danger">{{'action.ok'|trans|raw}}</a>
+		<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">{{'action.cancel'|trans|raw}}</button>
+	</div>
+</div>
+{%endblock maincontent%}
+{%block body_scripts%}
+{{ parent()}}
+<script type="text/javascript">
+<!--
+$(function() {
+	{% if groupmodule.moduleformations|length != 0 %}
+	$('#moduleformationList').dataTable({
+		"bAutoWidth": false,
+		"language": {"url": '{{asset('assets/bower/datatables-i18n/i18n/')~app.request.locale~".json"}}'},
+		"columns": [
+			null,
+			null,
+			null,
+			null,
+			null,
+			{ "searchable": false, "sortable": false }
+		],
+		"pageLength": 10,
+		fnDrawCallback : function() {
+			$('.deleteConfirmModuleformation').on("click", function(e) {
+				e.preventDefault();
+				var lnk = $(this).attr('href');
+				modalDeleteBtn = $('#deleteConfirmModuleformation').find('.danger');
+				modalDeleteBtn.attr('href', lnk);
+				$('#deleteConfirmModuleformation').modal('show');
+			});
+		}
+	});
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		var target = $(e.target).attr("href") // activated tab
+		if (target == '#moduleformations') {
+			//$.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+		}
+
+	});
+	{% endif %}
+	$('textarea.wysiwyg').each(function() {
+		var options = {
+			script_url : '{{asset('assets/bower/tinymce-dist/tinymce.min.js')}}',
+			language_url : '{{ asset('assets/bower/ivan-chkv.tinymce-i18n/langs/'~app.request.locale~'.js') }}',
+			language : '{{ app.request.locale }}',
+			theme: "modern",
+			plugins: [ "advlist autolink lists link image charmap preview hr anchor pagebreak", "searchreplace wordcount visualblocks visualchars code fullscreen", "nonbreaking save table contextmenu directionality", "template paste textcolor" ],
+			toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | preview "
+		};
+		$this = $(this);
+		if($this.is('[required]')) {
+			options.oninit = function(editor) {
+				editor.on('change', function(e) {
+					editor.save();
+				});
+			}
+		}
+		$this.tinymce(options);
+	});
+});
+//-->
+</script>
+{%endblock body_scripts%}

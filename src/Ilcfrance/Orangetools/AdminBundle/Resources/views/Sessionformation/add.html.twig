@@ -1,0 +1,84 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list')}}"> {{ faIco('calendar')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.list.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_addGet')}}"> {{ faIco('plus')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.add.breadcrumb'|trans }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="well well-sm text-right">
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+		</div>
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">{{ faIco('calendar')}} <i class="fa fa-plus text-red"></i> {{ 'ilcfrance.orangetools.admin.Sessionformation.add.tlabel'|trans|raw}}</h3>
+			</div>
+			<div class="box-body">
+				{{form_start(SessionformationNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_addPost'), 'style': 'horizontal'})}}
+				{{form_row(SessionformationNewForm.moduleformation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('book')} })}}
+				{{form_row(SessionformationNewForm.code, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.code.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.title, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.title.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.dtStart, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.dtStart.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.location, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.location.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.phoneContactCenter, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.phoneContactCenter.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.conditionsReport, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.conditionsReport.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.dtInfo, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.dtInfo.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.otherInfos, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.otherInfos.placeholder', 'class': 'wysiwyg'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.maxParticipants, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.maxParticipants.placeholder', 'min': 1}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.lockout, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('info')} })}}
+				<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationNewForm.btnSubmit'|trans|raw}}</button>
+				</div></div>
+				{{form_end(SessionformationNewForm)}}
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock maincontent%}
+{%block body_scripts%}
+{{ parent()}}
+<script type="text/javascript">
+<!--
+$(function() {
+	$('textarea.wysiwyg').each(function() {
+		var options = {
+			script_url : '{{asset('assets/bower/tinymce-dist/tinymce.min.js')}}',
+			language_url : '{{ asset('assets/bower/ivan-chkv.tinymce-i18n/langs/'~app.request.locale~'.js') }}',
+			language : '{{ app.request.locale }}',
+			theme: "modern",
+			plugins: [ "advlist autolink lists link image charmap preview hr anchor pagebreak", "searchreplace wordcount visualblocks visualchars code fullscreen", "nonbreaking save table contextmenu directionality", "template paste textcolor" ],
+			toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | preview "
+		};
+		$this = $(this);
+		if($this.is('[required]')) {
+			options.oninit = function(editor) {
+				editor.on('change', function(e) {
+					editor.save();
+				});
+			}
+		}
+		$this.tinymce(options);
+	});
+	$('#SessionformationNewForm_moduleformation').select2();
+
+	$('#SessionformationNewForm_dtStart').datetimepicker({
+		weekStart: 1,
+		startView: 4,
+		minView: 0,
+		autoclose: true,
+		todayHighlight: true,
+		language: "{{app.request.locale}}",
+		format: 'yyyy-mm-dd hh:ii'
+	});
+
+	$('#SessionformationNewForm_lockout').select2();
+});
+//-->
+</script>
+{%endblock body_scripts%}

@@ -1,0 +1,36 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_front_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_front_conditions')}}"> {{ faIco('info-circle')}} {{ 'ilcfrance.orangetools.front.conditions.breadcrumb'|trans }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">Conditions d’ouverture d’un stage</h3>
+			</div>
+			<div class="box-body">
+				<p>
+				6 inscrits minimum sont nécessaires pour l’ouverture d’un stage.<br/>
+				Si besoin, ILC France effectue des relances auprès des stagiaires par mailing et/ou par téléphone afin de tout mettre en œuvre pour que les stages puissent être ouverts.
+				</p>
+			</div>
+		</div>
+		<div class="box box-danger">
+			<div class="box-header">
+				<h3 class="box-title">Annulation – Modification</h3>
+			</div>
+			<div class="box-body">
+				<p>
+				ILC France se réserve le droit d’annuler les actions de formation, notamment si le nombre d’inscrits est insuffisant au regard des conditions d’ouverture.<br/>
+				ILC France préviendra les stagiaires de toute annulation de session, 8 jours avant la date prévue.<br/>
+				<b>NB:</b> ILC France  tient le Responsable de formation informé de l’évolution du nombre d’inscriptions.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock maincontent%}

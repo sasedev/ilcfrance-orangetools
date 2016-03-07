@@ -1,0 +1,50 @@
+
+ilcfrance.orangetools.front.dashboard.menu: "Tableau de bord"
+
+ilcfrance.orangetools.front.homepage.browserpagetitle: "Interface Booking Online"
+ilcfrance.orangetools.front.homepage.pagetitle: "Interface Booking Online"
+ilcfrance.orangetools.front.homepage.menu: "Accueil"
+ilcfrance.orangetools.front.homepage.link: "Accueil"
+ilcfrance.orangetools.front.homepage.breadcrumb: "Accueil"
+
+ilcfrance.orangetools.front.SessioninscriptionNewForm.sessionformation.label: "Selectionnez une Session :"
+ilcfrance.orangetools.front.SessioninscriptionNewForm.btnSubmit: "Valider"
+
+ilcfrance.orangetools.trainee.Sessioninscription.add.success: "Succès de l'inscription à la Session de formation : <b>%sessionformation%</b>"
+ilcfrance.orangetools.trainee.Sessioninscription.add.failure: "Echec d'inscription à la Session de formation"
+
+ilcfrance.orangetools.front.booking.browserpagetitle: "Procédure de réservation"
+ilcfrance.orangetools.front.booking.pagetitle: "Procédure de réservation"
+ilcfrance.orangetools.front.booking.menu: "Réservation"
+ilcfrance.orangetools.front.booking.link: "Réservation"
+ilcfrance.orangetools.front.booking.breadcrumb: "Procédure de réservation"
+
+ilcfrance.orangetools.front.conditions.browserpagetitle: "Conditions d’ouverture d’un stage"
+ilcfrance.orangetools.front.conditions.pagetitle: "Conditions d’ouverture d’un stage"
+ilcfrance.orangetools.front.conditions.menu: "Conditions"
+ilcfrance.orangetools.front.conditions.link: "Conditions"
+ilcfrance.orangetools.front.conditions.breadcrumb: "Conditions d’ouverture d’un stage"
+
+ilcfrance.orangetools.front.contact.browserpagetitle: "Annuaire"
+ilcfrance.orangetools.front.contact.pagetitle: "Annuaire"
+ilcfrance.orangetools.front.contact.menu: "Annuaire"
+ilcfrance.orangetools.front.contact.link: "Annuaire"
+ilcfrance.orangetools.front.contact.breadcrumb: "Annuaire"
+
+ilcfrance.orangetools.front.faq.browserpagetitle: "Foire Aux Questions"
+ilcfrance.orangetools.front.faq.pagetitle: "Foire Aux Questions"
+ilcfrance.orangetools.front.faq.menu: "FAQ"
+ilcfrance.orangetools.front.faq.link: "FAQ"
+ilcfrance.orangetools.front.faq.breadcrumb: "Foire Aux Questions"
+
+ilcfrance.orangetools.front.glossary.browserpagetitle: "Glossaire"
+ilcfrance.orangetools.front.glossary.pagetitle: "Glossaire"
+ilcfrance.orangetools.front.glossary.menu: "Glossaire"
+ilcfrance.orangetools.front.glossary.link: "Glossaire"
+ilcfrance.orangetools.front.glossary.breadcrumb: "Glossaire"
+
+ilcfrance.orangetools.front.preamble.browserpagetitle: "Préambule"
+ilcfrance.orangetools.front.preamble.pagetitle: "Préambule"
+ilcfrance.orangetools.front.preamble.menu: "Préambule"
+ilcfrance.orangetools.front.preamble.link: "Préambule"
+ilcfrance.orangetools.front.preamble.breadcrumb: "Préambule"

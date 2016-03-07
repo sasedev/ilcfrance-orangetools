@@ -1,0 +1,48 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_list')}}"> {{ faIco('book')}} {{ 'ilcfrance.orangetools.admin.Moduleformation.list.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_importGet')}}"> {{ faIco('plus-circle')}} {{ 'ilcfrance.orangetools.admin.Moduleformation.import.breadcrumb'|trans }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="well well-sm text-right">
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+		</div>
+		<div class="box box-success">
+			<div class="box-header">
+				<h3 class="box-title">{{ faIco('book')}} <i class="fa fa-plus-circle text-green"></i> {{ 'ilcfrance.orangetools.admin.Moduleformation.import.tlabel'|trans|raw}}</h3>
+			</div>
+			<div class="box-body">
+				{{form_start(ModuleformationImportForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_moduleformation_importPost'), 'style': 'horizontal'})}}
+				{{form_row(ModuleformationImportForm.excel, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationImportForm.excel.placeholder'}, 'input_group': {'append': faIco('file-excel-o')} })}}
+				<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.ModuleformationImportForm.btnSubmit'|trans|raw}}</button>
+				</div></div>
+				{{form_end(ModuleformationImportForm)}}
+				{% for flashMessage in app.session.flashbag.get('log') %}
+				<div class="callout callout-info">
+				{{ flashMessage|raw }}
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock maincontent%}
+{%block body_scripts%}
+{{ parent()}}
+<script type="text/javascript">
+<!--
+$(function() {
+	$("#ModuleformationImportForm_excel").fileinput({'showUpload':false, browseClass: "btn btn-success", browseLabel: " Excel", browseIcon: '{{faIco('folder-open')}}', remove1Class: "btn btn-danger", removeLabel: "Delete", removeIcon: '{{glyphIco('trash')}}'});
+});
+//-->
+</script>
+{%endblock body_scripts%}

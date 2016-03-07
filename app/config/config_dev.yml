@@ -1,0 +1,53 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: parameters_dev.yml }
+    - { resource: config.yml }
+
+framework:
+    validation:
+        cache: validator.mapping.cache.doctrine.apc
+    serializer:
+        cache: serializer.mapping.cache.apc
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: true }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+monolog:
+    handlers:
+        syslog_error:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%_error.log"
+            level: error
+        syslog_info:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%_info.log"
+            channels: ["!event", "!doctrine"]
+            level: info
+        syslog_debug:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%_debug.log"
+            level: debug
+        console:
+            type:   console
+            bubble: false
+            channels: ["!event", "!doctrine"]
+            verbosity_levels:
+                VERBOSITY_VERBOSE: INFO
+                VERBOSITY_VERY_VERBOSE: DEBUG
+            channels: ["!doctrine"]
+        console_very_verbose:
+            type:   console
+            bubble: false
+            verbosity_levels:
+                VERBOSITY_VERBOSE: NOTICE
+                VERBOSITY_VERY_VERBOSE: NOTICE
+                VERBOSITY_DEBUG: DEBUG
+            channels: ["doctrine"]
+
+swiftmailer:
+    delivery_address: sasedev@fixi.sasedev.loc

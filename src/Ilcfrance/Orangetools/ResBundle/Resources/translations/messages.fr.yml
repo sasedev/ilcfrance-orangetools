@@ -1,0 +1,10 @@
+Options.choose: "Choisissez des Options :"
+Option.choose: "Choisissez une Option :"
+
+value.null: "Non défini"
+
+actions.label: "Actions"
+action.edit: "Editer"
+action.delete: "Supprimer"
+action.ok: "Confirmer"
+action.cancel: "Annuler"

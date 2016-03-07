@@ -1,0 +1,138 @@
+<br/>
+<ul class="sidebar-menu">
+	{% if is_granted('ROLE_ADMIN') %}
+	<li class="treeview{% if menu_active == 'admin' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_admin_homepage') }}"> <i class="fa fa-home"></i> <span>{{ 'ilcfrance.orangetools.admin.homepage.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active starts with 'admin_groupmodules' %} active{% endif %}">
+		<a href="#"> <i class="fa fa-object-group"></i> <span>{{ 'ilcfrance.orangetools.admin.Groupmodule.menu'|trans }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li{% if menu_active == 'admin_groupmodules_list' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list') }}"><i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.list.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_groupmodules_export' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_export') }}"><i class="fa fa-file-excel-o text-green"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.export.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_groupmodules_add' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_addGet') }}"><i class="fa fa-plus text-yellow"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.add.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_groupmodules_import' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet') }}"><i class="fa fa-plus-circle text-green"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.import.menu'|trans }}</a>
+			</li>
+		</ul>
+	</li>
+	<li class="treeview{% if menu_active starts with 'admin_moduleformations' %} active{% endif %}">
+		<a href="#"> <i class="fa fa-book"></i> <span>{{ 'ilcfrance.orangetools.admin.Moduleformation.menu'|trans }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li{% if menu_active == 'admin_moduleformations_list' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_list') }}"><i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Moduleformation.list.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_moduleformations_export' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_export') }}"><i class="fa fa-file-excel-o text-green"></i> {{ 'ilcfrance.orangetools.admin.Moduleformation.export.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_moduleformations_add' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_addGet') }}"><i class="fa fa-plus text-yellow"></i> {{ 'ilcfrance.orangetools.admin.Moduleformation.add.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_moduleformations_import' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_importGet') }}"><i class="fa fa-plus-circle text-green"></i> {{ 'ilcfrance.orangetools.admin.Moduleformation.import.menu'|trans }}</a>
+			</li>
+		</ul>
+	</li>
+	<li class="treeview{% if menu_active starts with 'admin_sessionformations' %} active{% endif %}">
+		<a href="#"> <i class="fa fa-calendar"></i> <span>{{ 'ilcfrance.orangetools.admin.Sessionformation.menu'|trans }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li{% if menu_active == 'admin_sessionformations_list' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list') }}"><i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Sessionformation.list.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_sessionformations_export' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_export') }}"><i class="fa fa-file-excel-o text-green"></i> {{ 'ilcfrance.orangetools.admin.Sessionformation.export.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_sessionformations_add' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_addGet') }}"><i class="fa fa-plus text-yellow"></i> {{ 'ilcfrance.orangetools.admin.Sessionformation.add.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_sessionformations_import' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_importGet') }}"><i class="fa fa-plus-circle text-green"></i> {{ 'ilcfrance.orangetools.admin.Sessionformation.import.menu'|trans }}</a>
+			</li>
+		</ul>
+	</li>
+	<li class="treeview{% if menu_active starts with 'admin_modulepreinscriptions' %} active{% endif %}">
+		<a href="#"> <i class="fa fa-ticket"></i> <span>{{ 'ilcfrance.orangetools.admin.Modulepreinscription.menu'|trans }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li{% if menu_active == 'admin_modulepreinscriptions_list' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_modulepreinscription_list') }}"><i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Modulepreinscription.list.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_modulepreinscriptions_add' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_modulepreinscription_addGet') }}"><i class="fa fa-plus text-yellow"></i> {{ 'ilcfrance.orangetools.admin.Modulepreinscription.add.menu'|trans }}</a>
+			</li>
+		</ul>
+	</li>
+	<li class="treeview{% if menu_active starts with 'admin_sessioninscriptions' %} active{% endif %}">
+		<a href="#"> <i class="fa fa-calendar-check-o"></i> <span>{{ 'ilcfrance.orangetools.admin.Sessioninscription.menu'|trans }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li{% if menu_active == 'admin_sessioninscriptions_list' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_list') }}"><i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Sessioninscription.list.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_sessioninscriptions_add' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_addGet') }}"><i class="fa fa-plus text-yellow"></i> {{ 'ilcfrance.orangetools.admin.Sessioninscription.add.menu'|trans }}</a>
+			</li>
+		</ul>
+	</li>
+	<li class="treeview{% if menu_active starts with 'admin_trainees' %} active{% endif %}">
+		<a href="#"> <i class="fa fa-user"></i> <span>{{ 'ilcfrance.orangetools.admin.Trainee.menu'|trans }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li{% if menu_active == 'admin_trainees_list' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_trainee_list') }}"><i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Trainee.list.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_trainees_export' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_trainee_export') }}"><i class="fa fa-file-excel-o text-green"></i> {{ 'ilcfrance.orangetools.admin.Trainee.export.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_trainees_add' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_trainee_addGet') }}"><i class="fa fa-plus text-yellow"></i> {{ 'ilcfrance.orangetools.admin.Trainee.add.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_trainees_import' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_trainee_importGet') }}"><i class="fa fa-plus-circle text-green"></i> {{ 'ilcfrance.orangetools.admin.Trainee.import.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_trainees_import' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_trainee_sendInfos') }}"><i class="fa fa-envelope text-red"></i> {{ 'ilcfrance.orangetools.admin.Trainee.sendInfos.menu'|trans }}</a>
+			</li>
+		</ul>
+	</li>
+	<li class="treeview{% if menu_active starts with 'admin_admins' %} active{% endif %}">
+		<a href="#"> <i class="fa fa-user-md"></i> <span>{{ 'ilcfrance.orangetools.admin.Admin.menu'|trans }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+		<ul class="treeview-menu">
+			<li{% if menu_active == 'admin_admins_list' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_admin_list') }}"><i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Admin.list.menu'|trans }}</a>
+			</li>
+			<li{% if menu_active == 'admin_admins_add' %} class="active"{% endif %}>
+				<a href="{{ path('ilcfrance_orangetools_admin_admin_addGet') }}"><i class="fa fa-plus text-yellow"></i> {{ 'ilcfrance.orangetools.admin.Admin.add.menu'|trans }}</a>
+			</li>
+		</ul>
+	</li>
+	{% endif %}
+	{% if is_granted('ROLE_TRAINEE') %}
+	<li class="treeview{% if menu_active == 'front' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_front_homepage') }}"> <i class="fa fa-home"></i> <span>{{ 'ilcfrance.orangetools.front.homepage.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active == 'preamble' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_front_preamble') }}"> <i class="fa fa-info-circle"></i> <span>{{ 'ilcfrance.orangetools.front.preamble.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active == 'booking' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_front_booking') }}"> <i class="fa fa-info-circle"></i> <span>{{ 'ilcfrance.orangetools.front.booking.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active == 'conditions' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_front_conditions') }}"> <i class="fa fa-info-circle"></i> <span>{{ 'ilcfrance.orangetools.front.conditions.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active == 'glossary' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_front_glossary') }}"> <i class="fa fa-info-circle"></i> <span>{{ 'ilcfrance.orangetools.front.glossary.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active == 'faq' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_front_faq') }}"> <i class="fa fa-info-circle"></i> <span>{{ 'ilcfrance.orangetools.front.faq.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active == 'contact' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_front_contact') }}"> <i class="fa fa-info-circle"></i> <span>{{ 'ilcfrance.orangetools.front.contact.menu'|trans }}</span></a>
+	</li>
+	<li class="treeview{% if menu_active == 'profile' %} active{% endif %}">
+		<a href="{{ path('ilcfrance_orangetools_security_profile') }}"> <i class="fa fa-user-secret"></i> <span>{{ 'ilcfrance.orangetools.security.profile.menu'|trans }}</span></a>
+	</li>
+	{% endif %}
+</ul>

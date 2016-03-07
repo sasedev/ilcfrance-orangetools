@@ -1,0 +1,157 @@
+{% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
+{%block breadcrumb%}
+<ol class="breadcrumb">
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_list')}}"> {{ faIco('calendar-check-o')}} {{ 'ilcfrance.orangetools.admin.Sessioninscription.list.breadcrumb'|trans|raw }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_editGet', {'id': sessioninscription.id})}}"> {{ faIco('edit')}} {{ 'ilcfrance.orangetools.admin.Sessioninscription.edit.breadcrumb'|trans({'%sessionformation%': sessioninscription.sessionformation.code, '%user%': sessioninscription.user.fullName})|raw }}</a></li>
+</ol>
+{%endblock breadcrumb%}
+{%block maincontent%}
+<div class="row">
+	<div class="col-lg-12">
+		<div class="well well-sm text-right">
+			<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+		</div>
+		<div class="nav-tabs-custom">
+			<ul class="nav nav-tabs">
+				<li {%if tabActive==1%} class="active"{%endif%}><a href="#overview" data-toggle="tab">{{'ilcfrance.orangetools.admin.Sessioninscription.edit.tab.overview'|trans|raw}}</a></li>
+				<li {%if tabActive==2%} class="active"{%endif%}><a href="#edit" data-toggle="tab">{{'ilcfrance.orangetools.admin.Sessioninscription.edit.tab.update'|trans|raw}}</a></li>
+				<li {%if tabActive==100%} class="active"{%endif%}><a href="#Logs" data-toggle="tab">{{'ilcfrance.orangetools.admin.Sessioninscription.edit.tab.logs'|trans|raw}}</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade{%if tabActive==1%} in active{%endif%}" id="overview">
+					<div class="panel box box-primary">
+						<div class="box-header"><h3 class="box-title">{{ faIco('calendar-check-o text-primary')}} {{'ilcfrance.orangetools.admin.Sessioninscription.edit.tlabel.overview'|trans}}</h3></div>
+						<div class="box-body">
+							<div class="row">
+
+								<div class="col-lg-3 text-right">{{'Sessioninscription.user'|trans|raw}} :</div>
+								<div class="col-lg-9"><a href="{{ path('ilcfrance_orangetools_admin_trainee_editGet', {'id': sessioninscription.user.id}) }}">{{ sessioninscription.user.fullName }}</a>&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								{% if null != modulepreinscription %}
+								<div class="col-lg-3 text-right">{{'Sessioninscription.modulepreinscription'|trans|raw}} :</div>
+								<div class="col-lg-9"><a href="{{ path('ilcfrance_orangetools_admin_modulepreinscription_editGet', {'id': modulepreinscription.id}) }}">{{ modulepreinscription.moduleformation.code }}</a>&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+								{% endif %}
+
+								<div class="col-lg-3 text-right">{{'Sessioninscription.sessionformation'|trans|raw}} :</div>
+								<div class="col-lg-9"><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_editGet', {'id': sessioninscription.sessionformation.id}) }}">{{ sessioninscription.sessionformation.code }}</a>&nbsp;</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-3 text-right">{{'Sessioninscription.convocation'|trans|raw}} :</div>
+								<div class="col-lg-9">{{ ('Sessioninscription.convocation.'~sessioninscription.convocation)|trans }}&nbsp;
+								{% if sessioninscription.sessionformation.lockout == constant('LOCKOUT_LOCKED', sessioninscription.sessionformation)%}
+								<br/>
+								<br/>
+								{{form_start(SessioninscriptionSendConvocationForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessioninscription_editPost', {'id': sessioninscription.id}), 'style': 'horizontal'})}}
+								<div class="form-group"><div class="col-lg-1">
+								<button class="btn btn-danger" type="submit">{{faIco('envelope')}}</button>
+								</div></div>
+								{{form_end(SessioninscriptionSendConvocationForm)}}
+								{% endif %}</div>
+								<div class="col-lg-12">&nbsp;</div>
+
+								<div class="col-lg-12">&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'Sessioninscription.dtCrea'|trans|raw}} :</div>
+								<div class="col-lg-9">{{sessioninscription.dtCrea|localeDate('medium')}} {{faIco('at')}} {{sessioninscription.dtCrea|localeDate('none', 'long')}}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'Sessioninscription.dtUpdate'|trans|raw}} :</div>
+								<div class="col-lg-9">{{sessioninscription.dtUpdate|localeDate('medium')}} {{faIco('at')}} {{sessioninscription.dtUpdate|localeDate('none', 'long')}}&nbsp;</div>
+								<br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==2%} in active{%endif%}" id="edit">
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessioninscription.edit.tlabel.updateTrainee'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(SessioninscriptionUpdateTraineeForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessioninscription_editPost', {'id': sessioninscription.id}), 'style': 'horizontal'})}}
+							{{form_row(SessioninscriptionUpdateTraineeForm.user, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('user')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessioninscriptionUpdateTraineeForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(SessioninscriptionUpdateTraineeForm)}}
+						</div>
+					</div>
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessioninscription.edit.tlabel.updateSessionformation'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(SessioninscriptionUpdateSessionformationForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessioninscription_editPost', {'id': sessioninscription.id}), 'style': 'horizontal'})}}
+							{{form_row(SessioninscriptionUpdateSessionformationForm.sessionformation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('calendar')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessioninscriptionUpdateSessionformationForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(SessioninscriptionUpdateSessionformationForm)}}
+						</div>
+					</div>
+					<div class="panel box box-danger">
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessioninscription.edit.tlabel.updateConvocation'|trans}}</h3></div>
+						<div class="box-body">
+							{{form_start(SessioninscriptionUpdateConvocationForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessioninscription_editPost', {'id': sessioninscription.id}), 'style': 'horizontal'})}}
+							{{form_row(SessioninscriptionUpdateConvocationForm.convocation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('user')} })}}
+							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessioninscriptionUpdateConvocationForm.btnSubmit'|trans|raw}}</button>
+							</div></div>
+							{{form_end(SessioninscriptionUpdateConvocationForm)}}
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade{%if tabActive==100%} in active{%endif%}" id="Logs">
+					<div class="panel box box-warning">
+						<div class="box-header">
+							<h4 class="box-title"> <i class="fa fa-history text-orange"></i> {{'ilcfrance.orangetools.admin.Sessioninscription.edit.tlabel.logs'|trans}}</h4>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-lg-12">
+									{{ include('IlcfranceOrangetoolsAdminBundle:Trace:show.html.twig', {traces: traces}) }}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="deleteConfirmSessioninscription" class="modal fade in" tabindex="-1" style="display: none;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 class="text-center">{{'ilcfrance.orangetools.admin.Sessioninscription.delete.confirm.title'|trans|raw}}</h3>
+	</div>
+	<div class="modal-body">
+		{{'ilcfrance.orangetools.admin.Sessioninscription.delete.confirm.txt'|trans|raw}}
+	</div>
+	<div class="modal-footer">
+		<a href="" class="btn btn-xs btn-danger danger">{{'action.ok'|trans|raw}}</a>
+		<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">{{'action.cancel'|trans|raw}}</button>
+	</div>
+</div>
+{%endblock maincontent%}
+{%block body_scripts%}
+{{ parent()}}
+<script type="text/javascript">
+<!--
+$(function() {
+	$('#SessioninscriptionUpdateTraineeForm_user').select2();
+	$('#SessioninscriptionUpdateSessionformationForm_sessionformation').select2();
+	$('#SessioninscriptionUpdateConvocationForm_convocation').select2();
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		var target = $(e.target).attr("href") // activated tab
+		if (target == '#edit') {
+			$('#SessioninscriptionUpdateTraineeForm_user').select2("destroy");
+			$('#SessioninscriptionUpdateTraineeForm_user').select2();
+			$('#SessioninscriptionUpdateSessionformationForm_sessionformation').select2("destroy");
+			$('#SessioninscriptionUpdateSessionformationForm_sessionformation').select2();
+			$('#SessioninscriptionUpdateConvocationForm_convocation').select2("destroy");
+			$('#SessioninscriptionUpdateConvocationForm_convocation').select2();
+		}
+
+	});
+});
+//-->
+</script>
+{%endblock body_scripts%}

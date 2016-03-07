@@ -1,0 +1,57 @@
+{% extends 'SasedevCommonsSharedBundle::tpl.html.twig' %}
+{%block page_title_content%}{%if browser_page_title is defined%}{{browser_page_title|raw}} - {%endif%}{{sitename}}{%endblock page_title_content%}
+{%block body_attributes%} class="hold-transition sidebar-mini fixed skin-orange"{%endblock body_attributes%}
+{%block body_content_main%}
+			<div class="wrapper">
+				<header class="main-header">
+				{%block mainheader%}
+					<nav class="navbar navbar-static-top" role="navigation">
+						<div class="container">
+							{%block topmenu%}
+							<a href="{{ url('ilcfrance_orangetools_security_homepage') }}" class="logo">
+								<span class="logo-lg"><img src="{{absolute_url(asset('/images/logo.png'))}}" class="img-responsive" /></span>
+							</a>
+							<div class="navbar-collapse collapse navbar-custom-menu-left">
+								{{ include('IlcfranceOrangetools:Menu:top.default.html.twig', {menu_active: menu_active}) }}
+							</div>
+							<div class="navbar-collapse collapse navbar-custom-menu">
+								{{ include('IlcfranceOrangetools:Menu:top.right.html.twig', {menu_active: menu_active}) }}
+							</div>
+							{%endblock topmenu%}
+						</div>
+					</nav>
+				{%endblock mainheader%}
+				</header>
+				<div class="content-wrapper">
+					{%block contentheader%}
+					<section class="content-header">
+						<div class="container">
+							<h1>{%if page_title is defined%}{{page_title|raw}}{%else%}{{sitename}}{%endif%}</h1>
+							{%block breadcrumb%}
+							<ol class="breadcrumb">
+								<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+								<li><a href="#">Examples</a></li>
+								<li class="active">Blank page</li>
+							</ol>
+							{%endblock breadcrumb%}
+						</div>
+					</section>
+					{%endblock contentheader%}
+					<section class="content">
+						{%block maincontent%}
+						{%endblock maincontent%}
+					</section>
+				</div>
+
+				<footer class="main-footer">
+					<div class="container">
+					{%block footercontent%}
+					<div class="pull-right hidden-xs">
+						<b>Version</b> {{ siteversion }}
+					</div>
+					<strong>Copyright &copy; {{ 'now'|date('Y')}} <a href="{{ path('ilcfrance_orangetools_security_homepage') }}">{{ sitename }}</a>.</strong> All rights reserved.
+					{%endblock footercontent%}
+					</div>
+				</footer>
+			</div>
+{%endblock body_content_main%}

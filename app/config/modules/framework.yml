@@ -1,0 +1,31 @@
+# Syfony2 framework
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig', 'php']
+        #assets_version: SomeVersionScheme
+        hinclude_default_template: 'SasedevCommonsSharedBundle::hinclude.html.twig'
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        #handler_id:  ~
+        handler_id:  snc_redis.session.handler # session.mongo.handler
+        name: "ILCFranceOrangetools"
+        cookie_lifetime: 3600 # optional, it is set to 30 days here #3600
+        cookie_domain: .%domain%
+#        save_path:   '%kernel.cache_dir%/sessions'
+        gc_probability: 0
+        gc_maxlifetime: 2592000 # optional, it is set to 30 days here #7200
+    fragments: { path: /_fragment }
+    http_method_override: true
+    assets: ~

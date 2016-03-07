@@ -1,0 +1,355 @@
+ilcfrance_orangetools_admin_homepage:
+    path:  /
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Default:index" }
+
+
+# Groupmodule
+ilcfrance_orangetools_admin_groupmodule_list:
+    path:  /groupmodules
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:list" }
+
+ilcfrance_orangetools_admin_groupmodule_export:
+    path:  /groupmodules/export
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:export" }
+
+ilcfrance_orangetools_admin_groupmodule_addGet:
+    path:  /groupmodule/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:addGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_groupmodule_addPost:
+    path:  /groupmodule/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:addPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_groupmodule_importGet:
+    path:  /groupmodule/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:importGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_groupmodule_importPost:
+    path:  /groupmodule/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:importPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_groupmodule_delete:
+    path:  /groupmodule/delete/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:delete" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_groupmodule_editGet:
+    path:  /groupmodule/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:editGet" }
+    methods: [GET]
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_groupmodule_editPost:
+    path:  /groupmodule/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Groupmodule:editPost" }
+    methods: [POST]
+    requirements:
+        id:  \d+
+
+
+# Moduleformation
+ilcfrance_orangetools_admin_moduleformation_list:
+    path:  /moduleformations
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:list" }
+
+ilcfrance_orangetools_admin_moduleformation_listByGroupmodule:
+    path:  /moduleformations/Groupmodule:{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:listByGroupmodule" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_moduleformation_export:
+    path:  /moduleformations/export
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:export" }
+
+ilcfrance_orangetools_admin_moduleformation_addGet:
+    path:  /moduleformation/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:addGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_moduleformation_addPost:
+    path:  /moduleformation/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:addPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_moduleformation_importGet:
+    path:  /moduleformation/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:importGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_moduleformation_importPost:
+    path:  /moduleformation/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:importPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_moduleformation_delete:
+    path:  /moduleformation/delete/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:delete" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_moduleformation_editGet:
+    path:  /moduleformation/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:editGet" }
+    methods: [GET]
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_moduleformation_editPost:
+    path:  /moduleformation/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Moduleformation:editPost" }
+    methods: [POST]
+    requirements:
+        id:  \d+
+
+
+# Sessionformation
+ilcfrance_orangetools_admin_sessionformation_list:
+    path:  /sessionformations
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:list" }
+
+ilcfrance_orangetools_admin_sessionformation_listByModuleformation:
+    path:  /sessionformations/Moduleformation:{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:listByModuleformation" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_sessionformation_export:
+    path:  /sessionformations/export
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:export" }
+
+ilcfrance_orangetools_admin_sessionformation_addGet:
+    path:  /sessionformation/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:addGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_sessionformation_addPost:
+    path:  /sessionformation/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:addPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_sessionformation_importGet:
+    path:  /sessionformation/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:importGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_sessionformation_importPost:
+    path:  /sessionformation/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:importPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_sessionformation_delete:
+    path:  /sessionformation/delete/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:delete" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_sessionformation_editGet:
+    path:  /sessionformation/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:editGet" }
+    methods: [GET]
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_sessionformation_editPost:
+    path:  /sessionformation/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessionformation:editPost" }
+    methods: [POST]
+    requirements:
+        id:  \d+
+
+
+# Modulepreinscription
+ilcfrance_orangetools_admin_modulepreinscription_list:
+    path:  /modulepreinscriptions
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:list" }
+
+ilcfrance_orangetools_admin_modulepreinscription_listByModuleformation:
+    path:  /modulepreinscriptions/Moduleformation:{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:listByModuleformation" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_modulepreinscription_listByTrainee:
+    path:  /modulepreinscriptions/Trainee:{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:listByTrainee" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_modulepreinscription_export:
+    path:  /modulepreinscriptions/export
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:export" }
+
+ilcfrance_orangetools_admin_modulepreinscription_addGet:
+    path:  /modulepreinscription/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:addGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_modulepreinscription_addPost:
+    path:  /modulepreinscription/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:addPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_modulepreinscription_delete:
+    path:  /modulepreinscription/delete/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:delete" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_modulepreinscription_editGet:
+    path:  /modulepreinscription/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:editGet" }
+    methods: [GET]
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_modulepreinscription_editPost:
+    path:  /modulepreinscription/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Modulepreinscription:editPost" }
+    methods: [POST]
+    requirements:
+        id:  \d+
+
+
+# Sessioninscription
+ilcfrance_orangetools_admin_sessioninscription_list:
+    path:  /sessioninscriptions
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:list" }
+
+ilcfrance_orangetools_admin_sessioninscription_listBySessionformation:
+    path:  /sessioninscriptions/Sessionformation:{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:listBySessionformation" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_sessioninscription_listByTrainee:
+    path:  /sessioninscriptions/Trainee:{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:listByTrainee" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_sessioninscription_export:
+    path:  /sessioninscriptions/export
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:export" }
+
+ilcfrance_orangetools_admin_sessioninscription_addGet:
+    path:  /sessioninscription/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:addGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_sessioninscription_addPost:
+    path:  /sessioninscription/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:addPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_sessioninscription_delete:
+    path:  /sessioninscription/delete/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:delete" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_sessioninscription_editGet:
+    path:  /sessioninscription/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:editGet" }
+    methods: [GET]
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_sessioninscription_editPost:
+    path:  /sessioninscription/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Sessioninscription:editPost" }
+    methods: [POST]
+    requirements:
+        id:  \d+
+# Trainee
+ilcfrance_orangetools_admin_trainee_list:
+    path:  /trainees
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:list" }
+
+ilcfrance_orangetools_admin_trainee_sendInfos:
+    path:  /trainees/sendInfos
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:sendInfos" }
+
+ilcfrance_orangetools_admin_trainee_export:
+    path:  /trainees/export
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:export" }
+
+ilcfrance_orangetools_admin_trainee_addGet:
+    path:  /trainee/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:addGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_trainee_addPost:
+    path:  /trainee/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:addPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_trainee_importGet:
+    path:  /trainee/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:importGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_trainee_importPost:
+    path:  /trainee/import
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:importPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_trainee_delete:
+    path:  /trainee/delete/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:delete" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_trainee_editGet:
+    path:  /trainee/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:editGet" }
+    methods: [GET]
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_trainee_editPost:
+    path:  /trainee/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Trainee:editPost" }
+    methods: [POST]
+    requirements:
+        id:  \d+
+# Admin
+ilcfrance_orangetools_admin_admin_list:
+    path:  /admins
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Admin:list" }
+
+ilcfrance_orangetools_admin_admin_addGet:
+    path:  /admin/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Admin:addGet" }
+    methods: [GET]
+
+ilcfrance_orangetools_admin_admin_addPost:
+    path:  /admin/add
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Admin:addPost" }
+    methods: [POST]
+
+ilcfrance_orangetools_admin_admin_delete:
+    path:  /admin/delete/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Admin:delete" }
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_admin_editGet:
+    path:  /admin/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Admin:editGet" }
+    methods: [GET]
+    requirements:
+        id:  \d+
+
+ilcfrance_orangetools_admin_admin_editPost:
+    path:  /admin/{id}
+    defaults: { _controller: "IlcfranceOrangetoolsAdminBundle:Admin:editPost" }
+    methods: [POST]
+    requirements:
+        id:  \d+

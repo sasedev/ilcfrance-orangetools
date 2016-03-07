@@ -1,0 +1,24 @@
+<div class="block">
+	{% if count > 0 %}
+	<h2>
+		<span><small>[{{ count - position + 1 }}/{{ count + 1 }}]</small></span>
+		{{ exception.class|abbr_class }}: {{ exception.message|nl2br|format_file_from_text }}&nbsp;
+		{% spaceless %}
+		<a href="#" onclick="toggle('traces-{{ position }}', 'traces'); switchIcons('icon-traces-{{ position }}-open', 'icon-traces-{{ position }}-close'); return false;">
+			<img class="toggle" id="icon-traces-{{ position }}-close" alt="-" src="{{absolute_url(asset('/images/error.minus.png'))}}" style="display: {{ 0 == count ? 'inline' : 'none' }}" />
+			<img class="toggle" id="icon-traces-{{ position }}-open" alt="+" src="{{absolute_url(asset('/images/error.plus.png'))}}" style="display: {{ 0 == count ? 'none' : 'inline' }}" />
+		</a>
+		{% endspaceless %}
+	</h2>
+	{% else %}
+	<h2>Stack Trace</h2>
+	{% endif %}
+	<a id="traces-link-{{ position }}"></a>
+	<ol class="traces list-exception" id="traces-{{ position }}" style="display: {{ 0 == count ? 'block' : 'none' }}">
+	{% for i, trace in exception.trace %}
+		<li>
+			{% include '@Twig/Exception/trace.html.twig' with { 'prefix': position, 'i': i, 'trace': trace } only %}
+		</li>
+	{% endfor %}
+	</ol>
+</div>

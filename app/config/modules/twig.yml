@@ -1,0 +1,12 @@
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form_themes:
+        - 'SasedevCommonsBootstrapBundle::form.html.twig'
+    globals:
+        schemes: %schemes%
+        domain: %domain%
+        default_locale: "%locale%"
+        sitename: "%sitename%"
+        siteversion:               "%siteversion%"

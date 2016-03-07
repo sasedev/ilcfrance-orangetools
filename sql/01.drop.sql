@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `ilc_orange_sessioninscriptions`;
+DROP TABLE IF EXISTS `ilc_orange_sessionformations`;
+DROP TABLE IF EXISTS `ilc_orange_modulepreinscriptions`;
+DROP TABLE IF EXISTS `ilc_orange_moduleformations`;
+DROP TABLE IF EXISTS `ilc_orange_groupmodules`;
+DROP TABLE IF EXISTS `ilc_orange_users_roles`;
+DROP TABLE IF EXISTS `ilc_orange_users`;
+DROP TABLE IF EXISTS `ilc_orange_role_parents`;
+DROP TABLE IF EXISTS `ilc_orange_roles`;

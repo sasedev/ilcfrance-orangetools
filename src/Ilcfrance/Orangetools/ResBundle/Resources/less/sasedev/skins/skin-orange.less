@@ -1,0 +1,101 @@
+/*
+ * Skin: Red
+ * ---------
+ */
+@import "../../../../../../../../vendor/twbs/bootstrap/less/mixins.less";
+@import "../../../../../../../../vendor/twbs/bootstrap/less/variables.less";
+@import "../variables.less";
+@import "../mixins.less";
+
+@orange2: #FF6600;
+
+.skin-orange {
+
+	a {
+		color: @orange2;
+	}
+
+	a:hover , a:active , a:focus {
+		outline: none;
+		text-decoration: none;
+		color: @orange;
+	}
+
+	a.btn-primary, a.btn-success, a.btn-info, a.btn-warning, a.btn-danger {
+		color: white;
+		font-weight: bolder;
+	}
+  //Navbar
+  .main-header {
+    .navbar {
+      .navbar-variant(@orange2; #fff);
+      .sidebar-toggle {
+        color: #fff;
+        &:hover {
+          background-color: darken(@orange2, 5%);
+        }
+      }
+      @media (max-width: @screen-header-collapse) {
+        .dropdown-menu {
+          li {
+            &.divider {
+              background-color: rgba(255, 255, 255, 0.1);
+            }
+            a {
+              color: #fff;
+              &:hover {
+                background: darken(@orange2, 5%);
+              }
+            }
+          }
+        }
+      }
+    }
+    //Logo
+    .logo {
+      .logo-variant(darken(@orange2, 5%));
+    }
+
+    li.user-header {
+      background-color: @orange2;
+    }
+  }
+
+  .security-box {
+    background-color: @orange2;
+    border-color: darken(@orange2, 5%);
+    box-shadow: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .border-radius(10px);
+  }
+
+  //Content Header
+  .content-header {
+    background: transparent;
+  }
+
+  .nav-tabs-custom {
+  	> .nav-tabs {
+  		> li.active {
+  			border-top-color: @orange;
+  		}
+  	}
+    // Tab color variations
+    &.tab-primary {
+      > .nav-tabs {
+        > li.active {
+          border-top-color: @orange;
+        }
+      }
+    }
+  }
+  .box {
+  	&.box-primary {
+  		border-top-color: @orange2;
+  	}
+  }
+
+  //Create the sidebar skin
+  .skin-dark-sidebar(@orange2);
+}

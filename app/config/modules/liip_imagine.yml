@@ -1,0 +1,49 @@
+# liip imagine
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+              web_root: "%kernel.root_dir%/../web"
+              cache_prefix: /thumbs
+
+
+    loaders:
+        default:
+            filesystem:
+                data_root: "%kernel.root_dir%/../web/"
+
+    driver:               gd
+    cache:                default
+    data_loader:          default
+    controller_action:    liip_imagine.controller:filterAction
+
+    filter_sets:
+        cache: ~
+        thumbBanner:
+            filters:
+                relative_resize: { widen: 350 }
+        bigthumbBanner:
+            filters:
+                relative_resize: { widen: 600 }
+        thumbSitenew:
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound }
+        thumbProd:
+            filters:
+                thumbnail: { size: [220, 220], mode: outbound }
+                upscale:
+                    min: [220, 220]
+                    max: [220, 220]
+                relative_resize: { widen: 220 }
+        thumbProductpic:
+            filters:
+                relative_resize: { widen: 300 }
+        bigthumbProductpic:
+            filters:
+                relative_resize: { widen: 400 }
+        thumbPics:
+            filters:
+                relative_resize: { heighten: 400 }
+        bigthumbQuotation:
+            filters:
+                relative_resize: { widen: 600 }

@@ -1,0 +1,37 @@
+<html>
+	<body>
+		<p>
+			Bonjour ,<br/>
+			<b>Votre Parcours de Formation d’anglais {{ 'now'|date('Y')}}</b> comprend un ou plusieurs <span style="color: red">Ateliers  d'Anglais en face à face</span>.<br/>
+			Ces Ateliers thématiques  d'une journée ( 7h) ou deux journées consécutives (14h) ont lieu à ILC France -13 passage Dauphine 75006 Paris.
+		</p>
+		<p>
+			<b><span style="color: red">INSCRIPTION</span>  via  notre plateforme de planification en ligne ONLINE BOOKING:</b>
+			<ul>
+				<li>Utilisez le lien  : <a href="{{ path('ilcfrance_orangetools_front_homepage') }}">orangetools.ilcfrance.com</a></li>
+				<li>Entrez votre identifiant et mot passe (ces informations figurent en bas de cet email)</li>
+				<li>Le ou les Ateliers pour lesquels vous avez été *pré inscrits s'affichent</li>
+				<li>Sélectionnez une session (une date) par Atelier, Valider votre choix en bas de page</li>
+				<li>Un email de confirmation vous est envoyé immédiatement</li>
+				<li>Une convocation vous est envoyée au moins 3 semaines avant la date de la formation</li>
+			</ul>
+		</p>
+		<p>
+			<span style="color: red">IMPORTANT: Vous avez 10 jours ouvrés pour vous inscrire (ou modifier si besoin) vos sessions de formations</span>, au-delà de ce délai vous perdez le droit d’accès à l’outil de réservation en ligne.<br/>
+			Rappel de vos identifiants:<br/>
+			Votre identifiant  est : <b>{{ user.username }}</b><br/>
+			Votre mot de passe est : <b>{{ user.clearPassword }}</b><br/>
+		</p>
+		<p>
+			<i>*Les Ateliers auxquels vous êtes pré inscrits ont été sélectionnés par la cellule de pilotage formation de Orange (contact :Sue MEIGH 01 56 69 22 38)</i><br/>
+			<i>Pour toute question, n'hésitez pas à nous joindre au 01 44 41 80 22.</i>
+		</p>
+		<p>
+			Cordialement,<br/>
+			Léa Paolini<br/>
+			Direction des Projets et Organisation<br/>
+			Tél : 01 44 41 80 22<br/>
+			Email : lea.paolini@ilcfrance.com<br/>
+		</p>
+	</body>
+</html>

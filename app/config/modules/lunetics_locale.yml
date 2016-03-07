@@ -1,0 +1,19 @@
+# LuneticsLocaleBundle
+lunetics_locale:
+    strict_mode: true # defaults to false
+    allowed_locales:
+        - en
+        - fr
+        - ar
+        - de
+    guessing_order:
+        - query
+        - cookie
+        - session
+        - browser
+        - router
+    cookie:
+        set_on_change: true
+    switcher:
+        template: AcfFrontBundle::setlocale.html.twig
+        show_current_locale: true

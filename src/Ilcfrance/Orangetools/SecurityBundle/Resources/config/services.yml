@@ -1,0 +1,23 @@
+parameters:
+    ilcfrance_orangetools_security.role_hierarchy.role_manager.role_class: Ilcfrance\Orangetools\DataBundle\Entity\Role
+    ilcfrance_orangetools_security.role_hierarchy.role_manager.default.class: Ilcfrance\Orangetools\SecurityBundle\Security\RoleManager
+    ilcfrance_orangetools_security.role_hierarchy.class: Ilcfrance\Orangetools\SecurityBundle\Security\RoleHierarchy
+    ilcfrance_orangetools_security.login_success.class: Ilcfrance\Orangetools\SecurityBundle\Listener\LoginSuccess
+
+services:
+#    ilcfrance_orangetools_security.example:
+#        class: Ilcfrance\Orangetools\SecurityBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    ilcfrance_orangetools_security.role_hierarchy.role_manager.default:
+        class: "%ilcfrance_orangetools_security.role_hierarchy.role_manager.default.class%"
+        arguments: ['@doctrine', '%ilcfrance_orangetools_security.role_hierarchy.role_manager.role_class%']
+
+    security.role_hierarchy:
+        class: "%ilcfrance_orangetools_security.role_hierarchy.class%"
+        arguments: ['@ilcfrance_orangetools_security.role_hierarchy.role_manager.default']
+
+    ilcfrance_orangetools_security.login_success:
+        class: "%ilcfrance_orangetools_security.login_success.class%"
+        arguments: ['@doctrine']
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onLogin }
