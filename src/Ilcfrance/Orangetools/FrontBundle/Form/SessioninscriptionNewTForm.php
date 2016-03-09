@@ -125,7 +125,8 @@ class SessioninscriptionNewTForm extends AbstractType
 			foreach ($this->moduleformation->getSessionformations() as $sessionformation) {
 				foreach ($view->children['sessionformation']->children as $children) {
 					if ($sessionformation->getId() == $children->vars['value']) {
-						if (($sessionformation->getDtStart() < $now) ||
+						$dtStart = \DateTime::createFromFormat('Y-m-d H:i:s', $sessionformation->getDtStart());
+						if (($dtStart < $now) ||
 							(\count($sessionformation->getSessioninscriptions()) >= $sessionformation->getMaxParticipants()) ||
 							($sessionformation->getLockout() != Sessionformation::LOCKOUT_UNLOCKED)) {
 							$children->vars['attr']['disabled'] = 'disabled';
@@ -178,7 +179,6 @@ class SessioninscriptionNewTForm extends AbstractType
 				'sessionformation'
 			),
 			'moduleformation' => null,
-			'user' => null,
 			'user' => null
 		);
 

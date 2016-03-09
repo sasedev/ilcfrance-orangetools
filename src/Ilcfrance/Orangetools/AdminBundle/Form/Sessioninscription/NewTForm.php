@@ -74,6 +74,7 @@ class NewTForm extends AbstractType
 					'class' => 'IlcfranceOrangetoolsDataBundle:Sessionformation',
 					'query_builder' => function (SessionformationRepository $sfr)
 					{
+						$now = new \DateTime('now');
 						return $sfr->createQueryBuilder('sf')
 							->leftJoin('sf.sessioninscriptions', 'si')
 							->where('sf.lockout = :sfLockout')
@@ -81,7 +82,7 @@ class NewTForm extends AbstractType
 							->groupBy('si.id')
 							->having('COUNT(si) < sf.maxParticipants')
 							->setParameter('sfLockout', Sessionformation::LOCKOUT_UNLOCKED)
-							->setParameter('now', new \DateTime('now'))
+							->setParameter('now', $now->format('Y-m-d H:i:s'))
 							->orderBy('sf.code', 'ASC');
 					},
 					'choice_label' => 'choiceLabel',

@@ -442,8 +442,9 @@ class TraineeController extends SasedevController
 
 		$response->headers->set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8');
 
+		$now = new \DateTime('now');
 		$filename = $this->normalize(
-			$this->getParameter('sitename') . '_' . $this->translate('ilcfrance.orangetools.admin.Trainee.list.browserpagetitle'));
+			$this->getParameter('sitename') . '_' . $this->translate('ilcfrance.orangetools.admin.Trainee.list.browserpagetitle').'_'.$now->format('Y-m-d_H.i.s'));
 		$filename = str_ireplace('"', '|', $filename);
 		$filename = str_ireplace(' ', '_', $filename);
 
