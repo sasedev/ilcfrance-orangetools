@@ -41,7 +41,7 @@
 								<div class="col-lg-12">&nbsp;</div>
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.dtStart'|trans|raw}} :</div>
-								<div class="col-lg-9">{{sessionformation.dtStart|localeDate('long')}} {{faIco('at')}} {{sessionformation.dtStart|localeDate('none', 'long')}}&nbsp;</div>
+								<div class="col-lg-9">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}&nbsp;</div>
 								<div class="col-lg-3 text-right">{{'Sessionformation.location'|trans|raw}} :</div>
 								<div class="col-lg-9">{{sessionformation.location|raw}}&nbsp;</div>
 								<div class="col-lg-12">&nbsp;</div>
@@ -325,7 +325,7 @@ $(function() {
 		autoclose: true,
 		todayHighlight: true,
 		language: "{{app.request.locale}}",
-		format: 'yyyy-mm-dd hh:ii'
+		format: 'yyyy-mm-dd hh:ii:ss'
 	});
 
 	$('#SessionformationUpdateLockoutForm_lockout').select2();

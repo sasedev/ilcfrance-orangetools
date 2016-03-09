@@ -25,15 +25,9 @@
 									{% elseif entityFieldName == 'title' %}
 										{{ entityFieldValue }}
 									{% elseif entityFieldName == 'dtStart' %}
-										{% if entityFieldValue.timezone_type != 3 %}
-										{{ date(entityFieldValue.date~ ' ' ~entityFieldValue.timezone)|localeDate('short') }}
+										{{ date(entityFieldValue)|date('Y-m-d', timezone) }}
 										{{faIco('at')}}
-										{{ date(entityFieldValue.date~ ' ' ~entityFieldValue.timezone)|localeDate('none', 'long') }}
-										{% else %}
-										{{ date(entityFieldValue.date, entityFieldValue.timezone)|localeDate('short') }}
-										{{faIco('at')}}
-										{{ date(entityFieldValue.date, entityFieldValue.timezone)|localeDate('none', 'long') }}
-										{% endif %}
+										{{ date(entityFieldValue)|date('H:i:s', timezone) }}
 									{% elseif entityFieldName == 'location' %}
 										{{ entityFieldValue }}
 									{% elseif entityFieldName == 'phoneContactCenter' %}

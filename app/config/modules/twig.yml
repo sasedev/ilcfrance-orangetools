@@ -10,3 +10,4 @@ twig:
         default_locale: "%locale%"
         sitename: "%sitename%"
         siteversion:               "%siteversion%"
+        timezone:               "Europe/Paris"

@@ -90,7 +90,7 @@ CREATE TABLE `ilc_orange_sessionformations` (
 	`mf_id`                                                             INT(11) UNSIGNED NOT NULL,
 	`code`                                                              TEXT NOT NULL,
 	`title`                                                             TEXT NOT NULL,
-	`dtstart`                                                           TIMESTAMP NOT NULL,
+	`dtstart`                                                           TEXT NOT NULL,
 	`location`                                                          TEXT NOT NULL,
 	`phonecontactcenter`                                                TEXT NULL,
 	`conditionsreport`                                                  TEXT NULL,

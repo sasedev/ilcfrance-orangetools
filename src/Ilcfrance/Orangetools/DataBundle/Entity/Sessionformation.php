@@ -57,7 +57,7 @@ class Sessionformation implements JsonSerializable
 
 	/**
 	 *
-	 * @var \DateTime @ORM\Column(name="dtstart", type="datetime", nullable=false)
+	 * @var string @ORM\Column(name="dtstart", type="text", nullable=false)
 	 */
 	protected $dtStart;
 
@@ -222,23 +222,31 @@ class Sessionformation implements JsonSerializable
 	/**
 	 * Get $dtStart
 	 *
-	 * @return \DateTime
+	 * @return string
 	 */
 	public function getDtStart()
 	{
-
 		return $this->dtStart;
+	}
 
+	/**
+	 * Get $dtStart
+	 *
+	 * @return \DateTime
+	 */
+	public function getDtStartTz()
+	{
+		return \DateTime::createFromFormat('Y-m-d H:i:s', $this->dtStart, new \DateTimeZone('Europe/Paris')) ;
 	}
 
 	/**
 	 * Set $dtStart
 	 *
-	 * @param \DateTime $dtStart
+	 * @param string $dtStart
 	 *
 	 * @return Sessionformation $this
 	 */
-	public function setDtStart(\DateTime $dtStart)
+	public function setDtStart($dtStart)
 	{
 
 		$this->dtStart = $dtStart;

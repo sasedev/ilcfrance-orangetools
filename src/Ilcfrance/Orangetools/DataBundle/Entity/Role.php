@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Ilcfrance\Orangetools\DataBundle\EntityRepository\RoleRepository")
  * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(fields={"name"}, errorPath="name", groups={"name"})
- * 
+ *
  *
  * @author sasedev <seif.salah@gmail.com>
  */
@@ -70,7 +70,7 @@ class Role implements RoleInterface, \Serializable, JsonSerializable
 	 *      }
 	 *      )
 	 *      @ORM\OrderBy({"name" = "ASC"})
-	 *      
+	 *
 	 */
 	protected $parents;
 
@@ -86,7 +86,7 @@ class Role implements RoleInterface, \Serializable, JsonSerializable
 	 *      }
 	 *      )
 	 *      @ORM\OrderBy({"name" = "ASC"})
-	 *      
+	 *
 	 */
 	protected $childs;
 
@@ -102,7 +102,7 @@ class Role implements RoleInterface, \Serializable, JsonSerializable
 	 *      }
 	 *      )
 	 *      @ORM\OrderBy({"username" = "ASC"})
-	 *      
+	 *
 	 */
 	protected $users;
 

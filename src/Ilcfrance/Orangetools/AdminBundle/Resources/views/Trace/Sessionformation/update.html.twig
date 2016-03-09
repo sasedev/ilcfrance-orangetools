@@ -1,7 +1,7 @@
 {{ faIco('calendar bg-green')}}
 		<div class="timeline-item">
 			<span class="time">{{ faIco('calendar') }} &nbsp; {{ trace.dtCrea|localeDate('long')  }} &nbsp; {{ faIco('clock-o') }} &nbsp; {{ trace.dtCrea|localeDate('none', 'medium')  }}</span>
-			<h3 class="timeline-header"> {{ ('Entity.'~trace.actionEntity~'.update')|trans }}</h3>
+			<h3 class="timeline-header"> {{ ('Entity.'~trace.actionEntity~'.update')|trans }} <span class="pull-right">(<b>{{ trace.userFullName }}</b>)</span></h3>
 			<div class="timeline-body">
 				<table class="table table-bordered table-condensed table-hover table-striped">
 					<thead>
@@ -27,15 +27,9 @@
 									{% elseif entityFieldName == 'title' %}
 										{{ item }}
 									{% elseif entityFieldName == 'dtStart' %}
-										{% if item.timezone_type != 3 %}
-										{{ date(item.date~ ' ' ~item.timezone)|localeDate('short') }}
+										{{ date(item)|date('Y-m-d', timezone) }}
 										{{ faIco('at') }}
-										{{ date(item.date~ ' ' ~item.timezone)|localeDate('none', 'long') }}
-										{% else %}
-										{{ date(item.date, item.timezone)|localeDate('short') }}
-										{{ faIco('at') }}
-										{{ date(item.date, item.timezone)|localeDate('none', 'long') }}
-										{% endif %}
+										{{ date(item)|date('H:i:s', timezone) }}
 									{% elseif entityFieldName == 'location' %}
 										{{ item }}
 									{% elseif entityFieldName == 'phoneContactCenter' %}

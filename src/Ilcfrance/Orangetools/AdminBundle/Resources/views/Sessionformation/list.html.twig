@@ -43,7 +43,7 @@
 							<td><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_editGet', {'id': sessionformation.moduleformation.id}) }}">{{ sessionformation.moduleformation.code }}</a></td>
 							<td>{{ sessionformation.code }}</td>
 							<td>{{ sessionformation.title }}</td>
-							<td class="text-right">{{ sessionformation.dtStart|date('Y-m-d') }} {{faIco('at')}} {{ sessionformation.dtStart|localeDate('none', 'long') }}</td>
+							<td class="text-right">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}</td>
 							<td>{{ sessionformation.location|raw }}</td>
 							<td class="text-right">{{ sessionformation.phoneContactCenter|default(bsLabel('value.null'|trans)) }}</td>
 							<td>{{ sessionformation.dtInfo|default(bsLabel('value.null'|trans))|raw }}</td>

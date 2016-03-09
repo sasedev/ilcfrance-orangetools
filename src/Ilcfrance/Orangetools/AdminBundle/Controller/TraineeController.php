@@ -20,6 +20,7 @@ use Ilcfrance\Orangetools\DataBundle\Entity\Modulepreinscription;
 use Ilcfrance\Orangetools\AdminBundle\Form\Sessioninscription\NewTForm as SessioninscriptionNewTForm;
 use Ilcfrance\Orangetools\DataBundle\Entity\Sessioninscription;
 use Ilcfrance\Orangetools\DataBundle\Entity\Moduleformation;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  *
@@ -81,6 +82,7 @@ class TraineeController extends SasedevController
 
 				$mvars = array();
 				$mvars['user'] = $trainee;
+				$mvars['url'] = $this->generateUrl('ilcfrance_orangetools_front_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
 
 				$from = $this->getParameter('mail_from');
 				$fromName = $this->getParameter('mail_from_name');
@@ -1114,6 +1116,7 @@ class TraineeController extends SasedevController
 
 						$mvars = array();
 						$mvars['user'] = $trainee;
+						$mvars['url'] = $this->generateUrl('ilcfrance_orangetools_front_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
 
 						$from = $this->getParameter('mail_from');
 						$fromName = $this->getParameter('mail_from_name');

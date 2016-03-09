@@ -98,7 +98,7 @@
 									{% for sessioninscription in user.sessioninscriptions %}
 									<li>
 										{{ sessioninscription.sessionformation.code }} - {{ sessioninscription.sessionformation.title }}<br/>
-										<b>{{ sessioninscription.sessionformation.location|raw }}</b>: <b>{{ sessioninscription.sessionformation.dtStart|localeDate('long') }}</b> {{faIco('at')}} <b>{{ sessioninscription.sessionformation.dtStart|localeDate('none', 'long') }}</b><br/>
+										<b>{{ sessioninscription.sessionformation.location|raw }}</b>: <b>{{ sessioninscription.sessionformation.dtStart|date('Y-m-d', timezone) }}</b> {{faIco('at')}} <b>{{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }}</b><br/>
 										{%if sessioninscription.sessionformation.dtInfo is not empty %}{{ sessioninscription.sessionformation.dtInfo }}<br/>{% endif %}
 										{%if sessioninscription.sessionformation.conditionsReport is not empty %}{{ sessioninscription.sessionformation.conditionsReport }}<br/>{% endif %}
 										{%if sessioninscription.sessionformation.phoneContactCenter is not empty %}{{ sessioninscription.sessionformation.phoneContactCenter }}<br/>{% endif %}

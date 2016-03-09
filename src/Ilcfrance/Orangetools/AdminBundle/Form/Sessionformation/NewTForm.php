@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -89,11 +88,9 @@ class NewTForm extends AbstractType
 
 		$builder->add(
 			'dtStart',
-			DateTimeType::class,
+			TextType::class,
 			array(
-				'label' => 'ilcfrance.orangetools.admin.SessionformationNewForm.dtStart.label',
-				'widget' => 'single_text',
-				'format' => 'yyyy-MM-dd HH:mm'
+				'label' => 'ilcfrance.orangetools.admin.SessionformationNewForm.dtStart.label'
 			));
 
 		$builder->add(

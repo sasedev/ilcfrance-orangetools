@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Ilcfrance\Orangetools\DataBundle\Entity\Sessionformation;
 
 /**
@@ -27,11 +27,9 @@ class UpdateDtStartTForm extends AbstractType
 
 		$builder->add(
 			'dtStart',
-			DateTimeType::class,
+			TextType::class,
 			array(
-				'label' => 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.label',
-				'widget' => 'single_text',
-				'format' => 'yyyy-MM-dd HH:mm'
+				'label' => 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.label'
 			));
 
 	}

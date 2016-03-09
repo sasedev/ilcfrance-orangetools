@@ -39,7 +39,7 @@
 													<h4>
 														&nbsp; &nbsp; {{ sessioninscription.sessionformation.title }}
 														<small>
-															- {{ sessioninscription.sessionformation.location }} - {{ sessioninscription.sessionformation.dtStart|localeDate('long') }} {{faIco('at')}} {{ sessioninscription.sessionformation.dtStart|localeDate('none', 'long') }})
+															- {{ sessioninscription.sessionformation.location }} - {{ sessioninscription.sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }})
 														</small>
 													</h4>
 												</li>

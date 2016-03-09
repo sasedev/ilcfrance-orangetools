@@ -181,15 +181,16 @@ class SessionformationController extends SasedevController
 				->getCode(), \PHPExcel_Cell_DataType::TYPE_STRING2);
 			$workSheet->setCellValue('B' . $i, $sessionformation->getCode(), \PHPExcel_Cell_DataType::TYPE_STRING2);
 			$workSheet->setCellValue('C' . $i, $sessionformation->getTitle(), \PHPExcel_Cell_DataType::TYPE_STRING2);
-			$workSheet->setCellValue(
-				'D' . $i,
-				\PHPExcel_Shared_Date::PHPToExcel($sessionformation->getDtStart()),
-				\PHPExcel_Cell_DataType::TYPE_NUMERIC);
-			// $workSheet->setCellValue('D' . $i, \PHPExcel_Shared_Date::PHPToExcel( $sessionformation->getDtStart(), true,
-			// $sessionformation->getDtStart()->format('e')), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
-			$workSheet->getStyle('D' . $i)
-				->getNumberFormat()
-				->setFormatCode('yyyy-mm-dd h:mm:ss');
+			//$dtStart = \DateTime::createFromFormat('Y-m-d H:i:s', $sessionformation->getDtStart(), new \DateTimeZone('Europe/Paris'));
+			//$workSheet->setCellValue(
+			//	'D' . $i,
+			//	\PHPExcel_Shared_Date::PHPToExcel($dtStart),
+			//	\PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			// $workSheet->setCellValue('D' . $i, \PHPExcel_Shared_Date::PHPToExcel( $sessionformation->getDtStart(), true, 'Europe/Paris'), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			//$workSheet->getStyle('D' . $i)
+			//	->getNumberFormat()
+			//	->setFormatCode('yyyy-mm-dd h:mm:ss');
+			$workSheet->setCellValue('D' . $i, $sessionformation->getDtStart(), \PHPExcel_Cell_DataType::TYPE_STRING2);
 
 			$workSheet->setCellValue('E' . $i, $sessionformation->getLocation(), \PHPExcel_Cell_DataType::TYPE_STRING2);
 			$workSheet->setCellValue('F' . $i, $sessionformation->getPhoneContactCenter(), \PHPExcel_Cell_DataType::TYPE_STRING2);
@@ -388,8 +389,9 @@ class SessionformationController extends SasedevController
 					$xlsModuleformation = \trim(\strval($worksheet->getCellByColumnAndRow(0, $row)->getValue()));
 					$xlsCode = \trim(\strval($worksheet->getCellByColumnAndRow(1, $row)->getValue()));
 					$xlsTitle = \trim(\strval($worksheet->getCellByColumnAndRow(2, $row)->getValue()));
-					// $xlsDtStart = \PHPExcel_Shared_Date::ExcelToPHP($worksheet->getCellByColumnAndRow(3, $row)->getValue());
-					$xlsDtStart = \PHPExcel_Shared_Date::ExcelToPHP($worksheet->getCellByColumnAndRow(3, $row)->getValue(), true);
+					//$xlsDtStart = \PHPExcel_Shared_Date::ExcelToPHP($worksheet->getCellByColumnAndRow(3, $row)->getValue());
+					//$xlsDtStart = \PHPExcel_Shared_Date::ExcelToPHP($worksheet->getCellByColumnAndRow(3, $row)->getValue(), true, \date_default_timezone_get());
+					$xlsDtStart = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
 					$xlsLocation = \trim(\strval($worksheet->getCellByColumnAndRow(4, $row)->getValue()));
 					$xlsPhoneContactCenter = \trim(\strval($worksheet->getCellByColumnAndRow(5, $row)->getValue()));
 					$xlsConditionsReport = \trim(\strval($worksheet->getCellByColumnAndRow(6, $row)->getValue()));
@@ -412,9 +414,7 @@ class SessionformationController extends SasedevController
 								$sessionformation->setModuleformation($moduleformation);
 								$sessionformation->setCode($xlsCode);
 								$sessionformation->setTitle($xlsTitle);
-								$dtStart = new \DateTime();
-								$dtStart->setTimestamp($xlsDtStart);
-								$sessionformation->setDtStart($dtStart);
+								$sessionformation->setDtStart($xlsDtStart);
 								$sessionformation->setLocation($xlsLocation);
 								$sessionformation->setPhoneContactCenter($xlsPhoneContactCenter);
 								$sessionformation->setConditionsReport($xlsConditionsReport);

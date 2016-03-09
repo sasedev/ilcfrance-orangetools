@@ -30,7 +30,7 @@
 							<li>
 								Session choisie :
 								<i>{{ currsession.sessionformation.title }}</i></b>
-								(<b>{{ currsession.sessionformation.location|raw }}</b>: <b>{{ currsession.sessionformation.dtStart|localeDate('long') }}</b> {{faIco('at')}} <b>{{ currsession.sessionformation.dtStart|localeDate('none', 'long') }}</b>)<br/>
+								(<b>{{ currsession.sessionformation.location|raw }}</b>: <b>{{ currsession.sessionformation.dtStart|date('Y-m-d', timezone) }}</b> {{faIco('at')}} <b>{{ currsession.sessionformation.dtStart|date('H:i:s', timezone) }}</b>)<br/>
 									{%if currsession.sessionformation.dtInfo is not empty %}{{ currsession.sessionformation.dtInfo }}<br/>{% endif %}
 									{%if currsession.sessionformation.conditionsReport is not empty %}{{ currsession.sessionformation.conditionsReport }}<br/>{% endif %}
 									{%if currsession.sessionformation.phoneContactCenter is not empty %}{{ currsession.sessionformation.phoneContactCenter }}<br/>{% endif %}
