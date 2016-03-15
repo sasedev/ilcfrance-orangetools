@@ -113,8 +113,11 @@ class SecurityController extends SasedevController
 
 				$from = $this->getParameter('mail_from');
 				$fromName = $this->getParameter('mail_from_name');
+						$replyTo = $this->getParameter('mail_replay');
+						$replyToName = $this->getParameter('mail_replay_name');
 				$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.security.lostid.mail.subject');
 				$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
+							->setReplyTo($replyTo, $replyToName)
 					->setTo($user->getEmail(), $user->getFullname())
 					->setSubject($subject)
 					->setBody($this->renderView('IlcfranceOrangetoolsSecurityBundle:Mail:lostid.html.twig', $mvars), 'text/html');
@@ -205,8 +208,11 @@ class SecurityController extends SasedevController
 
 					$from = $this->getParameter('mail_from');
 					$fromName = $this->getParameter('mail_from_name');
+						$replyTo = $this->getParameter('mail_replay');
+						$replyToName = $this->getParameter('mail_replay_name');
 					$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.security.lostpassword.mail.subject');
 					$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
+							->setReplyTo($replyTo, $replyToName)
 						->setTo($user->getEmail(), $user->getFullname())
 						->setSubject($subject)
 						->setBody($this->renderView('IlcfranceOrangetoolsSecurityBundle:Mail:lostpassword.html.twig', $mvars), 'text/html');
@@ -271,9 +277,12 @@ class SecurityController extends SasedevController
 				$mvars['url'] = $this->generateUrl('ilcfrance_orangetools_security_login', array(), UrlGeneratorInterface::ABSOLUTE_URL);
 				$from = $this->getParameter('mail_from');
 				$fromName = $this->getParameter('mail_from_name');
+						$replyTo = $this->getParameter('mail_replay');
+						$replyToName = $this->getParameter('mail_replay_name');
 				$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.security.resetpass.mail.subject');
 
 				$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
+							->setReplyTo($replyTo, $replyToName)
 					->setTo($user->getEmail(), $user->getFullname())
 					->setSubject($subject)
 					->setBody($this->renderView('IlcfranceOrangetoolsSecurityBundle:Mail:resetpass.html.twig', $mvars), 'text/html');

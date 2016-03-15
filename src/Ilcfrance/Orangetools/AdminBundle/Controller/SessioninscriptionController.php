@@ -426,32 +426,42 @@ class SessioninscriptionController extends SasedevController
 
 						$countSessioninscriptions++;
 
-						$mvars = array();
-						$message = \Swift_Message::newInstance();
-						$mvars['user'] = $trainee;
-						$mvars['sessionformation'] = $sessioninscription->getSessionformation();
-						$mvars ['plan'] = $message->embed (
-							\Swift_Image::fromPath ($this->getParameter('kernel.root_dir') . '/../web/images/plan.jpg'));
+						try {
+							$mvars = array();
+							$message = \Swift_Message::newInstance();
+							$mvars['user'] = $trainee;
+							$mvars['sessionformation'] = $sessioninscription->getSessionformation();
+							$mvars ['plan'] = $message->embed (
+								\Swift_Image::fromPath ($this->getParameter('kernel.root_dir') . '/../web/images/plan.jpg'));
 
-						$from = $this->getParameter('mail_from');
-						$fromName = $this->getParameter('mail_from_name');
-						$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.subject');
-						$message->setFrom($from, $fromName)
-						->setTo($trainee->getEmail(), $trainee->getFullname())
-						->setBcc($trainee->getEmail2(), $trainee->getFullName2())
-						->setSubject($subject)
-						->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Sessioninscription:sendConvocation.mail.html.twig', $mvars), 'text/html');
+							$from = $this->getParameter('mail_from');
+							$fromName = $this->getParameter('mail_from_name');
+							$replyTo = $this->getParameter('mail_replay');
+							$replyToName = $this->getParameter('mail_replay_name');
+							$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.subject');
+							$message->setFrom($from, $fromName)
+							->setTo($trainee->getEmail(), $trainee->getFullname());
+							if (null != $trainee->getEmail2()) {
+								$message->setBcc($trainee->getEmail2(), $trainee->getFullName2());
+							}
+							$message->setReplyTo($replyTo, $replyToName)
+							->setSubject($subject)
+							->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Sessioninscription:sendConvocation.mail.html.twig', $mvars), 'text/html');
 
-						$this->sendmail($message);
-						$sessioninscription->setConvocation(Sessioninscription::CONVOCATION_SENT);
-						$em->persist($sessioninscription);
+							$this->sendmail($message);
+							$sessioninscription->setConvocation(Sessioninscription::CONVOCATION_SENT);
+							$em->persist($sessioninscription);
 
-						$modulepreinscription->setLockout(Modulepreinscription::LOCKOUT_LOCKED);
-						$em->persist($modulepreinscription);
+							$modulepreinscription->setLockout(Modulepreinscription::LOCKOUT_LOCKED);
+							$em->persist($modulepreinscription);
 
-						$mailsent++;
+							$mailsent++;
 
-						$em->flush();
+							$em->flush();
+						} catch (\Exception $e) {
+							$logger = $this->getLogger();
+							$logger->addCritical($e->getLine() . ' ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+						}
 
 						$this->addFlash('success', $this->translate('ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.sent', array('%countSessioninscriptions%' => $countSessioninscriptions, '%$mailsent%' => $mailsent)));
 

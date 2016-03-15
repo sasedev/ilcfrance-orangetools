@@ -27,6 +27,7 @@
 							<th>{{ 'ilcfrance.orangetools.admin.Sessionformation.code.label'|trans|raw }}</th>
 							<th>{{ 'ilcfrance.orangetools.admin.Sessionformation.title.label'|trans|raw }}</th>
 							<th>{{ 'ilcfrance.orangetools.admin.Sessionformation.dtStart.label'|trans|raw }}</th>
+							<th>{{ 'ilcfrance.orangetools.admin.Sessionformation.dtEnd.label'|trans|raw }}</th>
 							<th>{{ 'ilcfrance.orangetools.admin.Sessionformation.location.label'|trans|raw }}</th>
 							<th>{{ 'ilcfrance.orangetools.admin.Sessionformation.phoneContactCenter.label'|trans|raw }}</th>
 							<th>{{ 'ilcfrance.orangetools.admin.Sessionformation.dtInfo.label'|trans|raw }}</th>
@@ -45,8 +46,9 @@
 							<td>{{ sessionformation.code }}</td>
 							<td>{{ sessionformation.title }}</td>
 							<td class="text-right">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}</td>
+							<td class="text-right">{{ sessionformation.dtEnd|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtEnd|date('H:i:s', timezone) }}</td>
 							<td>{{ sessionformation.location|raw }}</td>
-							<td class="text-right">{{ sessionformation.phoneContactCenter|default(bsLabel('value.null'|trans)) }}</td>
+							<td class="text-right">{{ sessionformation.phoneContactCenter|default(bsLabel('value.null'|trans|raw)|raw)|raw }}</td>
 							<td>{{ sessionformation.dtInfo|raw }}</td>
 							<td class="text-right">{{ ('Sessionformation.lockout.'~sessionformation.lockout)|trans }}</td>
 							<td class="text-right">{{ sessionformation.maxParticipants }}</td>
@@ -60,7 +62,7 @@
 						{% endfor %}
 					{% else %}
 						<tr>
-							<td colspan="12">{{ 'ilcfrance.orangetools.admin.Sessionformation.empty'|trans|raw }}</td>
+							<td colspan="13">{{ 'ilcfrance.orangetools.admin.Sessionformation.empty'|trans|raw }}</td>
 						</tr>
 					{% endif %}
 					</tbody>
@@ -93,6 +95,7 @@ $(function() {
 		"bAutoWidth": false,
 		"language": {"url": '{{asset('assets/bower/datatables-i18n/i18n/')~app.request.locale~".json"}}'},
 		"columns": [
+			null,
 			null,
 			null,
 			null,

@@ -1,0 +1,21 @@
+<html>
+	<body>
+		<p>
+			Bonjour ,<br/>
+			Nous confirmons votre inscription à l'Atelier suivant: <br/>
+			<span style="color: red">Module {{ sessioninscription.sessionformation.moduleformation.title }}</span>.<br/>
+			Date :  {{ sessioninscription.sessionformation.dtStart|date('d/m/Y', timezone) }}<br/>
+			Heure : {{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }} / {{ sessioninscription.sessionformation.dtEnd|date('H:i:s', timezone) }} ({{ sessioninscription.sessionformation.dtInfo }}).<br/>
+		</p>
+		<p>
+			Pour toute question, n'hésitez pas à nous joindre au 01 44 41 80 22.
+		</p>
+		<p>
+			Cordialement,<br/>
+			Léa Paolini<br/>
+			Direction des Projets et Organisation<br/>
+			Tél : 01 44 41 80 22<br/>
+			Email : lea.paolini@ilcfrance.com<br/>
+		</p>
+	</body>
+</html>

@@ -63,6 +63,12 @@ class Sessionformation implements JsonSerializable
 
 	/**
 	 *
+	 * @var string @ORM\Column(name="dtend", type="text", nullable=false)
+	 */
+	protected $dtEnd;
+
+	/**
+	 *
 	 * @var string @ORM\Column(name="location", type="text", nullable=false)
 	 */
 	protected $location;
@@ -250,6 +256,42 @@ class Sessionformation implements JsonSerializable
 	{
 
 		$this->dtStart = $dtStart;
+
+		return $this;
+
+	}
+
+	/**
+	 * Get $dtEnd
+	 *
+	 * @return string
+	 */
+	public function getDtEnd()
+	{
+		return $this->dtEnd;
+	}
+
+	/**
+	 * Get $dtEnd
+	 *
+	 * @return \DateTime
+	 */
+	public function getDtEndTz()
+	{
+		return \DateTime::createFromFormat('Y-m-d H:i:s', $this->dtEnd, new \DateTimeZone('Europe/Paris')) ;
+	}
+
+	/**
+	 * Set $dtEnd
+	 *
+	 * @param string $dtEnd
+	 *
+	 * @return Sessionformation $this
+	 */
+	public function setDtEnd($dtEnd)
+	{
+
+		$this->dtEnd = $dtEnd;
 
 		return $this;
 
@@ -615,7 +657,7 @@ class Sessionformation implements JsonSerializable
 	public function getChoiceLabelFull()
 	{
 
-		return $this->getCode().' :'.$this->getTitle().' ( '.$this->getDtStart()->format('Y-m-d @ H:i').' - '.$this->getLocation().')';
+		return $this->getCode().' :'.$this->getTitle().' ( '.$this->getDtStartTz()->format('d/m/Y @ H:i').' -> '.$this->getDtEndTz()->format('d/m/Y @ H:i').' - '.$this->getLocation().')';
 
 	}
 

@@ -111,6 +111,29 @@ class DefaultController extends SasedevController
 
 							$em->persist($sessioninscription);
 							$em->flush();
+
+							$mvars = array();
+							$mvars['sessioninscription'] = $sessioninscription;
+
+							try {
+
+								$from = $this->getParameter('mail_from');
+								$fromName = $this->getParameter('mail_from_name');
+								$replyTo = $this->getParameter('mail_replay');
+								$replyToName = $this->getParameter('mail_replay_name');
+								$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.front.Sessioninscription.mail.params.subject');
+								$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
+								->setReplyTo($replyTo, $replyToName)
+								->setTo($trainee->getEmail(), $trainee->getFullname())
+								->setSubject($subject)
+								->setBody($this->renderView('IlcfranceOrangetoolsFrontBundle:Default:sendConfirmation.mail.html.twig', $mvars), 'text/html');
+
+								$this->sendmail($message);
+							} catch (\Exception $e) {
+								$logger = $this->getLogger();
+								$logger->addCritical($e->getLine() . ' ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+							}
+
 							$this->addFlash(
 								'success',
 								$this->translate('ilcfrance.orangetools.trainee.Sessioninscription.add.success', array('%sessionformation%' => $sessioninscription->getSessionformation()->getChoiceLabelFull()))

@@ -94,6 +94,13 @@ class NewTForm extends AbstractType
 			));
 
 		$builder->add(
+			'dtEnd',
+			TextType::class,
+			array(
+				'label' => 'ilcfrance.orangetools.admin.SessionformationNewForm.dtEnd.label'
+			));
+
+		$builder->add(
 			'location',
 			TextType::class,
 			array(

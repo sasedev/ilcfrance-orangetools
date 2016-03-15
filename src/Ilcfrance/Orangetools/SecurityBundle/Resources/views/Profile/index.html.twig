@@ -97,12 +97,13 @@
 								<ul>
 									{% for sessioninscription in user.sessioninscriptions %}
 									<li>
-										{{ sessioninscription.sessionformation.code }} - {{ sessioninscription.sessionformation.title }}<br/>
-										<b>{{ sessioninscription.sessionformation.location|raw }}</b>: <b>{{ sessioninscription.sessionformation.dtStart|date('Y-m-d', timezone) }}</b> {{faIco('at')}} <b>{{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }}</b><br/>
-										{%if sessioninscription.sessionformation.dtInfo is not empty %}{{ sessioninscription.sessionformation.dtInfo }}<br/>{% endif %}
-										{%if sessioninscription.sessionformation.conditionsReport is not empty %}{{ sessioninscription.sessionformation.conditionsReport }}<br/>{% endif %}
-										{%if sessioninscription.sessionformation.phoneContactCenter is not empty %}{{ sessioninscription.sessionformation.phoneContactCenter }}<br/>{% endif %}
-										{%if sessioninscription.sessionformation.otherInfos is not empty %}{{ sessioninscription.sessionformation.otherInfos|raw }}<br/>{% endif %}
+										<u><i>{{ sessioninscription.sessionformation.title }}</i></u> <small>({{ sessioninscription.sessionformation.code }})</small><br/>
+										{{ faIco('clock-o fa-fw') }} <b>{{ sessioninscription.sessionformation.dtStart|date('d/m/Y', timezone) }}</b> {{faIco('at fa-fw')}} <b>{{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }}</b> {{ faIco('arrow-right fa-fw') }} {{ faIco('clock-o fa-fw') }} <b>{{ sessioninscription.sessionformation.dtEnd|date('d/m/Y', timezone) }}</b> {{faIco('at fa-fw')}} <b>{{ sessioninscription.sessionformation.dtEnd|date('H:i:s', timezone) }}</b> {%if sessioninscription.sessionformation.dtInfo is not empty %}({{ sessioninscription.sessionformation.dtInfo }}){% endif %}<br/>
+										{{ faIco('map-marker fa-fw') }} <b>{{ sessioninscription.sessionformation.location|raw }}</b><br/>
+										{%if sessioninscription.sessionformation.otherInfos is not empty %}{{ faIco('info-circle fa-fw') }} {{ sessioninscription.sessionformation.otherInfos|raw }}<br/>{% endif %}
+										{%if sessioninscription.sessionformation.conditionsReport is not empty %}{{ faIco('warning fa-fw') }} {{ 'Sessionformation.conditionsReport'|trans|raw }} : <u>{{ sessioninscription.sessionformation.conditionsReport }}</u><br/>{% endif %}
+										{%if sessioninscription.sessionformation.phoneContactCenter is not empty %}{{ faIco('phone fa-fw') }} <u>{{ sessioninscription.sessionformation.phoneContactCenter }}</u><br/>{% endif %}
+										<br/>
 										<br/>
 									</li>
 									{% endfor %}

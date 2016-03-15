@@ -15,7 +15,7 @@
 				<ul>
 				{% for modulepreinscription in trainee.modulepreinscriptions %}
 					<li>
-						<b>{{ modulepreinscription.moduleformation.title }}</b>
+						<h3>{{ modulepreinscription.moduleformation.title }}</h3>
 						{% if modulepreinscription.moduleformation.description is not empty %}
 						{{ modulepreinscription.moduleformation.description|raw }}
 						{% endif %}
@@ -26,17 +26,16 @@
 							{% endif %}
 						{% endfor %}
 						{% if null != currsession %}
-						<ul>
-							<li>
+							<br/>
+							<blockquote>
 								Session choisie :
-								<i>{{ currsession.sessionformation.title }}</i></b>
-								(<b>{{ currsession.sessionformation.location|raw }}</b>: <b>{{ currsession.sessionformation.dtStart|date('Y-m-d', timezone) }}</b> {{faIco('at')}} <b>{{ currsession.sessionformation.dtStart|date('H:i:s', timezone) }}</b>)<br/>
-									{%if currsession.sessionformation.dtInfo is not empty %}{{ currsession.sessionformation.dtInfo }}<br/>{% endif %}
-									{%if currsession.sessionformation.conditionsReport is not empty %}{{ currsession.sessionformation.conditionsReport }}<br/>{% endif %}
-									{%if currsession.sessionformation.phoneContactCenter is not empty %}{{ currsession.sessionformation.phoneContactCenter }}<br/>{% endif %}
-									{%if currsession.sessionformation.otherInfos is not empty %}{{ currsession.sessionformation.otherInfos|raw }}{% else %}<br/>{% endif %}
-							</li>
-						</ul>
+								<u><i>{{ currsession.sessionformation.title }}</i></u><br/>
+								{{ faIco('clock-o fa-fw') }} <b>{{ currsession.sessionformation.dtStart|date('d/m/Y', timezone) }}</b> {{faIco('at fa-fw')}} <b>{{ currsession.sessionformation.dtStart|date('H:i:s', timezone) }}</b> {{ faIco('arrow-right fa-fw') }} {{ faIco('clock-o fa-fw') }} <b>{{ currsession.sessionformation.dtEnd|date('d/m/Y', timezone) }}</b> {{faIco('at fa-fw')}} <b>{{ currsession.sessionformation.dtEnd|date('H:i:s', timezone) }}</b> {%if currsession.sessionformation.dtInfo is not empty %}({{ currsession.sessionformation.dtInfo }}){% endif %}<br/>
+								{{ faIco('map-marker fa-fw') }} <b>{{ currsession.sessionformation.location|raw }}</b><br/>
+								{%if currsession.sessionformation.otherInfos is not empty %}{{ faIco('info-circle fa-fw') }} {{ currsession.sessionformation.otherInfos|raw }}<br/>{% endif %}
+								{%if currsession.sessionformation.conditionsReport is not empty %}{{ faIco('warning fa-fw') }} {{ 'Sessionformation.conditionsReport'|trans|raw }} : <u>{{ currsession.sessionformation.conditionsReport }}</u><br/>{% endif %}
+								{%if currsession.sessionformation.phoneContactCenter is not empty %}{{ faIco('phone fa-fw') }} <u>{{ currsession.sessionformation.phoneContactCenter }}</u><br/>{% endif %}
+							</blockquote>
 						{% else %}
 						<br/>
 						<br/>

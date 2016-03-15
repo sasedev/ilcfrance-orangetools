@@ -42,24 +42,26 @@
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.dtStart'|trans|raw}} :</div>
 								<div class="col-lg-9">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}&nbsp;</div>
+								<div class="col-lg-3 text-right">{{'Sessionformation.dtEnd'|trans|raw}} :</div>
+								<div class="col-lg-9">{{ sessionformation.dtEnd|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtEnd|date('H:i:s', timezone) }}&nbsp;</div>
 								<div class="col-lg-3 text-right">{{'Sessionformation.location'|trans|raw}} :</div>
 								<div class="col-lg-9">{{sessionformation.location|raw}}&nbsp;</div>
 								<div class="col-lg-12">&nbsp;</div>
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.phoneContactCenter'|trans|raw}} :</div>
-								<div class="col-lg-9">{{ sessionformation.phoneContactCenter|default(bsLabel('value.null'|trans)) }}&nbsp;</div>
+								<div class="col-lg-9">{{ sessionformation.phoneContactCenter|default(bsLabel('value.null'|trans|raw)|raw)|raw }}&nbsp;</div>
 								<div class="col-lg-12">&nbsp;</div>
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.conditionsReport'|trans|raw}} :</div>
-								<div class="col-lg-9">{{sessionformation.conditionsReport|default(bsLabel('value.null'|trans)) }}&nbsp;</div>
+								<div class="col-lg-9">{{sessionformation.conditionsReport|default(bsLabel('value.null'|trans|raw)|raw)|raw }}&nbsp;</div>
 								<div class="col-lg-12">&nbsp;</div>
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.dtInfo'|trans|raw}} :</div>
-								<div class="col-lg-9">{{sessionformation.dtInfo|default(bsLabel('value.null'|trans)) }}&nbsp;</div>
+								<div class="col-lg-9">{{sessionformation.dtInfo|default(bsLabel('value.null'|trans|raw)|raw)|raw }}&nbsp;</div>
 								<div class="col-lg-12">&nbsp;</div>
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.otherInfos'|trans|raw}} :</div>
-								<div class="col-lg-9">{{sessionformation.otherInfos|default(bsLabel('value.null'|trans))|raw }}&nbsp;</div>
+								<div class="col-lg-9">{{sessionformation.otherInfos|default(bsLabel('value.null'|trans|raw)|raw)|raw }}&nbsp;</div>
 								<div class="col-lg-12">&nbsp;</div>
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.lockout'|trans|raw}} :</div>
@@ -135,6 +137,7 @@
 						<div class="box-body">
 							{{form_start(SessionformationUpdateDtStartForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
 							{{form_row(SessionformationUpdateDtStartForm.dtStart, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateDtStartForm.dtEnd, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtEnd.placeholder'}, 'input_group': {'append': faIco('info')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
 								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
@@ -319,6 +322,16 @@ $(function() {
 	$('#SessionformationUpdateModuleformationForm_moduleformation').select2();
 
 	$('#SessionformationUpdateDtStartForm_dtStart').datetimepicker({
+		weekStart: 1,
+		startView: 4,
+		minView: 0,
+		autoclose: true,
+		todayHighlight: true,
+		language: "{{app.request.locale}}",
+		format: 'yyyy-mm-dd hh:ii:ss'
+	});
+
+	$('#SessionformationUpdateDtStartForm_dtEnd').datetimepicker({
 		weekStart: 1,
 		startView: 4,
 		minView: 0,

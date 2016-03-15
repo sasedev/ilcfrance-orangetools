@@ -37,16 +37,6 @@ services:
         tags:
             - { name: serializer.normalizer }
 
-    memcached:
-        class: Memcached
-        calls:
-            - ["addServers", ['%memcache_hosts%']]
-
-    doctrine.cache.memcached:
-        class: Doctrine\Common\Cache\MemcachedCache
-        calls:
-            - ["setMemcached", ["@memcached"]]
-
     predis:
         class: Predis\Client
 

@@ -91,6 +91,7 @@ CREATE TABLE `ilc_orange_sessionformations` (
 	`code`                                                              TEXT NOT NULL,
 	`title`                                                             TEXT NOT NULL,
 	`dtstart`                                                           TEXT NOT NULL,
+	`dtend`                                                             TEXT NULL,
 	`location`                                                          TEXT NOT NULL,
 	`phonecontactcenter`                                                TEXT NULL,
 	`conditionsreport`                                                  TEXT NULL,

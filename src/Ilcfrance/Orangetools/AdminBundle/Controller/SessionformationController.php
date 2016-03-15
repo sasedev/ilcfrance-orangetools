@@ -134,36 +134,40 @@ class SessionformationController extends SasedevController
 		$workSheet->getStyle('D1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('E1', $this->translate('Sessionformation.location'));
+		$workSheet->setCellValue('E1', $this->translate('Sessionformation.dtEnd'));
 		$workSheet->getStyle('E1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('F1', $this->translate('Sessionformation.phoneContactCenter'));
+		$workSheet->setCellValue('F1', $this->translate('Sessionformation.location'));
 		$workSheet->getStyle('F1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('G1', $this->translate('Sessionformation.conditionsReport'));
+		$workSheet->setCellValue('G1', $this->translate('Sessionformation.phoneContactCenter'));
 		$workSheet->getStyle('G1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('H1', $this->translate('Sessionformation.dtInfo'));
+		$workSheet->setCellValue('H1', $this->translate('Sessionformation.conditionsReport'));
 		$workSheet->getStyle('H1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('I1', $this->translate('Sessionformation.otherInfos'));
+		$workSheet->setCellValue('I1', $this->translate('Sessionformation.dtInfo'));
 		$workSheet->getStyle('I1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('J1', $this->translate('Sessionformation.maxParticipants'));
+		$workSheet->setCellValue('J1', $this->translate('Sessionformation.otherInfos'));
 		$workSheet->getStyle('J1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('K1', $this->translate('Sessionformation.lockout'));
+		$workSheet->setCellValue('K1', $this->translate('Sessionformation.maxParticipants'));
 		$workSheet->getStyle('K1')
 			->getFont()
 			->setBold(true);
+		$workSheet->setCellValue('L1', $this->translate('Sessionformation.lockout'));
+		$workSheet->getStyle('L1')
+			->getFont()
+			->setBold(true);
 
-		$workSheet->getStyle('A1:K1')->applyFromArray(
+		$workSheet->getStyle('A1:L1')->applyFromArray(
 			array(
 				'fill' => array(
 					'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -190,24 +194,34 @@ class SessionformationController extends SasedevController
 			//$workSheet->getStyle('D' . $i)
 			//	->getNumberFormat()
 			//	->setFormatCode('yyyy-mm-dd h:mm:ss');
-			$workSheet->setCellValue('D' . $i, $sessionformation->getDtStart(), \PHPExcel_Cell_DataType::TYPE_STRING2);
+			$dtStart = \DateTime::createFromFormat('Y-m-d H:i:s', $sessionformation->getDtStart(), new \DateTimeZone('UTC'));
+			$workSheet->setCellValue('D' . $i, \PHPExcel_Shared_Date::PHPToExcel( $dtStart, true, 'UTC'), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			$workSheet->getStyle('D' . $i)
+				->getNumberFormat()
+				->setFormatCode('yyyy-mm-dd h:mm:ss');
 
-			$workSheet->setCellValue('E' . $i, $sessionformation->getLocation(), \PHPExcel_Cell_DataType::TYPE_STRING2);
-			$workSheet->setCellValue('F' . $i, $sessionformation->getPhoneContactCenter(), \PHPExcel_Cell_DataType::TYPE_STRING2);
-			$workSheet->setCellValue('G' . $i, $sessionformation->getConditionsReport(), \PHPExcel_Cell_DataType::TYPE_STRING2);
-			$workSheet->setCellValue('H' . $i, $sessionformation->getDtInfo(), \PHPExcel_Cell_DataType::TYPE_STRING2);
+			$dtEnd = \DateTime::createFromFormat('Y-m-d H:i:s', $sessionformation->getDtEnd(), new \DateTimeZone('UTC'));
+			$workSheet->setCellValue('E' . $i, \PHPExcel_Shared_Date::PHPToExcel( $dtEnd, true, 'UTC'), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			$workSheet->getStyle('E' . $i)
+				->getNumberFormat()
+				->setFormatCode('yyyy-mm-dd h:mm:ss');
+
+			$workSheet->setCellValue('F' . $i, $sessionformation->getLocation(), \PHPExcel_Cell_DataType::TYPE_STRING2);
+			$workSheet->setCellValue('G' . $i, $sessionformation->getPhoneContactCenter(), \PHPExcel_Cell_DataType::TYPE_STRING2);
+			$workSheet->setCellValue('H' . $i, $sessionformation->getConditionsReport(), \PHPExcel_Cell_DataType::TYPE_STRING2);
+			$workSheet->setCellValue('I' . $i, $sessionformation->getDtInfo(), \PHPExcel_Cell_DataType::TYPE_STRING2);
 			$workSheet->setCellValue(
-				'I' . $i,
+				'J' . $i,
 				\html_entity_decode(\strip_tags($sessionformation->getOtherInfos())),
 				\PHPExcel_Cell_DataType::TYPE_STRING2);
-			$workSheet->setCellValue('J' . $i, $sessionformation->getMaxParticipants(), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			$workSheet->setCellValue('K' . $i, $sessionformation->getMaxParticipants(), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
 			$workSheet->setCellValue(
-				'K' . $i,
+				'L' . $i,
 				$this->translate('Sessionformation.lockout.' . $sessionformation->getLockout()),
 				\PHPExcel_Cell_DataType::TYPE_STRING2);
 
 			if ($i % 2 == 1) {
-				$workSheet->getStyle('A' . $i . ':K' . $i)->applyFromArray(
+				$workSheet->getStyle('A' . $i . ':L' . $i)->applyFromArray(
 					array(
 						'fill' => array(
 							'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -217,7 +231,7 @@ class SessionformationController extends SasedevController
 						)
 					));
 			} else {
-				$workSheet->getStyle('A' . $i . ':K' . $i)->applyFromArray(
+				$workSheet->getStyle('A' . $i . ':L' . $i)->applyFromArray(
 					array(
 						'fill' => array(
 							'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -240,6 +254,7 @@ class SessionformationController extends SasedevController
 		$workSheet->getColumnDimension('I')->setAutoSize(true);
 		$workSheet->getColumnDimension('J')->setAutoSize(true);
 		$workSheet->getColumnDimension('K')->setAutoSize(true);
+		$workSheet->getColumnDimension('L')->setAutoSize(true);
 
 		$writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
 		$response = $this->get('phpexcel')->createStreamedResponse($writer);
@@ -384,6 +399,7 @@ class SessionformationController extends SasedevController
 				$sessionformationNew = 0;
 				$lineUnprocessed = 0;
 				$lineError = 0;
+
 				for ($row = 2; $row <= $highestRow; $row ++) {
 					$lineRead ++;
 
@@ -393,14 +409,15 @@ class SessionformationController extends SasedevController
 					//$xlsDtStart = \PHPExcel_Shared_Date::ExcelToPHP($worksheet->getCellByColumnAndRow(3, $row)->getValue());
 					//$xlsDtStart = \PHPExcel_Shared_Date::ExcelToPHP($worksheet->getCellByColumnAndRow(3, $row)->getValue(), true, \date_default_timezone_get());
 					$xlsDtStart = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-					$xlsLocation = \trim(\strval($worksheet->getCellByColumnAndRow(4, $row)->getValue()));
-					$xlsPhoneContactCenter = \trim(\strval($worksheet->getCellByColumnAndRow(5, $row)->getValue()));
-					$xlsConditionsReport = \trim(\strval($worksheet->getCellByColumnAndRow(6, $row)->getValue()));
-					$xlsDtInfo = \trim(\strval($worksheet->getCellByColumnAndRow(7, $row)->getValue()));
-					$xlsOtherInfos = \nl2br(\trim(\strval($worksheet->getCellByColumnAndRow(8, $row)->getValue())));
-					$xlsMaxParticipants = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+					$xlsDtEnd = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+					$xlsLocation = \trim(\strval($worksheet->getCellByColumnAndRow(5, $row)->getValue()));
+					$xlsPhoneContactCenter = \trim(\strval($worksheet->getCellByColumnAndRow(6, $row)->getValue()));
+					$xlsConditionsReport = \trim(\strval($worksheet->getCellByColumnAndRow(7, $row)->getValue()));
+					$xlsDtInfo = \trim(\strval($worksheet->getCellByColumnAndRow(8, $row)->getValue()));
+					$xlsOtherInfos = \nl2br(\trim(\strval($worksheet->getCellByColumnAndRow(9, $row)->getValue())));
+					$xlsMaxParticipants = $worksheet->getCellByColumnAndRow(10, $row)->getValue();
 
-					if ($xlsModuleformation != "" && $xlsCode != "" && $xlsTitle != "" && $xlsDtStart != "" && $xlsLocation != "") {
+					if ($xlsModuleformation != "" && $xlsCode != "" && $xlsTitle != "" && $xlsDtStart != null && $xlsDtEnd != null && $xlsLocation != "" && $xlsMaxParticipants != "") {
 						$moduleformation = $em->getRepository('IlcfranceOrangetoolsDataBundle:Moduleformation')->findOneBy(
 							array(
 								'code' => $xlsModuleformation
@@ -412,23 +429,37 @@ class SessionformationController extends SasedevController
 								));
 							if (null == $sessionformation) {
 								$sessionformation = new Sessionformation();
-								$sessionformation->setModuleformation($moduleformation);
-								$sessionformation->setCode($xlsCode);
-								$sessionformation->setTitle($xlsTitle);
-								$sessionformation->setDtStart($xlsDtStart);
-								$sessionformation->setLocation($xlsLocation);
-								$sessionformation->setPhoneContactCenter($xlsPhoneContactCenter);
-								$sessionformation->setConditionsReport($xlsConditionsReport);
-								$sessionformation->setDtInfo($xlsDtInfo);
-								$sessionformation->setOtherInfos($xlsOtherInfos);
-								$sessionformation->setMaxParticipants($xlsMaxParticipants);
-
-								$em->persist($sessionformation);
 								$sessionformationNew ++;
 							} else {
 								$lineUnprocessed ++;
 								$log .= "le Code  <b>" . $xlsCode . "</b> à la ligne " . $row . " existe déjà<br>";
 							}
+							$sessionformation->setModuleformation($moduleformation);
+
+							$sessionformation->setCode($xlsCode);
+							$sessionformation->setTitle($xlsTitle);
+							if (\is_numeric($xlsDtStart)) {
+								$dtStart = \PHPExcel_Shared_Date::ExcelToPHPObject($xlsDtStart);
+								$sessionformation->setDtStart($dtStart->format('Y-m-d H:i:s'));
+							} else {
+								$dtStart = new \DateTime($xlsDtStart);
+								$sessionformation->setDtStart($dtStart->format('Y-m-d H:i:s'));
+							}
+							if (\is_numeric($xlsDtEnd)) {
+								$dtEnd = \PHPExcel_Shared_Date::ExcelToPHPObject($xlsDtEnd);
+								$sessionformation->setDtEnd($dtEnd->format('Y-m-d H:i:s'));
+							} else {
+								$dtEnd = new \DateTime($xlsDtEnd);
+								$sessionformation->setDtEnd($dtEnd->format('Y-m-d H:i:s'));
+							}
+							$sessionformation->setLocation($xlsLocation);
+							$sessionformation->setPhoneContactCenter($xlsPhoneContactCenter);
+							$sessionformation->setConditionsReport($xlsConditionsReport);
+							$sessionformation->setDtInfo($xlsDtInfo);
+							$sessionformation->setOtherInfos($xlsOtherInfos);
+							$sessionformation->setMaxParticipants($xlsMaxParticipants);
+
+							$em->persist($sessionformation);
 						} else {
 							$lineError ++;
 							$log .= "le Module de formation <b>" . $xlsModuleformation . "</b> à la ligne " . $row . " n'existe pas<br>";
@@ -982,31 +1013,41 @@ class SessionformationController extends SasedevController
 
 							if ($sessioninscription->getConvocation() == Sessioninscription::CONVOCATION_NOTSENT) {
 
-								$mvars = array();
-								$message = \Swift_Message::newInstance();
-								$mvars['user'] = $trainee;
-								$mvars['sessionformation'] = $sessionformation;
-								$mvars ['plan'] = $message->embed (
-									\Swift_Image::fromPath ($this->getParameter('kernel.root_dir') . '/../web/images/plan.jpg'));
+								try {
+									$mvars = array();
+									$message = \Swift_Message::newInstance();
+									$mvars['user'] = $trainee;
+									$mvars['sessionformation'] = $sessionformation;
+									$mvars ['plan'] = $message->embed (
+										\Swift_Image::fromPath ($this->getParameter('kernel.root_dir') . '/../web/images/plan.jpg'));
 
-								$from = $this->getParameter('mail_from');
-								$fromName = $this->getParameter('mail_from_name');
-								$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.subject');
-								$message->setFrom($from, $fromName)
-								->setTo($trainee->getEmail(), $trainee->getFullname())
-								->setBcc($trainee->getEmail2(), $trainee->getFullName2())
-								->setSubject($subject)
-								->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Sessioninscription:sendConvocation.mail.html.twig', $mvars), 'text/html');
+									$from = $this->getParameter('mail_from');
+									$fromName = $this->getParameter('mail_from_name');
+									$replyTo = $this->getParameter('mail_replay');
+									$replyToName = $this->getParameter('mail_replay_name');
+									$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.subject');
+									$message->setFrom($from, $fromName)
+									->setTo($trainee->getEmail(), $trainee->getFullname());
+									if (null != $trainee->getEmail2()) {
+										$message->setBcc($trainee->getEmail2(), $trainee->getFullName2());
+									}
+									$message->setReplyTo($replyTo, $replyToName)
+									->setSubject($subject)
+									->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Sessioninscription:sendConvocation.mail.html.twig', $mvars), 'text/html');
 
-								$this->sendmail($message);
-								$sessioninscription->setConvocation(Sessioninscription::CONVOCATION_SENT);
-								$em->persist($sessioninscription);
+									$this->sendmail($message);
+									$sessioninscription->setConvocation(Sessioninscription::CONVOCATION_SENT);
+									$em->persist($sessioninscription);
 
-								$modulepreinscription = $em->getRepository('IlcfranceOrangetoolsDataBundle:Modulepreinscription')->findOneBy(array('moduleformation' => $sessioninscription->getSessionformation()->getModuleformation(), 'user' => $sessioninscription->getUser()));
+									$modulepreinscription = $em->getRepository('IlcfranceOrangetoolsDataBundle:Modulepreinscription')->findOneBy(array('moduleformation' => $sessioninscription->getSessionformation()->getModuleformation(), 'user' => $sessioninscription->getUser()));
 
-								$modulepreinscription->setLockout(Modulepreinscription::LOCKOUT_LOCKED);
-								$em->persist($modulepreinscription);
-								$mailsent++;
+									$modulepreinscription->setLockout(Modulepreinscription::LOCKOUT_LOCKED);
+									$em->persist($modulepreinscription);
+									$mailsent++;
+								} catch (\Exception $e) {
+									$logger = $this->getLogger();
+									$logger->addCritical($e->getLine() . ' ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+								}
 							}
 						}
 

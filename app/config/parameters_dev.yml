@@ -1,7 +1,9 @@
 parameters:
     schemes: http
     domain: orangetools.ilcfrance.sasedev.loc
-    mail_from:                 "system@sasedev.loc"
-    mail_from_name:            "ILCFrance.com"
+    mail_from:                 "orangetools@ilcfrance.sasedev.loc"
+    mail_from_name:            "Ateliers Orange ILCFrance"
+    mail_replay:                 "sasedev@fixi.sasedev.loc"
+    mail_replay_name:                 "Léa Paolini"
     sitename:                  "OrangeTools.ILCFrance"
     mailer_transport: sendmail

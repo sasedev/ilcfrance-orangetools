@@ -25,6 +25,7 @@
 				{{form_row(SessionformationNewForm.code, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.code.placeholder'}, 'input_group': {'append': faIco('info')} })}}
 				{{form_row(SessionformationNewForm.title, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.title.placeholder'}, 'input_group': {'append': faIco('info')} })}}
 				{{form_row(SessionformationNewForm.dtStart, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.dtStart.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(SessionformationNewForm.dtEnd, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.dtEnd.placeholder'}, 'input_group': {'append': faIco('info')} })}}
 				{{form_row(SessionformationNewForm.location, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.location.placeholder'}, 'input_group': {'append': faIco('info')} })}}
 				{{form_row(SessionformationNewForm.phoneContactCenter, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.phoneContactCenter.placeholder'}, 'input_group': {'append': faIco('info')} })}}
 				{{form_row(SessionformationNewForm.conditionsReport, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.conditionsReport.placeholder'}, 'input_group': {'append': faIco('info')} })}}
@@ -68,6 +69,16 @@ $(function() {
 	$('#SessionformationNewForm_moduleformation').select2();
 
 	$('#SessionformationNewForm_dtStart').datetimepicker({
+		weekStart: 1,
+		startView: 4,
+		minView: 0,
+		autoclose: true,
+		todayHighlight: true,
+		language: "{{app.request.locale}}",
+		format: 'yyyy-mm-dd hh:ii:ss'
+	});
+
+	$('#SessionformationNewForm_dtEnd').datetimepicker({
 		weekStart: 1,
 		startView: 4,
 		minView: 0,

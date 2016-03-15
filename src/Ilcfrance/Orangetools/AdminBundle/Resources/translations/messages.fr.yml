@@ -186,6 +186,7 @@ ilcfrance.orangetools.admin.Sessionformation.code.label: "Code :"
 ilcfrance.orangetools.admin.Sessionformation.moduleformation.label: "Module :"
 ilcfrance.orangetools.admin.Sessionformation.title.label: "Titre :"
 ilcfrance.orangetools.admin.Sessionformation.dtStart.label: "Dt Début :"
+ilcfrance.orangetools.admin.Sessionformation.dtEnd.label: "Dt Fin :"
 ilcfrance.orangetools.admin.Sessionformation.location.label: "Lieu :"
 ilcfrance.orangetools.admin.Sessionformation.phoneContactCenter.label: "Tel Centre :"
 ilcfrance.orangetools.admin.Sessionformation.dtInfo.label: "Infos Date :"
@@ -233,6 +234,8 @@ ilcfrance.orangetools.admin.SessionformationNewForm.title.label: "Titre :"
 ilcfrance.orangetools.admin.SessionformationNewForm.title.placeholder: "Titre ?"
 ilcfrance.orangetools.admin.SessionformationNewForm.dtStart.label: "Date de Début :"
 ilcfrance.orangetools.admin.SessionformationNewForm.dtStart.placeholder: "Date de Début ?"
+ilcfrance.orangetools.admin.SessionformationNewForm.dtEnd.label: "Date de Fin :"
+ilcfrance.orangetools.admin.SessionformationNewForm.dtEnd.placeholder: "Date de Fin ?"
 ilcfrance.orangetools.admin.SessionformationNewForm.location.label: "Lieu :"
 ilcfrance.orangetools.admin.SessionformationNewForm.location.placeholder: "Lieu ?"
 ilcfrance.orangetools.admin.SessionformationNewForm.phoneContactCenter.label: "Tel Centre de Contact :"
@@ -305,6 +308,8 @@ ilcfrance.orangetools.admin.SessionformationUpdateTitleForm.btnSubmit: "Modifier
 
 ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.label: "Date de Début :"
 ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.placeholder: "Date de Début ?"
+ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtEnd.label: "Date de Fin :"
+ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtEnd.placeholder: "Date de Fin ?"
 ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.btnSubmit: "Modifier"
 
 ilcfrance.orangetools.admin.SessionformationUpdateLocationForm.location.label: "Lieu :"
@@ -484,7 +489,7 @@ ilcfrance.orangetools.admin.Sessioninscription.edit.success: "Succès de la modi
 ilcfrance.orangetools.admin.Sessioninscription.edit.error: "Echec de la modification du compte Sessioninscription"
 ilcfrance.orangetools.admin.Sessioninscription.edit.notfound: "Inscription introuvable"
 
-ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.subject: "Convocation Session de formation"
+ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.subject: "Ateliers d'anglais - Convocation"
 ilcfrance.orangetools.admin.Sessioninscription.mail.convocation.sent: "<b>%countSessioninscriptions%</b> Inscription(s) trouvée(s)<br/><b>%$mailsent%</b> Mail(s) de convocations envoyé(s)"
 
 ilcfrance.orangetools.admin.SessioninscriptionUpdateSessionformationForm.sessionformation.label: "Session de formation :"
@@ -520,7 +525,7 @@ ilcfrance.orangetools.admin.Trainee.list.link: "Liste des Stagiaires"
 ilcfrance.orangetools.admin.Trainee.list.breadcrumb: "Liste des Stagiaires"
 ilcfrance.orangetools.admin.Trainee.list.tlabel: "Liste des Stagiaires"
 
-ilcfrance.orangetools.admin.Trainee.mail.params.subject: "Paramètres de Connexion"
+ilcfrance.orangetools.admin.Trainee.mail.params.subject: "Ateliers d'anglais %year%-Programmation URGENT"
 ilcfrance.orangetools.admin.Trainee.mail.params.sent: "<b>%countTrainees%</b> Stagiaire(s) trouvé(s)<br/><b>%$mailsent%</b> Mail(s) de paramètres de connexion envoyé(s)"
 
 ilcfrance.orangetools.admin.Trainee.delete.confirm.title: "Demande de Confirmation de la Suppression"

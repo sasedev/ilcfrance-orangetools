@@ -27,7 +27,11 @@
 									{% elseif entityFieldName == 'title' %}
 										{{ item }}
 									{% elseif entityFieldName == 'dtStart' %}
-										{{ date(item)|date('Y-m-d', timezone) }}
+										{{ date(item)|date('d/m/Y', timezone) }}
+										{{ faIco('at') }}
+										{{ date(item)|date('H:i:s', timezone) }}
+									{% elseif entityFieldName == 'dtEnd' %}
+										{{ date(item)|date('d/m/Y', timezone) }}
 										{{ faIco('at') }}
 										{{ date(item)|date('H:i:s', timezone) }}
 									{% elseif entityFieldName == 'location' %}

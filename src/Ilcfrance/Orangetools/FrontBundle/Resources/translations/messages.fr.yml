@@ -48,3 +48,6 @@ ilcfrance.orangetools.front.preamble.pagetitle: "Préambule"
 ilcfrance.orangetools.front.preamble.menu: "Préambule"
 ilcfrance.orangetools.front.preamble.link: "Préambule"
 ilcfrance.orangetools.front.preamble.breadcrumb: "Préambule"
+
+ilcfrance.orangetools.front.Sessioninscription.mail.params.subject: "Confirmation d'inscription"
+

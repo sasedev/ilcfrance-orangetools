@@ -4,7 +4,7 @@
 			Madame, Monsieur,<br/>
 			<b>Dans le cadre de votre Parcours de Formation d’anglais pour l’année {{ 'now'|date('Y')}}</b><br/>
 			<span style="color: red">Module {{ sessionformation.moduleformation.title }}</span>.<br/>
-			vous êtes prié de vous présenter à la diate du {{ sessionformation.dtStart|date('d-m-Y', timezone) }}<br/>
+			vous êtes prié de vous présenter le {{ sessionformation.dtStart|date('d/m/Y', timezone) }}<br/>
 			Horaires : {{ sessionformation.dtStart|date('H:i:s', timezone) }} ({{ sessionformation.dtInfo }}).<br/>
 			à l’adresse suivante : <br/>
 			<b>{{ sessionformation.location }}</b><br/>

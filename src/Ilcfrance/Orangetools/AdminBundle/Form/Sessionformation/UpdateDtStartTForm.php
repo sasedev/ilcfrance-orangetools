@@ -32,6 +32,13 @@ class UpdateDtStartTForm extends AbstractType
 				'label' => 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.label'
 			));
 
+		$builder->add(
+			'dtEnd',
+			TextType::class,
+			array(
+				'label' => 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtEnd.label'
+			));
+
 	}
 
 	/**

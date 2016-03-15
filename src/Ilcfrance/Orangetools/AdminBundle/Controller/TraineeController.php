@@ -80,23 +80,31 @@ class TraineeController extends SasedevController
 			$countTrainees++;
 			if ($trainee->getInfoSent() == User::INFOSENT_NO) {
 
-				$mvars = array();
-				$mvars['user'] = $trainee;
-				$mvars['url'] = $this->generateUrl('ilcfrance_orangetools_front_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
+				try {
+					$mvars = array();
+					$mvars['user'] = $trainee;
+					$mvars['url'] = $this->generateUrl('ilcfrance_orangetools_front_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
 
-				$from = $this->getParameter('mail_from');
-				$fromName = $this->getParameter('mail_from_name');
-				$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Trainee.mail.params.subject');
-				$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
-					->setTo($trainee->getEmail(), $trainee->getFullname())
-					->setSubject($subject)
-					->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Trainee:sendInfos.mail.html.twig', $mvars), 'text/html');
+					$from = $this->getParameter('mail_from');
+					$fromName = $this->getParameter('mail_from_name');
+					$replyTo = $this->getParameter('mail_replay');
+					$replyToName = $this->getParameter('mail_replay_name');
+					$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Trainee.mail.params.subject', array('%year%' => date('Y')));
+					$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
+						->setTo($trainee->getEmail(), $trainee->getFullname())
+						->setReplyTo($replyTo, $replyToName)
+						->setSubject($subject)
+						->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Trainee:sendInfos.mail.html.twig', $mvars), 'text/html');
 
-				$this->sendmail($message);
+					$this->sendmail($message);
 
-				$trainee->setInfoSent(User::INFOSENT_YES);
-				$em->persist($trainee);
-				$mailsent++;
+					$trainee->setInfoSent(User::INFOSENT_YES);
+					$em->persist($trainee);
+					$mailsent++;
+				} catch (\Exception $e) {
+					$logger = $this->getLogger();
+					$logger->addCritical($e->getLine() . ' ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+				}
 			}
 		}
 		$em->flush();
@@ -670,7 +678,7 @@ class TraineeController extends SasedevController
 									$isModuleformation = false;
 									$isSessionformation = false;
 									foreach ($moduleformations as $moduleformation) {
-										if ($cellValue != '' && $moduleformation->getCode() == $cellValue) {
+										if ($moduleformation->getCode() == $cellValue) {
 											$modulepreinscription = new Modulepreinscription();
 											$modulepreinscription->setUser($trainee);
 											$modulepreinscription->setModuleformation($moduleformation);
@@ -680,7 +688,7 @@ class TraineeController extends SasedevController
 										}
 									}
 									foreach ($sessionformations as $sessionformation) {
-										if ($cellValue != '' && $sessionformation->getCode() == $cellValue) {
+										if ($sessionformation->getCode() == $cellValue) {
 											$sessioninscription = new Sessioninscription();
 											$sessioninscription->setUser($trainee);
 											$sessioninscription->setSessionformation($sessionformation);
@@ -1115,24 +1123,30 @@ class TraineeController extends SasedevController
 
 						$countTrainees++;
 
-						$mvars = array();
-						$mvars['user'] = $trainee;
-						$mvars['url'] = $this->generateUrl('ilcfrance_orangetools_front_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
+						try {
 
-						$from = $this->getParameter('mail_from');
-						$fromName = $this->getParameter('mail_from_name');
-						$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Trainee.mail.params.subject');
-						$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
-						->setTo($trainee->getEmail(), $trainee->getFullname())
-						->setSubject($subject)
-						->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Trainee:sendInfos.mail.html.twig', $mvars), 'text/html');
+							$mvars = array();
+							$mvars['user'] = $trainee;
+							$mvars['url'] = $this->generateUrl('ilcfrance_orangetools_front_homepage', array(), UrlGeneratorInterface::ABSOLUTE_URL);
 
-						$this->sendmail($message);
+							$from = $this->getParameter('mail_from');
+							$fromName = $this->getParameter('mail_from_name');
+							$subject = '[' . $this->getParameter('sitename') . '] ' . $this->translate('ilcfrance.orangetools.admin.Trainee.mail.params.subject', array('%year%' => date('Y')));
+							$message = \Swift_Message::newInstance()->setFrom($from, $fromName)
+							->setTo($trainee->getEmail(), $trainee->getFullname())
+							->setSubject($subject)
+							->setBody($this->renderView('IlcfranceOrangetoolsAdminBundle:Trainee:sendInfos.mail.html.twig', $mvars), 'text/html');
 
-						$trainee->setInfoSent(User::INFOSENT_YES);
-						$em->persist($trainee);
-						$mailsent++;
-						$em->flush();
+							$this->sendmail($message);
+
+							$trainee->setInfoSent(User::INFOSENT_YES);
+							$em->persist($trainee);
+							$mailsent++;
+							$em->flush();
+						} catch (\Exception $e) {
+							$logger = $this->getLogger();
+							$logger->addCritical($e->getLine() . ' ' . $e->getMessage() . ' ' . $e->getTraceAsString());
+						}
 
 						$this->addFlash('success', $this->translate('ilcfrance.orangetools.admin.Trainee.mail.params.sent', array('%countTrainees%' => $countTrainees, '%$mailsent%' => $mailsent)));
 
