@@ -288,6 +288,56 @@ class TraineeController extends SasedevController
 			->applyFromArray($headerStyle);
 		$col ++;
 
+		$workSheet->setCellValueByColumnAndRow($col, $row, $this->translate('User.infoSent'));
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->getFont()
+			->setBold(true);
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->applyFromArray($headerStyle);
+		$col ++;
+
+		$workSheet->setCellValueByColumnAndRow($col, $row, $this->translate('User.dtCrea'));
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->getFont()
+			->setBold(true);
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->applyFromArray($headerStyle);
+		$col ++;
+
+		$workSheet->setCellValueByColumnAndRow($col, $row, $this->translate('User.validUntil'));
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->getFont()
+			->setBold(true);
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->applyFromArray($headerStyle);
+		$col ++;
+
+		$workSheet->setCellValueByColumnAndRow($col, $row, $this->translate('User.modulepreinscriptions'));
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->getFont()
+			->setBold(true);
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->applyFromArray($headerStyle);
+		$col ++;
+
+		$workSheet->setCellValueByColumnAndRow($col, $row, $this->translate('User.sessioninscriptions'));
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->getFont()
+			->setBold(true);
+		$workSheet->getCellByColumnAndRow($col, $row)
+			->getStyle()
+			->applyFromArray($headerStyle);
+		$col ++;
+
 		$maxcol = $col;
 
 		$row ++;
@@ -325,7 +375,7 @@ class TraineeController extends SasedevController
 				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
 			$col ++;
 
-			$workSheet->setCellValueByColumnAndRow($col, $row, $trainee->getPhone());
+			$workSheet->setCellValueExplicitByColumnAndRow($col, $row, $trainee->getPhone(), \PHPExcel_Cell_DataType::TYPE_STRING2);
 			$workSheet->getCellByColumnAndRow($col, $row)
 				->getStyle()
 				->getFont()
@@ -335,7 +385,7 @@ class TraineeController extends SasedevController
 				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
 			$col ++;
 
-			$workSheet->setCellValueByColumnAndRow($col, $row, $trainee->getMobile());
+			$workSheet->setCellValueExplicitByColumnAndRow($col, $row, $trainee->getMobile(), \PHPExcel_Cell_DataType::TYPE_STRING2);
 			$workSheet->getCellByColumnAndRow($col, $row)
 				->getStyle()
 				->getFont()
@@ -395,7 +445,63 @@ class TraineeController extends SasedevController
 				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
 			$col ++;
 
-			$workSheet->setCellValueByColumnAndRow($col, $row, $trainee->getLevel());
+			$workSheet->setCellValueExplicitByColumnAndRow($col, $row, $trainee->getLevel(), \PHPExcel_Cell_DataType::TYPE_STRING2);
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->getFont()
+				->setBold(true);
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
+			$col ++;
+
+			$workSheet->setCellValueByColumnAndRow($col, $row, $this->translate('User.infoSent.'.$trainee->getInfoSent()));
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->getFont()
+				->setBold(true);
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
+			$col ++;
+
+			$dtCrea = \PHPExcel_Shared_Date::PHPToExcel( $trainee->getDtCrea(), true, 'UTC');
+			$workSheet->setCellValueExplicitByColumnAndRow($col, $row, $dtCrea, \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			$workSheet->getCellByColumnAndRow($col, $row)->getStyle()->getNumberFormat()->setFormatCode('yyyy-mm-dd h:mm:ss');
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->getFont()
+				->setBold(true);
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
+			$col ++;
+
+			$validUntil = \PHPExcel_Shared_Date::PHPToExcel( $trainee->getValidUntil(), true, 'UTC');
+			$workSheet->setCellValueExplicitByColumnAndRow($col, $row, $validUntil, \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			$workSheet->getCellByColumnAndRow($col, $row)->getStyle()->getNumberFormat()->setFormatCode('yyyy-mm-dd h:mm:ss');
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->getFont()
+				->setBold(true);
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
+			$col ++;
+
+			$nbrModulepreinscriptions = \count($trainee->getModulepreinscriptions());
+			$workSheet->setCellValueExplicitByColumnAndRow($col, $row, $nbrModulepreinscriptions, \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->getFont()
+				->setBold(true);
+			$workSheet->getCellByColumnAndRow($col, $row)
+				->getStyle()
+				->applyFromArray($row % 2 == 1 ? $style1 : $style2);
+			$col ++;
+
+			$nbrSessioninscriptions = \count($trainee->getSessioninscriptions());
+			$workSheet->setCellValueExplicitByColumnAndRow($col, $row, $nbrSessioninscriptions, \PHPExcel_Cell_DataType::TYPE_NUMERIC);
 			$workSheet->getCellByColumnAndRow($col, $row)
 				->getStyle()
 				->getFont()
@@ -639,6 +745,16 @@ class TraineeController extends SasedevController
 					$xlsEmail2 = \trim(\strval($worksheet->getCellByColumnAndRow($col, $row)->getValue()));
 					$col ++;
 					$xlsLevel = \trim(\strval($worksheet->getCellByColumnAndRow($col, $row)->getValue()));
+					$col ++;
+					//$xlsInfoSent = \trim(\strval($worksheet->getCellByColumnAndRow($col, $row)->getValue()));
+					$col ++;
+					//$xlsDtCrea = \trim(\strval($worksheet->getCellByColumnAndRow($col, $row)->getValue()));
+					$col ++;
+					//$xlsValidUntil = \trim(\strval($worksheet->getCellByColumnAndRow($col, $row)->getValue()));
+					$col ++;
+					//$xlsNbrModulepreinscriptions = \trim(\strval($worksheet->getCellByColumnAndRow($col, $row)->getValue()));
+					$col ++;
+					//$xlsNbrSessioninscriptions = \trim(\strval($worksheet->getCellByColumnAndRow($col, $row)->getValue()));
 					$col ++;
 					$beginCol = $col;
 
