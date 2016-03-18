@@ -1,7 +1,7 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_front_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_front_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.front.homepage.breadcrumb'|trans }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
@@ -61,7 +61,7 @@
 				{{form_start(SessioninscriptionNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_front_homepagePost'), 'style': 'horizontal'})}}
 				{{form_row(SessioninscriptionNewForm.sessionformation, {'label_col': 3, 'widget_col': 9 })}}
 				<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.front.SessioninscriptionNewForm.btnSubmit'|trans|raw}}</button>
+					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.front.SessioninscriptionNewForm.btnSubmit'|trans|raw}}</button>
 				</div></div>
 				{{form_end(SessioninscriptionNewForm)}}
 			</div>

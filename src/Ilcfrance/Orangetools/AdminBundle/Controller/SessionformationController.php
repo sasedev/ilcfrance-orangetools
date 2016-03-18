@@ -162,12 +162,16 @@ class SessionformationController extends SasedevController
 		$workSheet->getStyle('K1')
 			->getFont()
 			->setBold(true);
-		$workSheet->setCellValue('L1', $this->translate('Sessionformation.lockout'));
+		$workSheet->setCellValue('L1', $this->translate('Sessionformation.sessioninscriptions'));
 		$workSheet->getStyle('L1')
 			->getFont()
 			->setBold(true);
+		$workSheet->setCellValue('M1', $this->translate('Sessionformation.lockout'));
+		$workSheet->getStyle('M1')
+			->getFont()
+			->setBold(true);
 
-		$workSheet->getStyle('A1:L1')->applyFromArray(
+		$workSheet->getStyle('A1:M1')->applyFromArray(
 			array(
 				'fill' => array(
 					'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -215,13 +219,14 @@ class SessionformationController extends SasedevController
 				\html_entity_decode(\strip_tags($sessionformation->getOtherInfos())),
 				\PHPExcel_Cell_DataType::TYPE_STRING2);
 			$workSheet->setCellValue('K' . $i, $sessionformation->getMaxParticipants(), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
+			$workSheet->setCellValue('L' . $i, \count($sessionformation->getSessioninscriptions()), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
 			$workSheet->setCellValue(
-				'L' . $i,
+				'M' . $i,
 				$this->translate('Sessionformation.lockout.' . $sessionformation->getLockout()),
 				\PHPExcel_Cell_DataType::TYPE_STRING2);
 
 			if ($i % 2 == 1) {
-				$workSheet->getStyle('A' . $i . ':L' . $i)->applyFromArray(
+				$workSheet->getStyle('A' . $i . ':M' . $i)->applyFromArray(
 					array(
 						'fill' => array(
 							'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -231,7 +236,7 @@ class SessionformationController extends SasedevController
 						)
 					));
 			} else {
-				$workSheet->getStyle('A' . $i . ':L' . $i)->applyFromArray(
+				$workSheet->getStyle('A' . $i . ':M' . $i)->applyFromArray(
 					array(
 						'fill' => array(
 							'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -255,6 +260,7 @@ class SessionformationController extends SasedevController
 		$workSheet->getColumnDimension('J')->setAutoSize(true);
 		$workSheet->getColumnDimension('K')->setAutoSize(true);
 		$workSheet->getColumnDimension('L')->setAutoSize(true);
+		$workSheet->getColumnDimension('M')->setAutoSize(true);
 
 		$writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
 		$response = $this->get('phpexcel')->createStreamedResponse($writer);

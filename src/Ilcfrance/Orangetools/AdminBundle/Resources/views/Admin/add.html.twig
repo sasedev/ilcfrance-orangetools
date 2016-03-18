@@ -1,32 +1,32 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
-	<li><a href="{{ path('ilcfrance_orangetools_admin_admin_list')}}"> {{ faIco('user-md')}} {{ 'ilcfrance.orangetools.admin.Admin.list.breadcrumb'|trans }}</a></li>
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_admin_addGet')}}"> {{ faIco('plus')}} {{ 'ilcfrance.orangetools.admin.Admin.add.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_admin_list')}}"> {{ faIco('user-md fa-fw')}} {{ 'ilcfrance.orangetools.admin.Admin.list.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_admin_addGet')}}"> {{ faIco('plus fa-fw')}} {{ 'ilcfrance.orangetools.admin.Admin.add.breadcrumb'|trans }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="well well-sm text-right">
-			<a href="{{ path('ilcfrance_orangetools_admin_admin_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_admin_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_admin_list') }}" class="btn btn-default">{{ faIco('list fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_admin_addGet') }}" class="btn btn-default">{{ faIco('plus fa-fw') }}</a>
 		</div>
 		<div class="box box-danger">
 			<div class="box-header">
-				<h3 class="box-title">{{ faIco('user-md')}} <i class="fa fa-plus text-red"></i> {{ 'ilcfrance.orangetools.admin.Admin.add.tlabel'|trans|raw}}</h3>
+				<h3 class="box-title">{{ faIco('user-md fa-fw')}} <i class="fa fa-plus fa-fw text-red"></i> {{ 'ilcfrance.orangetools.admin.Admin.add.tlabel'|trans|raw}}</h3>
 			</div>
 			<div class="box-body">
 				{{form_start(AdminNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_admin_addPost'), 'style': 'horizontal'})}}
-				{{form_row(AdminNewForm.firstName, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.firstName.placeholder'}, 'input_group': {'append': faIco('info-circle')} })}}
-				{{form_row(AdminNewForm.lastName, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.lastName.placeholder'}, 'input_group': {'append': faIco('info-circle')} })}}
-				{{form_row(AdminNewForm.username, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.username.placeholder'}, 'input_group': {'append': faIco('user')} })}}
-				{{form_row(AdminNewForm.email, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.email.placeholder'}, 'input_group': {'append': faIco('envelope')} })}}
-				{{form_row(AdminNewForm.phone, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.phone.placeholder'}, 'input_group': {'append': faIco('phone')} })}}
-				{{form_row(AdminNewForm.mobile, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.mobile.placeholder'}, 'input_group': {'append': faIco('mobile')} })}}
+				{{form_row(AdminNewForm.firstName, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.firstName.placeholder'}, 'input_group': {'append': faIco('info-circle fa-fw')} })}}
+				{{form_row(AdminNewForm.lastName, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.lastName.placeholder'}, 'input_group': {'append': faIco('info-circle fa-fw')} })}}
+				{{form_row(AdminNewForm.username, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.username.placeholder'}, 'input_group': {'append': faIco('user fa-fw')} })}}
+				{{form_row(AdminNewForm.email, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.email.placeholder'}, 'input_group': {'append': faIco('envelope fa-fw')} })}}
+				{{form_row(AdminNewForm.phone, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.phone.placeholder'}, 'input_group': {'append': faIco('phone fa-fw')} })}}
+				{{form_row(AdminNewForm.mobile, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.AdminNewForm.mobile.placeholder'}, 'input_group': {'append': faIco('mobile fa-fw')} })}}
 				<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.AdminNewForm.btnSubmit'|trans|raw}}</button>
+					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.AdminNewForm.btnSubmit'|trans|raw}}</button>
 				</div></div>
 				{{form_end(AdminNewForm)}}
 			</div>

@@ -1,32 +1,32 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
-	<li><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_list')}}"> {{ faIco('book')}} {{ 'ilcfrance.orangetools.admin.Moduleformation.list.breadcrumb'|trans }}</a></li>
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_addGet')}}"> {{ faIco('plus')}} {{ 'ilcfrance.orangetools.admin.Moduleformation.add.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_list')}}"> {{ faIco('book fa-fw')}} {{ 'ilcfrance.orangetools.admin.Moduleformation.list.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_addGet')}}"> {{ faIco('plus fa-fw')}} {{ 'ilcfrance.orangetools.admin.Moduleformation.add.breadcrumb'|trans }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="well well-sm text-right">
-			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_list') }}" class="btn btn-default">{{ faIco('list fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_addGet') }}" class="btn btn-default">{{ faIco('plus fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle fa-fw') }}</a>
 		</div>
 		<div class="box box-danger">
 			<div class="box-header">
-				<h3 class="box-title">{{ faIco('book')}} <i class="fa fa-plus text-red"></i> {{ 'ilcfrance.orangetools.admin.Moduleformation.add.tlabel'|trans|raw}}</h3>
+				<h3 class="box-title">{{ faIco('book fa-fw')}} <i class="fa fa-plus fa-fw text-red"></i> {{ 'ilcfrance.orangetools.admin.Moduleformation.add.tlabel'|trans|raw}}</h3>
 			</div>
 			<div class="box-body">
 				{{form_start(ModuleformationNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_moduleformation_addPost'), 'style': 'horizontal'})}}
-				{{form_row(ModuleformationNewForm.groupmodule, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('object-group')} })}}
-				{{form_row(ModuleformationNewForm.code, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.code.placeholder'}, 'input_group': {'append': faIco('info')} })}}
-				{{form_row(ModuleformationNewForm.title, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.title.placeholder'}, 'input_group': {'append': faIco('info')} })}}
-				{{form_row(ModuleformationNewForm.description, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.description.placeholder', 'class': 'wysiwyg'}, 'input_group': {'append': faIco('info')} })}}
+				{{form_row(ModuleformationNewForm.groupmodule, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('object-group fa-fw')} })}}
+				{{form_row(ModuleformationNewForm.code, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.code.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
+				{{form_row(ModuleformationNewForm.title, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.title.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
+				{{form_row(ModuleformationNewForm.description, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.ModuleformationNewForm.description.placeholder', 'class': 'wysiwyg'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 				<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.ModuleformationNewForm.btnSubmit'|trans|raw}}</button>
+					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.ModuleformationNewForm.btnSubmit'|trans|raw}}</button>
 				</div></div>
 				{{form_end(ModuleformationNewForm)}}
 			</div>

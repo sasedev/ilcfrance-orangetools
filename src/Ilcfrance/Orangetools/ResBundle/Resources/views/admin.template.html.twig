@@ -42,7 +42,7 @@
 						<h1>{%if page_title is defined%}{{page_title|raw}}{%else%}{{sitename}}{%endif%}</h1>
 						{%block breadcrumb%}
 						<ol class="breadcrumb">
-							<li class="active"><a href="{{ path('ilcfrance_orangetools_security_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.default.homepage.breadcrumb'|trans }}</a></li>
+							<li class="active"><a href="{{ path('ilcfrance_orangetools_security_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.default.homepage.breadcrumb'|trans }}</a></li>
 						</ol>
 						{%endblock breadcrumb%}
 					</section>
@@ -55,10 +55,10 @@
 								<h3 class="box-title">Title</h3>
 								<div class="box-tools pull-right">
 									<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-										<i class="fa fa-minus"></i>
+										<i class="fa fa-minus fa-fw"></i>
 									</button>
 									<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-										<i class="fa fa-times"></i>
+										<i class="fa fa-times fa-fw"></i>
 									</button>
 								</div>
 							</div>

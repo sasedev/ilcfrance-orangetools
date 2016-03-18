@@ -9,6 +9,11 @@ ilcfrance_orangetools_security_login:
     path:  /login
     defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:login" }
 
+ilcfrance_orangetools_security_checkGet:
+    path:  /login_check
+    defaults: { _controller: "IlcfranceOrangetoolsSecurityBundle:Security:loginCheck" }
+    methods: [GET]
+
 ilcfrance_orangetools_security_check:
     path:  /login_check
     methods: [POST]

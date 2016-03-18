@@ -63,6 +63,18 @@ class SecurityController extends SasedevController
 	}
 
 	/**
+	 * loginCheck [Get] Action
+	 *
+	 * @return RedirectResponse|Response
+	 */
+	public function loginCheckAction()
+	{
+
+		return $this->redirect($this->generateUrl('ilcfrance_orangetools_security_login', array(), UrlGeneratorInterface::ABSOLUTE_URL));
+
+	}
+
+	/**
 	 * lostPassword Action
 	 *
 	 * @return RedirectResponse|Response

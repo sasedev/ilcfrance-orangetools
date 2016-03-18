@@ -5,7 +5,7 @@
 								{% if app.user.modulepreinscriptions|length != 0 %}
 								<li class="dropdown tasks-menu">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-flag-o"></i>
+										<i class="fa fa-flag-o fa-fw"></i>
 										<span class="label label-warning">{{ app.user.modulepreinscriptions|length }}</span>
 									</a>
 									<ul class="dropdown-menu">
@@ -27,7 +27,7 @@
 								{% if app.user.sessioninscriptions|length != 0 %}
 								<li class="dropdown tasks-menu">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-bell-o"></i>
+										<i class="fa fa-bell-o fa-fw"></i>
 										<span class="label label-danger">{{ app.user.sessioninscriptions|length }}</span>
 									</a>
 									<ul class="dropdown-menu">
@@ -39,7 +39,7 @@
 													<h4>
 														&nbsp; &nbsp; {{ sessioninscription.sessionformation.title }}
 														<small>
-															- {{ sessioninscription.sessionformation.location }} - {{ sessioninscription.sessionformation.dtStart|date('d/m/Y', timezone) }} {{faIco('at')}} {{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }})
+															- {{ sessioninscription.sessionformation.location }} - {{ sessioninscription.sessionformation.dtStart|date('d/m/Y', timezone) }} {{faIco('at fa-fw')}} {{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }})
 														</small>
 													</h4>
 												</li>
@@ -52,7 +52,7 @@
 								{% endif %}
 								<li class="dropdown user user-menu{% if menu_active == 'profile' %} active{% endif %}">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										{{ faIco('user-secret') }} {{ app.user.fullName}} {{ faIco('caret-down') }}
+										{{ faIco('user-secret fa-fw') }} {{ app.user.fullName}} {{ faIco('caret-down fa-fw') }}
 									</a>
 									<ul class="dropdown-menu">
 										<li class="user-header">
@@ -71,10 +71,10 @@
 										</li>
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="{{ path('ilcfrance_orangetools_security_profile') }}" class="btn btn-default btn-flat">{{ faIco('user-secret') }} {{ 'ilcfrance.orangetools.security.profile.menu' | trans}}</a>
+												<a href="{{ path('ilcfrance_orangetools_security_profile') }}" class="btn btn-default btn-flat">{{ faIco('user-secret fa-fw') }} {{ 'ilcfrance.orangetools.security.profile.menu' | trans}}</a>
 											</div>
 											<div class="pull-right">
-												<a href="{{ path('ilcfrance_orangetools_security_logout') }}" class="btn btn-default btn-flat">{{ faIco('sign-out') }} {{ 'ilcfrance.orangetools.security.logout.menu' | trans}}</a>
+												<a href="{{ path('ilcfrance_orangetools_security_logout') }}" class="btn btn-default btn-flat">{{ faIco('sign-out fa-fw') }} {{ 'ilcfrance.orangetools.security.logout.menu' | trans}}</a>
 											</div>
 										</li>
 									</ul>
@@ -82,18 +82,18 @@
 								{% else %}
 								<li class="dropdown{% if menu_active=='security'%} active{% endif %}">
 									<a href="#" class="dropdown-toggle{% if menu_active=='security'%} active{% endif %}" data-toggle="dropdown">
-										{{ faIco('user-secret') }}
+										{{ faIco('user-secret fa-fw') }}
 									</a>
 									<ul class="dropdown-menu">
 										<li>
-											<a href="{{ path('ilcfrance_orangetools_security_login') }}">{{ faIco('sign-in')}} {{ 'ilcfrance.orangetools.security.login.menu'|trans }}</a>
+											<a href="{{ path('ilcfrance_orangetools_security_login') }}">{{ faIco('sign-in fa-fw')}} {{ 'ilcfrance.orangetools.security.login.menu'|trans }}</a>
 										</li>
 										<li class="divider" role="separator"></li>
 										<li>
-											<a href="{{ path('ilcfrance_orangetools_security_lostid') }}">{{ faIco('question')}} {{ 'ilcfrance.orangetools.security.lostid.menu'|trans }}</a>
+											<a href="{{ path('ilcfrance_orangetools_security_lostid') }}">{{ faIco('question fa-fw')}} {{ 'ilcfrance.orangetools.security.lostid.menu'|trans }}</a>
 										</li>
 										<li>
-											<a href="{{ path('ilcfrance_orangetools_security_lostpassword') }}">{{ faIco('question')}} {{ 'ilcfrance.orangetools.security.lostpassword.menu'|trans }}</a>
+											<a href="{{ path('ilcfrance_orangetools_security_lostpassword') }}">{{ faIco('question fa-fw')}} {{ 'ilcfrance.orangetools.security.lostpassword.menu'|trans }}</a>
 										</li>
 									</ul>
 								</li>

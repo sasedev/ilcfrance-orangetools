@@ -1,22 +1,22 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list')}}"> {{ faIco('object-group')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.list.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list')}}"> {{ faIco('object-group fa-fw')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.list.breadcrumb'|trans }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="well well-sm text-right">
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list') }}" class="btn btn-default">{{ faIco('list fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_export') }}" class="btn btn-default">{{ faIco('file-excel-o fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_addGet') }}" class="btn btn-default">{{ faIco('plus fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet') }}" class="btn btn-default">{{ faIco('plus-circle fa-fw') }}</a>
 		</div>
 		<div class="box">
 			<div class="box-header">
-				<h3 class="box-title">{{ faIco('object-group')}} <i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.list.tlabel'|trans|raw}}</h3>
+				<h3 class="box-title">{{ faIco('object-group fa-fw')}} <i class="fa fa-list fa-fw text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.list.tlabel'|trans|raw}}</h3>
 			</div>
 			<div class="box-body table-responsive">
 				<table id="groupmoduleList" class="table table-bordered table-hover">
@@ -34,10 +34,10 @@
 						<tr>
 							<td>{{ groupmodule.name }}</td>
 							<td class="text-right">{% if groupmodule.moduleformations|length == 0%}{{ groupmodule.moduleformations|length }}{% else %}<a href="{{ path('ilcfrance_orangetools_admin_moduleformation_listByGroupmodule', {'id': groupmodule.id}) }}">{{ groupmodule.moduleformations|length }}</a>{% endif %}</td>
-							<td class="text-right">{{ groupmodule.dtCrea|date('Y-m-d') }} {{ faIco('at') }} {{ groupmodule.dtCrea|localeDate('none', 'long') }}</td>
+							<td class="text-right">{{ groupmodule.dtCrea|date('Y-m-d') }} {{ faIco('at fa-fw') }} {{ groupmodule.dtCrea|localeDate('none', 'long') }}</td>
 							<td class="text-right">
-								<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_groupmodule_editGet',{'id':groupmodule.id})}}">{{ faIco('edit') }} {{ 'action.edit'|trans }}</a>
-								<a class="btn btn-sm btn-danger deleteConfirmGroupmodule" href="{{path('ilcfrance_orangetools_admin_groupmodule_delete',{'id':groupmodule.id})}}">{{ faIco('trash') }} {{ 'action.delete'|trans }}</a>
+								<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_groupmodule_editGet',{'id':groupmodule.id})}}">{{ faIco('edit fa-fw') }} {{ 'action.edit'|trans }}</a>
+								<a class="btn btn-sm btn-danger deleteConfirmGroupmodule" href="{{path('ilcfrance_orangetools_admin_groupmodule_delete',{'id':groupmodule.id})}}">{{ faIco('trash fa-fw') }} {{ 'action.delete'|trans }}</a>
 							</td>
 						</tr>
 						{% endfor %}

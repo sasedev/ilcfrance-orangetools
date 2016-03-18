@@ -1,23 +1,23 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
-	<li><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list')}}"> {{ faIco('calendar')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.list.breadcrumb'|trans }}</a></li>
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_listByModuleformation', {'id': moduleformation.id})}}"> {{ faIco('list')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.listByModuleformation.breadcrumb'|trans({'%moduleformation%': moduleformation.code})|raw }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list')}}"> {{ faIco('calendar fa-fw')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.list.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_listByModuleformation', {'id': moduleformation.id})}}"> {{ faIco('list fa-fw')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.listByModuleformation.breadcrumb'|trans({'%moduleformation%': moduleformation.code})|raw }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="well well-sm text-right">
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list') }}" class="btn btn-default">{{ faIco('list fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_addGet') }}" class="btn btn-default">{{ faIco('plus fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle fa-fw') }}</a>
 		</div>
 		<div class="box">
 			<div class="box-header">
-				<h3 class="box-title">{{ faIco('calendar')}} <i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Sessionformation.listByModuleformation.tlabel'|trans({'%moduleformation%': moduleformation.code})|raw}}</h3>
+				<h3 class="box-title">{{ faIco('calendar fa-fw')}} <i class="fa fa-list fa-fw text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Sessionformation.listByModuleformation.tlabel'|trans({'%moduleformation%': moduleformation.code})|raw}}</h3>
 			</div>
 			<div class="box-body table-responsive">
 				<table id="sessionformationList" class="table table-bordered table-hover">
@@ -45,18 +45,18 @@
 							<td><a href="{{ path('ilcfrance_orangetools_admin_moduleformation_editGet', {'id': sessionformation.moduleformation.id}) }}">{{ sessionformation.moduleformation.code }}</a></td>
 							<td>{{ sessionformation.code }}</td>
 							<td>{{ sessionformation.title }}</td>
-							<td class="text-right">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}</td>
-							<td class="text-right">{{ sessionformation.dtEnd|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtEnd|date('H:i:s', timezone) }}</td>
+							<td class="text-right">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at fa-fw')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}</td>
+							<td class="text-right">{{ sessionformation.dtEnd|date('Y-m-d', timezone) }} {{faIco('at fa-fw')}} {{ sessionformation.dtEnd|date('H:i:s', timezone) }}</td>
 							<td>{{ sessionformation.location|raw }}</td>
 							<td class="text-right">{{ sessionformation.phoneContactCenter|default(bsLabel('value.null'|trans|raw)|raw)|raw }}</td>
 							<td>{{ sessionformation.dtInfo|raw }}</td>
 							<td class="text-right">{{ ('Sessionformation.lockout.'~sessionformation.lockout)|trans }}</td>
 							<td class="text-right">{{ sessionformation.maxParticipants }}</td>
 							<td class="text-right">{% if sessionformation.sessioninscriptions|length == 0%}{{ sessionformation.sessioninscriptions|length }}{% else %}<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_listBySessionformation', {'id': sessionformation.id}) }}">{{ sessionformation.sessioninscriptions|length }}</a>{% endif %}</td>
-							<td class="text-right">{{ sessionformation.dtCrea|date('Y-m-d') }} {{faIco('at')}} {{ sessionformation.dtCrea|localeDate('none', 'long') }}</td>
+							<td class="text-right">{{ sessionformation.dtCrea|date('Y-m-d') }} {{faIco('at fa-fw')}} {{ sessionformation.dtCrea|localeDate('none', 'long') }}</td>
 							<td class="text-right">
-								<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_sessionformation_editGet',{'id':sessionformation.id})}}">{{ faIco('edit') }} {{ 'action.edit'|trans }}</a>
-								<a class="btn btn-sm btn-danger deleteConfirmSessionformation" href="{{path('ilcfrance_orangetools_admin_sessionformation_delete',{'id':sessionformation.id})}}">{{ faIco('trash') }} {{ 'action.delete'|trans }}</a>
+								<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_sessionformation_editGet',{'id':sessionformation.id})}}">{{ faIco('edit fa-fw') }} {{ 'action.edit'|trans }}</a>
+								<a class="btn btn-sm btn-danger deleteConfirmSessionformation" href="{{path('ilcfrance_orangetools_admin_sessionformation_delete',{'id':sessionformation.id})}}">{{ faIco('trash fa-fw') }} {{ 'action.delete'|trans }}</a>
 							</td>
 						</tr>
 						{% endfor %}

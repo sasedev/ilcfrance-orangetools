@@ -1,21 +1,21 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
-	<li><a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_list')}}"> {{ faIco('calendar-check-o')}} {{ 'ilcfrance.orangetools.admin.Sessioninscription.list.breadcrumb'|trans }}</a></li>
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_listBySessionformation', {'id': sessionformation.id})}}"> {{ faIco('calendar-check-o')}} {{ 'ilcfrance.orangetools.admin.Sessioninscription.listBySessionformation.breadcrumb'|trans({'%sessionformation%': sessionformation.code})|raw }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_list')}}"> {{ faIco('calendar-check-o fa-fw')}} {{ 'ilcfrance.orangetools.admin.Sessioninscription.list.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_listBySessionformation', {'id': sessionformation.id})}}"> {{ faIco('calendar-check-o fa-fw')}} {{ 'ilcfrance.orangetools.admin.Sessioninscription.listBySessionformation.breadcrumb'|trans({'%sessionformation%': sessionformation.code})|raw }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="well well-sm text-right">
-			<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_list') }}" class="btn btn-default">{{ faIco('list fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessioninscription_addGet') }}" class="btn btn-default">{{ faIco('plus fa-fw') }}</a>
 		</div>
 		<div class="box">
 			<div class="box-header">
-				<h3 class="box-title">{{ faIco('calendar-check-o')}} <i class="fa fa-list text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Sessioninscription.listBySessionformation.tlabel'|trans({'%sessionformation%': sessionformation.code})|raw}}</h3>
+				<h3 class="box-title">{{ faIco('calendar-check-o fa-fw')}} <i class="fa fa-list fa-fw text-aqua"></i> {{ 'ilcfrance.orangetools.admin.Sessioninscription.listBySessionformation.tlabel'|trans({'%sessionformation%': sessionformation.code})|raw}}</h3>
 			</div>
 			<div class="box-body table-responsive">
 				<table id="sessioninscriptionList" class="table table-bordered table-hover">
@@ -33,12 +33,12 @@
 						{% for sessioninscription in sessioninscriptions %}
 						<tr>
 							<td><a href="{{ path('ilcfrance_orangetools_admin_trainee_editGet', {'id': sessioninscription.user.id}) }}">{{ sessioninscription.user.fullName }} ({{ sessioninscription.user.username }})</a></td>
-							<td><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_editGet', {'id': sessioninscription.sessionformation.id}) }}">{{ sessioninscription.sessionformation.code }} ({{ sessioninscription.sessionformation.moduleformation.title }} - {{ sessioninscription.sessionformation.title }} - {{ sessioninscription.sessionformation.dtStart|date('Y-m-d', timezone) }} {{ faIco('at') }} {{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }} / {{ sessioninscription.sessionformation.dtEnd|date('Y-m-d', timezone) }} {{ faIco('at') }} {{ sessioninscription.sessionformation.dtEnd|date('H:i:s', timezone) }} - {{ sessioninscription.sessionformation.location }})</a></td>
+							<td><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_editGet', {'id': sessioninscription.sessionformation.id}) }}">{{ sessioninscription.sessionformation.code }} ({{ sessioninscription.sessionformation.moduleformation.title }} - {{ sessioninscription.sessionformation.title }} - {{ sessioninscription.sessionformation.dtStart|date('Y-m-d', timezone) }} {{ faIco('at fa-fw') }} {{ sessioninscription.sessionformation.dtStart|date('H:i:s', timezone) }} / {{ sessioninscription.sessionformation.dtEnd|date('Y-m-d', timezone) }} {{ faIco('at fa-fw') }} {{ sessioninscription.sessionformation.dtEnd|date('H:i:s', timezone) }} - {{ sessioninscription.sessionformation.location }})</a></td>
 							<td>{{ ('Sessioninscription.convocation.'~sessioninscription.convocation)|trans }}</td>
-							<td class="text-right">{{ sessioninscription.dtCrea|date('Y-m-d') }} {{faIco('at')}} {{ sessioninscription.dtCrea|localeDate('none', 'long') }}</td>
+							<td class="text-right">{{ sessioninscription.dtCrea|date('Y-m-d') }} {{faIco('at fa-fw')}} {{ sessioninscription.dtCrea|localeDate('none', 'long') }}</td>
 							<td class="text-right">
-								<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_sessioninscription_editGet',{'id':sessioninscription.id})}}">{{ faIco('edit') }} {{ 'action.edit'|trans }}</a>
-								<a class="btn btn-sm btn-danger deleteConfirmSessioninscription" href="{{path('ilcfrance_orangetools_admin_sessioninscription_delete',{'id':sessioninscription.id})}}">{{ faIco('trash') }} {{ 'action.delete'|trans }}</a>
+								<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_sessioninscription_editGet',{'id':sessioninscription.id})}}">{{ faIco('edit fa-fw') }} {{ 'action.edit'|trans }}</a>
+								<a class="btn btn-sm btn-danger deleteConfirmSessioninscription" href="{{path('ilcfrance_orangetools_admin_sessioninscription_delete',{'id':sessioninscription.id})}}">{{ faIco('trash fa-fw') }} {{ 'action.delete'|trans }}</a>
 							</td>
 						</tr>
 						{% endfor %}

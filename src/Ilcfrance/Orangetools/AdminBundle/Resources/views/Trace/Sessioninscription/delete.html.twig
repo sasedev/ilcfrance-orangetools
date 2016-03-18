@@ -1,6 +1,6 @@
-{{ faIco('calendar-check-o bg-red')}}
+{{ faIco('calendar-check-o fa-fw bg-red')}}
 		<div class="timeline-item">
-			<span class="time">{{ faIco('calendar') }} &nbsp; {{ trace.dtCrea|localeDate('long')  }} &nbsp; {{ faIco('clock-o') }} &nbsp; {{ trace.dtCrea|localeDate('none', 'medium')  }}</span>
+			<span class="time">{{ faIco('calendar fa-fw') }} &nbsp; {{ trace.dtCrea|localeDate('long')  }} &nbsp; {{ faIco('clock-o fa-fw') }} &nbsp; {{ trace.dtCrea|localeDate('none', 'medium')  }}</span>
 			<h3 class="timeline-header"> {{ ('Entity.'~trace.actionEntity~'.delete')|trans }} <span class="pull-right">(<b>{{ trace.userFullName }}</b>)</span></h3>
 			<div class="timeline-body">
 				<table class="table table-bordered table-condensed table-hover table-striped">

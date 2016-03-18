@@ -72,8 +72,12 @@ class GroupmoduleController extends SasedevController
 		$workSheet->getStyle('A1')
 			->getFont()
 			->setBold(true);
+			$workSheet->setCellValue('B1', $this->translate('Groupmodule.moduleformations'));
+			$workSheet->getStyle('B1')
+			->getFont()
+			->setBold(true);
 
-		$workSheet->getStyle('A1')->applyFromArray(
+		$workSheet->getStyle('A1:B1')->applyFromArray(
 			array(
 				'fill' => array(
 					'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -88,9 +92,10 @@ class GroupmoduleController extends SasedevController
 		foreach ($groupmodules as $groupmodule) {
 			$i ++;
 			$workSheet->setCellValue('A' . $i, $groupmodule->getName(), \PHPExcel_Cell_DataType::TYPE_STRING2);
+			$workSheet->setCellValue('B' . $i, \count($groupmodule->getModuleformations()), \PHPExcel_Cell_DataType::TYPE_NUMERIC);
 
 			if ($i % 2 == 1) {
-				$workSheet->getStyle('A' . $i)->applyFromArray(
+				$workSheet->getStyle('A' . $i . ':B' . $i)->applyFromArray(
 					array(
 						'fill' => array(
 							'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -100,7 +105,7 @@ class GroupmoduleController extends SasedevController
 						)
 					));
 			} else {
-				$workSheet->getStyle('A' . $i)->applyFromArray(
+				$workSheet->getStyle('A' . $i . ':B' . $i)->applyFromArray(
 					array(
 						'fill' => array(
 							'type' => \PHPExcel_Style_Fill::FILL_SOLID,
@@ -113,6 +118,7 @@ class GroupmoduleController extends SasedevController
 		}
 
 		$workSheet->getColumnDimension('A')->setAutoSize(true);
+		$workSheet->getColumnDimension('B')->setAutoSize(true);
 
 		$writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
 		$response = $this->get('phpexcel')->createStreamedResponse($writer);

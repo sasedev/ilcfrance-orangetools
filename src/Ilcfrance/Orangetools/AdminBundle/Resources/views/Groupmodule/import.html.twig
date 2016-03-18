@@ -1,29 +1,29 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
-	<li><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list')}}"> {{ faIco('object-group')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.list.breadcrumb'|trans }}</a></li>
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet')}}"> {{ faIco('plus-circle')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.import.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list')}}"> {{ faIco('object-group fa-fw')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.list.breadcrumb'|trans }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet')}}"> {{ faIco('plus-circle fa-fw')}} {{ 'ilcfrance.orangetools.admin.Groupmodule.import.breadcrumb'|trans }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="well well-sm text-right">
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_list') }}" class="btn btn-default">{{ faIco('list fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_export') }}" class="btn btn-default">{{ faIco('file-excel-o fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_addGet') }}" class="btn btn-default">{{ faIco('plus fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_groupmodule_importGet') }}" class="btn btn-default">{{ faIco('plus-circle fa-fw') }}</a>
 		</div>
 		<div class="box box-success">
 			<div class="box-header">
-				<h3 class="box-title">{{ faIco('object-group')}} <i class="fa fa-plus-circle text-green"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.import.tlabel'|trans|raw}}</h3>
+				<h3 class="box-title">{{ faIco('object-group fa-fw')}} <i class="fa fa-plus-circle fa-fw text-green"></i> {{ 'ilcfrance.orangetools.admin.Groupmodule.import.tlabel'|trans|raw}}</h3>
 			</div>
 			<div class="box-body">
 				{{form_start(GroupmoduleImportForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_groupmodule_importPost'), 'style': 'horizontal'})}}
-				{{form_row(GroupmoduleImportForm.excel, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.GroupmoduleImportForm.excel.placeholder'}, 'input_group': {'append': faIco('file-excel-o')} })}}
+				{{form_row(GroupmoduleImportForm.excel, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.GroupmoduleImportForm.excel.placeholder'}, 'input_group': {'append': faIco('file-excel-o fa-fw')} })}}
 				<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.GroupmoduleImportForm.btnSubmit'|trans|raw}}</button>
+					<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.GroupmoduleImportForm.btnSubmit'|trans|raw}}</button>
 				</div></div>
 				{{form_end(GroupmoduleImportForm)}}
 				{% for flashMessage in app.session.flashbag.get('log') %}
@@ -41,7 +41,7 @@
 <script type="text/javascript">
 <!--
 $(function() {
-	$("#GroupmoduleImportForm_excel").fileinput({'showUpload':false, browseClass: "btn btn-success", browseLabel: " Excel", browseIcon: '{{faIco('folder-open')}}', remove1Class: "btn btn-danger", removeLabel: "Delete", removeIcon: '{{glyphIco('trash')}}'});
+	$("#GroupmoduleImportForm_excel").fileinput({'showUpload':false, browseClass: "btn btn-success", browseLabel: " Excel", browseIcon: '{{faIco('folder-open fa-fw')}}', remove1Class: "btn btn-danger", removeLabel: "Delete", removeIcon: '{{glyphIco('trash')}}'});
 });
 //-->
 </script>

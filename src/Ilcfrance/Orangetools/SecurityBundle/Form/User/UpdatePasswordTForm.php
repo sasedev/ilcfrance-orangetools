@@ -28,8 +28,8 @@ class UpdatePasswordTForm extends AbstractType
 
 		$builder->add('clearPassword', RepeatedType::class,
 			array('type' => PasswordType::class, 'invalid_message' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.repeat.notequal',
-				'first_options' => array('label' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.first.label', 'attr' => array('label_col' => 4, 'widget_col' => 8, 'placeholder' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.first.placeholder', 'input_group' => array('append' => '<span class="fa fa-lock"></span>'))),
-				'second_options' => array('label' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.second.label', 'attr' => array('label_col' => 4, 'widget_col' => 8, 'placeholder' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.second.placeholder', 'input_group' => array('append' => '<span class="fa fa-lock"></span>')))));
+				'first_options' => array('label' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.first.label', 'attr' => array('label_col' => 4, 'widget_col' => 8, 'placeholder' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.first.placeholder', 'input_group' => array('append' => '<span class="fa fa-lock fa-fw"></span>'))),
+				'second_options' => array('label' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.second.label', 'attr' => array('label_col' => 4, 'widget_col' => 8, 'placeholder' => 'ilcfrance.orangetools.security.UserUpdatePasswordForm.clearPassword.second.placeholder', 'input_group' => array('append' => '<span class="fa fa-lock fa-fw"></span>')))));
 	}
 
 	/**

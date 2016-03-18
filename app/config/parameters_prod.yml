@@ -7,4 +7,4 @@ parameters:
     mail_replay_name:                 "Léa Paolini"
     sitename:                  "OrangeTools.ILCFrance.com"
     mailer_transport: sendmail
-    siteversion: 1.0
+    siteversion: 1.0.1

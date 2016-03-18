@@ -2,9 +2,9 @@
 {%block breadcrumb%}
 <ol class="breadcrumb">
 	{% if is_granted('ROLE_ADMIN') %}
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
 	{% else %}
-	<li><a href="{{ path('ilcfrance_orangetools_front_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.front.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_front_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.front.homepage.breadcrumb'|trans }}</a></li>
 	{% endif %}
 	<li class="active"><a href="{{ path('ilcfrance_orangetools_security_profile')}}"> {{ 'ilcfrance.orangetools.security.profile.breadcrumb'|trans}}</a></a></li>
 </ol>
@@ -29,11 +29,11 @@
 								<a href="mailto:{{user.email}}">{{user.email}}</a>
 							</div>
 							<div class="col-lg-3 text-right">{{'User.dtCrea'|trans}} :</div>
-							<div class="col-lg-9">{{user.dtCrea|localeDate('long')}} {{faIco('at')}} {{user.dtCrea|localeDate('none','long')}}</div>
+							<div class="col-lg-9">{{user.dtCrea|localeDate('long')}} {{faIco('at fa-fw')}} {{user.dtCrea|localeDate('none','long')}}</div>
 							<div class="col-lg-3 text-right">{{'User.logins'|trans}} :</div>
 							<div class="col-lg-9">{{user.logins}}</div>
 							<div class="col-lg-3 text-right">{{'User.lastLogin'|trans}} :</div>
-							<div class="col-lg-9">{{user.lastLogin|localeDate('long')}} {{faIco('at')}} {{user.lastLogin|localeDate('none', 'long')}}</div>
+							<div class="col-lg-9">{{user.lastLogin|localeDate('long')}} {{faIco('at fa-fw')}} {{user.lastLogin|localeDate('none', 'long')}}</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-12"><br></div>
@@ -45,13 +45,13 @@
 							<div class="col-lg-12"><br></div>
 							<div class="col-lg-3 text-right">{{'User.phone'|trans}} :</div>
 							<div class="col-lg-9">
-								{%if user.phone is not null%}{{faIco('phone')}} <a href="tel:{{user.phone}}">{{user.phone}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}
+								{%if user.phone is not null%}{{faIco('phone fa-fw')}} <a href="tel:{{user.phone}}">{{user.phone}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}
 							</div>
 
 							<div class="col-lg-12"><br></div>
 							<div class="col-lg-3 text-right">{{'User.mobile'|trans}} :</div>
 							<div class="col-lg-9">
-								{%if user.mobile is not null%}{{faIco('mobile')}} <a href="tel:{{user.mobile}}">{{user.mobile}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}
+								{%if user.mobile is not null%}{{faIco('mobile fa-fw')}} <a href="tel:{{user.mobile}}">{{user.mobile}}</a>{%else%}{{bsLabelWarning('value.null'|trans|raw)}}{%endif%}
 							</div>
 						</div>
 						{% if is_granted('ROLE_TRAINEE') %}
@@ -69,7 +69,7 @@
 							<div class="col-lg-12"><br></div>
 							<div class="col-lg-3 text-right">{{'User.validUntil'|trans}} :</div>
 							<div class="col-lg-9">
-								{%if user.validUntil is not empty %}{{user.validUntil|localeDate('long')}} {{faIco('at')}} {{user.validUntil|localeDate('none', 'long')}}{%else%}{{bsLabel('value.null'|trans|raw)}}{%endif%}
+								{%if user.validUntil is not empty %}{{user.validUntil|localeDate('long')}} {{faIco('at fa-fw')}} {{user.validUntil|localeDate('none', 'long')}}{%else%}{{bsLabel('value.null'|trans|raw)}}{%endif%}
 							</div>
 						</div>
 						{% if user.modulepreinscriptions|length != 0 %}
@@ -116,58 +116,58 @@
 				</div>
 				<div class="tab-pane fade{%if tabActive==2%} in active{%endif%}" id="update">
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updateEmail'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updateEmail'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(UserUpdateEmailForm, {'method':'POST', 'action': path('ilcfrance_orangetools_security_profile_post'), 'style': 'horizontal'})}}
-							{{form_row(UserUpdateEmailForm.email, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateEmailForm.email.placeholder'}, 'input_group': {'append': faIco('envelope')} })}}
+							{{form_row(UserUpdateEmailForm.email, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateEmailForm.email.placeholder'}, 'input_group': {'append': faIco('envelope fa-fw')} })}}
 							<div class="row">
-								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.security.UserUpdateEmailForm.btnSubmit'|trans|raw}}</button></div>
+								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.security.UserUpdateEmailForm.btnSubmit'|trans|raw}}</button></div>
 							</div>
 							{{form_end(UserUpdateEmailForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updatePassword'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updatePassword'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(UserUpdatePasswordForm, {'method':'POST', 'action': path('ilcfrance_orangetools_security_profile_post'), 'style': 'horizontal'})}}
-							{{form_row(UserUpdatePasswordForm.oldPassword, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdatePasswordForm.oldPassword.placeholder'}, 'input_group': {'append': faIco('lock')} })}}
+							{{form_row(UserUpdatePasswordForm.oldPassword, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdatePasswordForm.oldPassword.placeholder'}, 'input_group': {'append': faIco('lock fa-fw')} })}}
 							{{form_row(UserUpdatePasswordForm.clearPassword, {'label_col': 4, 'widget_col': 8} )}}
 							<div class="row">
-								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.security.UserUpdatePasswordForm.btnSubmit'|trans|raw}}</button></div>
+								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.security.UserUpdatePasswordForm.btnSubmit'|trans|raw}}</button></div>
 							</div>
 							{{form_end(UserUpdatePasswordForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updateInfos'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updateInfos'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(UserUpdateInfosForm, {'method':'POST', 'action': path('ilcfrance_orangetools_security_profile_post'), 'style': 'horizontal'})}}
-							{{form_row(UserUpdateInfosForm.lastName, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateInfosForm.lastName.placeholder'}, 'input_group': {'append': faIco('info-circle')} })}}
-							{{form_row(UserUpdateInfosForm.firstName, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateInfosForm.firstName.placeholder'}, 'input_group': {'append': faIco('info-circle')} })}}
+							{{form_row(UserUpdateInfosForm.lastName, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateInfosForm.lastName.placeholder'}, 'input_group': {'append': faIco('info-circle fa-fw')} })}}
+							{{form_row(UserUpdateInfosForm.firstName, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateInfosForm.firstName.placeholder'}, 'input_group': {'append': faIco('info-circle fa-fw')} })}}
 							<div class="row">
-								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.security.UserUpdateInfosForm.btnSubmit'|trans|raw}}</button></div>
+								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.security.UserUpdateInfosForm.btnSubmit'|trans|raw}}</button></div>
 							</div>
 							{{form_end(UserUpdateInfosForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updatePhone'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updatePhone'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(UserUpdatePhoneForm, {'method':'POST', 'action': path('ilcfrance_orangetools_security_profile_post'), 'style': 'horizontal'})}}
-							{{form_row(UserUpdatePhoneForm.phone, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdatePhoneForm.phone.placeholder'}, 'input_group': {'append': faIco('phone')} })}}
+							{{form_row(UserUpdatePhoneForm.phone, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdatePhoneForm.phone.placeholder'}, 'input_group': {'append': faIco('phone fa-fw')} })}}
 							<div class="row">
-								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.security.UserUpdatePhoneForm.btnSubmit'|trans|raw}}</button></div>
+								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.security.UserUpdatePhoneForm.btnSubmit'|trans|raw}}</button></div>
 							</div>
 							{{form_end(UserUpdatePhoneForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updateMobile'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.security.profile.tlabel.updateMobile'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(UserUpdateMobileForm, {'method':'POST', 'action': path('ilcfrance_orangetools_security_profile_post'), 'style': 'horizontal'})}}
-							{{form_row(UserUpdateMobileForm.mobile, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateMobileForm.mobile.placeholder'}, 'input_group': {'append': faIco('mobile')} })}}
+							{{form_row(UserUpdateMobileForm.mobile, {'label_col': 4, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.security.UserUpdateMobileForm.mobile.placeholder'}, 'input_group': {'append': faIco('mobile fa-fw')} })}}
 							<div class="row">
-								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.security.UserUpdateMobileForm.btnSubmit'|trans|raw}}</button></div>
+								<div class="col-lg-offset-4 col-lg-4"><button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.security.UserUpdateMobileForm.btnSubmit'|trans|raw}}</button></div>
 							</div>
 							{{form_end(UserUpdateMobileForm)}}
 						</div>

@@ -1,6 +1,6 @@
-{{ faIco('calendar-check-o bg-green')}}
+{{ faIco('calendar-check-o fa-fw bg-green')}}
 		<div class="timeline-item">
-			<span class="time">{{ faIco('calendar') }} &nbsp; {{ trace.dtCrea|localeDate('long')  }} &nbsp; {{ faIco('clock-o') }} &nbsp; {{ trace.dtCrea|localeDate('none', 'medium')  }}</span>
+			<span class="time">{{ faIco('calendar fa-fw') }} &nbsp; {{ trace.dtCrea|localeDate('long')  }} &nbsp; {{ faIco('clock-o fa-fw') }} &nbsp; {{ trace.dtCrea|localeDate('none', 'medium')  }}</span>
 			<h3 class="timeline-header"> {{ ('Entity.'~trace.actionEntity~'.update')|trans }} <span class="pull-right">(<b>{{ trace.userFullName }}</b>)</span></h3>
 			<div class="timeline-body">
 				<table class="table table-bordered table-condensed table-hover table-striped">
@@ -53,6 +53,6 @@
 
 			</div>
 			<div class="timeline-footer">
-				<a class="btn btn-default btn-xs" href="{{ path('ilcfrance_orangetools_admin_sessioninscription_editGet', {'id': trace.actionId}) }}">{{ faIco('edit') }}</a>
+				<a class="btn btn-default btn-xs" href="{{ path('ilcfrance_orangetools_admin_sessioninscription_editGet', {'id': trace.actionId}) }}">{{ faIco('edit fa-fw') }}</a>
 			</div>
 		</div>

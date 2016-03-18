@@ -1,19 +1,19 @@
 {% extends 'IlcfranceOrangetoolsResBundle::admin.template.html.twig' %}
 {%block breadcrumb%}
 <ol class="breadcrumb">
-	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
-	<li><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list')}}"> {{ faIco('calendar')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.list.breadcrumb'|trans|raw }}</a></li>
-	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_editGet', {'id': sessionformation.id})}}"> {{ faIco('edit')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.edit.breadcrumb'|trans({'%sessionformation%': sessionformation.code})|raw }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_homepage')}}"> {{ faIco('home fa-fw')}} {{ 'ilcfrance.orangetools.admin.homepage.breadcrumb'|trans }}</a></li>
+	<li><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list')}}"> {{ faIco('calendar fa-fw')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.list.breadcrumb'|trans|raw }}</a></li>
+	<li class="active"><a href="{{ path('ilcfrance_orangetools_admin_sessionformation_editGet', {'id': sessionformation.id})}}"> {{ faIco('edit fa-fw')}} {{ 'ilcfrance.orangetools.admin.Sessionformation.edit.breadcrumb'|trans({'%sessionformation%': sessionformation.code})|raw }}</a></li>
 </ol>
 {%endblock breadcrumb%}
 {%block maincontent%}
 <div class="row">
 	<div class="col-lg-12">
 		<div class="well well-sm text-right">
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list') }}" class="btn btn-default">{{ faIco('list') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_addGet') }}" class="btn btn-default">{{ faIco('plus') }}</a>
-			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_list') }}" class="btn btn-default">{{ faIco('list fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_export') }}" class="btn btn-default">{{ faIco('file-excel-o fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_addGet') }}" class="btn btn-default">{{ faIco('plus fa-fw') }}</a>
+			<a href="{{ path('ilcfrance_orangetools_admin_sessionformation_importGet') }}" class="btn btn-default">{{ faIco('plus-circle fa-fw') }}</a>
 		</div>
 		<div class="nav-tabs-custom">
 			<ul class="nav nav-tabs">
@@ -25,7 +25,7 @@
 			<div class="tab-content">
 				<div class="tab-pane fade{%if tabActive==1%} in active{%endif%}" id="overview">
 					<div class="panel box box-primary">
-						<div class="box-header"><h3 class="box-title">{{ faIco('calendar text-primary')}} {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.overview'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title">{{ faIco('calendar fa-fw text-primary')}} {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.overview'|trans}}</h3></div>
 						<div class="box-body">
 							<div class="row">
 								<div class="col-lg-3 text-right">{{'Sessionformation.moduleformation'|trans|raw}} :</div>
@@ -41,9 +41,9 @@
 								<div class="col-lg-12">&nbsp;</div>
 
 								<div class="col-lg-3 text-right">{{'Sessionformation.dtStart'|trans|raw}} :</div>
-								<div class="col-lg-9">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}&nbsp;</div>
+								<div class="col-lg-9">{{ sessionformation.dtStart|date('Y-m-d', timezone) }} {{faIco('at fa-fw')}} {{ sessionformation.dtStart|date('H:i:s', timezone) }}&nbsp;</div>
 								<div class="col-lg-3 text-right">{{'Sessionformation.dtEnd'|trans|raw}} :</div>
-								<div class="col-lg-9">{{ sessionformation.dtEnd|date('Y-m-d', timezone) }} {{faIco('at')}} {{ sessionformation.dtEnd|date('H:i:s', timezone) }}&nbsp;</div>
+								<div class="col-lg-9">{{ sessionformation.dtEnd|date('Y-m-d', timezone) }} {{faIco('at fa-fw')}} {{ sessionformation.dtEnd|date('H:i:s', timezone) }}&nbsp;</div>
 								<div class="col-lg-3 text-right">{{'Sessionformation.location'|trans|raw}} :</div>
 								<div class="col-lg-9">{{sessionformation.location|raw}}&nbsp;</div>
 								<div class="col-lg-12">&nbsp;</div>
@@ -71,7 +71,7 @@
 								<br/>
 								{{form_start(SessioninscriptionSendConvocationForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
 								<div class="form-group"><div class="col-lg-1">
-								<button class="btn btn-danger" type="submit">{{faIco('envelope')}}</button>
+								<button class="btn btn-danger" type="submit">{{faIco('envelope fa-fw')}}</button>
 								</div></div>
 								{{form_end(SessioninscriptionSendConvocationForm)}}
 								{% endif %}
@@ -90,9 +90,9 @@
 
 								<div class="col-lg-12">&nbsp;</div>
 								<div class="col-lg-3 text-right">{{'Sessionformation.dtCrea'|trans|raw}} :</div>
-								<div class="col-lg-9">{{sessionformation.dtCrea|localeDate('medium')}} {{faIco('at')}} {{sessionformation.dtCrea|localeDate('none', 'long')}}&nbsp;</div>
+								<div class="col-lg-9">{{sessionformation.dtCrea|localeDate('medium')}} {{faIco('at fa-fw')}} {{sessionformation.dtCrea|localeDate('none', 'long')}}&nbsp;</div>
 								<div class="col-lg-3 text-right">{{'Sessionformation.dtUpdate'|trans|raw}} :</div>
-								<div class="col-lg-9">{{sessionformation.dtUpdate|localeDate('medium')}} {{faIco('at')}} {{sessionformation.dtUpdate|localeDate('none', 'long')}}&nbsp;</div>
+								<div class="col-lg-9">{{sessionformation.dtUpdate|localeDate('medium')}} {{faIco('at fa-fw')}} {{sessionformation.dtUpdate|localeDate('none', 'long')}}&nbsp;</div>
 								<br>
 							</div>
 						</div>
@@ -100,123 +100,123 @@
 				</div>
 				<div class="tab-pane fade{%if tabActive==2%} in active{%endif%}" id="edit">
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateModuleformation'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateModuleformation'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateModuleformationForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateModuleformationForm.moduleformation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateModuleformationForm.moduleformation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateModuleformationForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateModuleformationForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateModuleformationForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateCode'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateCode'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateCodeForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateCodeForm.code, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateCodeForm.code.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateCodeForm.code, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateCodeForm.code.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateCodeForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateCodeForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateCodeForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateTitle'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateTitle'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateTitleForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateTitleForm.title, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateTitleForm.title.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateTitleForm.title, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateTitleForm.title.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateTitleForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateTitleForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateTitleForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateDtStart'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateDtStart'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateDtStartForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateDtStartForm.dtStart, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.placeholder'}, 'input_group': {'append': faIco('info')} })}}
-							{{form_row(SessionformationUpdateDtStartForm.dtEnd, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtEnd.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateDtStartForm.dtStart, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtStart.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
+							{{form_row(SessionformationUpdateDtStartForm.dtEnd, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.dtEnd.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateDtStartForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateDtStartForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateLocation'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateLocation'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateLocationForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateLocationForm.location, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateLocationForm.location.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateLocationForm.location, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateLocationForm.location.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateLocationForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateLocationForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateLocationForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updatePhoneContactCenter'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updatePhoneContactCenter'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdatePhoneContactCenterForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdatePhoneContactCenterForm.phoneContactCenter, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdatePhoneContactCenterForm.phoneContactCenter.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdatePhoneContactCenterForm.phoneContactCenter, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdatePhoneContactCenterForm.phoneContactCenter.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdatePhoneContactCenterForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdatePhoneContactCenterForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdatePhoneContactCenterForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateConditionsReport'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateConditionsReport'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateConditionsReportForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateConditionsReportForm.conditionsReport, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateConditionsReportForm.conditionsReport.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateConditionsReportForm.conditionsReport, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateConditionsReportForm.conditionsReport.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateConditionsReportForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateConditionsReportForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateConditionsReportForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateDtInfo'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateDtInfo'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateDtInfoForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateDtInfoForm.dtInfo, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtInfoForm.dtInfo.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateDtInfoForm.dtInfo, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateDtInfoForm.dtInfo.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateDtInfoForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateDtInfoForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateDtInfoForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateOtherInfos'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateOtherInfos'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateOtherInfosForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateOtherInfosForm.otherInfos, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.otherInfos.placeholder', 'class': 'wysiwyg'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateOtherInfosForm.otherInfos, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationNewForm.otherInfos.placeholder', 'class': 'wysiwyg'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateOtherInfosForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateOtherInfosForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateOtherInfosForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateMaxParticipants'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateMaxParticipants'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateMaxParticipantsForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateMaxParticipantsForm.maxParticipants, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateMaxParticipantsForm.maxParticipants.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateMaxParticipantsForm.maxParticipants, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateMaxParticipantsForm.maxParticipants.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateMaxParticipantsForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateMaxParticipantsForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateMaxParticipantsForm)}}
 						</div>
 					</div>
 					<div class="panel box box-danger">
-						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateLockout'|trans}}</h3></div>
+						<div class="box-header"><h3 class="box-title"> <i class="fa fa-edit fa-fw text-red"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.updateLockout'|trans}}</h3></div>
 						<div class="box-body">
 							{{form_start(SessionformationUpdateLockoutForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-							{{form_row(SessionformationUpdateLockoutForm.lockout, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateLockoutForm.lockout.placeholder'}, 'input_group': {'append': faIco('info')} })}}
+							{{form_row(SessionformationUpdateLockoutForm.lockout, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'ilcfrance.orangetools.admin.SessionformationUpdateLockoutForm.lockout.placeholder'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 							<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateLockoutForm.btnSubmit'|trans|raw}}</button>
+								<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessionformationUpdateLockoutForm.btnSubmit'|trans|raw}}</button>
 							</div></div>
 							{{form_end(SessionformationUpdateLockoutForm)}}
 						</div>
@@ -231,11 +231,11 @@
 							<div id="collapse0031" class="panel-collapse collapse{%if tabActive==3 and stabActive==1 %} in{%endif%}">
 								<div class="box-body">
 									{{form_start(SessioninscriptionNewForm, {'method':'POST', 'action': path('ilcfrance_orangetools_admin_sessionformation_editPost', {'id': sessionformation.id}), 'style': 'horizontal'})}}
-									{{form_row(SessioninscriptionNewForm.user, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('user')} })}}
+									{{form_row(SessioninscriptionNewForm.user, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('user fa-fw')} })}}
 									{{form_row(SessioninscriptionNewForm.sessionformation, {'label_col': 3, 'widget_col': 8, 'attr': {'row_class': 'hidden'} })}}
-									{{form_row(SessioninscriptionNewForm.convocation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('info')} })}}
+									{{form_row(SessioninscriptionNewForm.convocation, {'label_col': 3, 'widget_col': 8, 'attr': {'placeholder': 'Option.choose'}, 'input_group': {'append': faIco('info fa-fw')} })}}
 									<div class="form-group"><div class="col-lg-offset-3 col-lg-4">
-										<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o')}} {{'ilcfrance.orangetools.admin.SessioninscriptionNewForm.btnSubmit'|trans|raw}}</button>
+										<button class="btn btn-danger btn-block btn-flat" type="submit">{{faIco('floppy-o fa-fw')}} {{'ilcfrance.orangetools.admin.SessioninscriptionNewForm.btnSubmit'|trans|raw}}</button>
 									</div></div>
 									{{form_end(SessioninscriptionNewForm)}}
 								</div>
@@ -262,10 +262,10 @@
 											<tr>
 												<td>{{ sessioninscription.user.fullName }}</td>
 												<td>{{ ('Sessioninscription.convocation.'~sessioninscription.convocation)|trans }}</td>
-												<td class="text-right">{{ sessioninscription.dtCrea|date('Y-m-d') }} {{faIco('at')}} {{ sessioninscription.dtCrea|localeDate('none', 'long') }}</td>
+												<td class="text-right">{{ sessioninscription.dtCrea|date('Y-m-d') }} {{faIco('at fa-fw')}} {{ sessioninscription.dtCrea|localeDate('none', 'long') }}</td>
 												<td class="text-right">
-													<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_sessioninscription_editGet',{'id':sessioninscription.id})}}">{{ faIco('edit') }} {{ 'action.edit'|trans }}</a>
-													<a class="btn btn-sm btn-danger deleteConfirmSessioninscription" href="{{path('ilcfrance_orangetools_admin_sessioninscription_delete',{'id':sessioninscription.id})}}">{{ faIco('trash') }} {{ 'action.delete'|trans }}</a>
+													<a class="btn btn-sm btn-info" href="{{path('ilcfrance_orangetools_admin_sessioninscription_editGet',{'id':sessioninscription.id})}}">{{ faIco('edit fa-fw') }} {{ 'action.edit'|trans }}</a>
+													<a class="btn btn-sm btn-danger deleteConfirmSessioninscription" href="{{path('ilcfrance_orangetools_admin_sessioninscription_delete',{'id':sessioninscription.id})}}">{{ faIco('trash fa-fw') }} {{ 'action.delete'|trans }}</a>
 												</td>
 											</tr>
 											{% endfor %}
@@ -285,7 +285,7 @@
 				<div class="tab-pane fade{%if tabActive==100%} in active{%endif%}" id="Logs">
 					<div class="panel box box-warning">
 						<div class="box-header">
-							<h4 class="box-title"> <i class="fa fa-history text-orange"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.logs'|trans}}</h4>
+							<h4 class="box-title"> <i class="fa fa-history fa-fw text-orange"></i> {{'ilcfrance.orangetools.admin.Sessionformation.edit.tlabel.logs'|trans}}</h4>
 						</div>
 						<div class="box-body">
 							<div class="row">
